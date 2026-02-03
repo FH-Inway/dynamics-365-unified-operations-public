@@ -1,8 +1,8 @@
 ---
 title: Posting FAQ
 description: Access answers to frequently asked questions about posting issues in General ledger, including account structure errors and dimension validation problems.
-author: 
-ms.author: 
+author: seth-arvila
+ms.author: seth-arvila
 ms.topic: faq
 ms.date: 2/3/2026
 ms.reviewer: 

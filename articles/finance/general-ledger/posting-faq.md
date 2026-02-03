@@ -2,7 +2,7 @@
 title: Posting FAQ
 description: Access answers to frequently asked questions about posting issues in General ledger, including account structure errors and dimension validation problems.
 author: seth-arvila
-ms.author: seth-arvila
+ms.author: setharvila
 ms.topic: faq
 ms.date: 2/3/2026
 ms.reviewer: 
@@ -39,8 +39,7 @@ If you didn't manually enter the segment that's causing the error, the value mig
 If you identify the source of the issue, update your default dimension setup accordingly.
 
 > [!NOTE]
-> The error message typically specifies which account structure or advanced rule was violated.
-> ![An image of the error message displayed when an account structure or advanced rule was violated] (../media/posting-faq-rule-violation.png)
+> The error message typically specifies which account structure or advanced rule was violated. ![An image of the error message displayed when an account structure or advanced rule was violated(./media/posting-faq-rule-violation.png)](./media/posting-faq-rule-violation.png)
 
 ## Why do I receive a "MainAccount is not a valid dimension value in account structure" error?
 

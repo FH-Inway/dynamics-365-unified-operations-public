@@ -199,11 +199,11 @@ The buyer's EndpointID determination uses the following hierarchy of built-in [R
 
 - If you define the Global Location Number (GLN), also known as a European article numbering (EAN), for the customer as an active Registration Number with the **EAN** Registration category, the system uses it as the customer's EndpointID and uses the **0088** constant (EAN Location Code) as the EndpointID **schemeID** attribute's value.
 
-- If you don't define the EAN registration number, the system uses the customer's active Registration Number of the **Enterprise ID** Registration category as the customer's EndpointID and uses the **0208** constant (Numero d'entreprise / ondernemingsnummer / Unternehmensnummer) as the EndpointID **schemeID** attribute's value.
+- If you don't define the EAN registration number, the system uses the customer's active Registration Number of the **Enterprise ID** Registration category as the customer's EndpointID and dynamically determines the EndpointID **schemeID** attribute's value depending on the country from the Buyer's address. For example, **0208** (Numero d'entreprise / ondernemingsnummer / Unternehmensnummer) for Belgium.
 
-- If you don't define the EAN and Enterprise ID registration numbers, the system uses the customer's active Registration Number of the **VAT ID** Registration category as the customer's EndpointID and uses the **9925** constant (Belgium VAT number) as the EndpointID **schemeID** attribute's value.
+- If you don't define the EAN and Enterprise ID registration numbers, the system uses the customer's active Registration Number of the **VAT ID** Registration category as the customer's EndpointID and dynamically determines the EndpointID **schemeID** attribute's value depending on the country from the Buyer's address. For example, **9925** - Belgium VAT number.
 
-- If you don't define the VAT ID registration number, the system uses the **Tax exempt number** defined in customer's master data as the customer's EndpointID and uses the **9925** constant as the EndpointID **schemeID** attribute's value.
+- If you don't define the VAT ID registration number, the system uses the **Tax exempt number** defined in customer's master data.
   
     The resulting Endpoint ID value populates the **Invoice\\cac:AccountingCustomerParty\\cac:Party\\cbc:EndpointID** element in the generated electronic invoice XML file and is used as the buyer's identification during the submission process.
 

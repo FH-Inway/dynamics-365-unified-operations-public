@@ -285,10 +285,7 @@ Configure the following sales tax codes related data that affect the system beha
 
 ### Configure extra data
 
-You can add extra data to invoices. This data goes in a special section of electronic invoices named *DodatkowyOpis*.
-
-> [!NOTE]
-> In the current implementation, the extra data usage is disabled. 
+You can add extra data to invoices. This data goes in a special section of electronic invoices headers named *DodatkowyOpis*.
 
 #### Configure electronic document properties
 
@@ -297,10 +294,15 @@ To configure electronic document properties, follow these steps:
 1. In Dynamics 365 Finance, go to **Accounts receivable** \> **Setup** \> **Electronic document property types**.
 1. Select **New** to add a property type.
 1. In the **Type** field, enter the value to use as an extra data key (`Klucz`) in the resulting XML file of an electronic invoice.
+1. In the **Group description** field, enter the **KSEF** value. 
+  > [!NOTE]
+  > Only the properties with the **KSEF** value in the **Group description** field will be considered during the electronic invoices generation process.
 1. Select **Applicability** to add an applicable table.
 1. On the **Electronic document property type applicability setup** page, in the **Table name** field, select **Customer invoice journal** and **Project invoice**.
 1. Add as many extra document properties as you need.
 1. Save your changes, and return to the **Electronic document property types** page.
+
+:::image type="content" source="e-inv-pol-properties.jpg" alt-text="Screenshot of the Electronic document property types configuration.":::
 
 #### Enter extra invoice data
 

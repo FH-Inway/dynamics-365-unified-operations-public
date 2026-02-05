@@ -37,7 +37,7 @@ Before you begin the procedures in this article, meet the following prerequisite
 - The company must obtain, from the service provider, the required credentials to enable integration of the Electronic Invoicing service with the [Electronic Invoicing service independent software vendor (ISV) last-mile connector](../global/e-invoicing-isv-connector.md).
 
     > [!NOTE]
-    > The current implementation assumes [Edicom](https://edicomgroup.com/electronic-invoicing) as the Electronic Invoicing ISV last-mile connection service provider. Learn more in [e-Invoicing Integration with Microsoft Dynamics 365](https://edicomgroup.com/edicom-microsoft?365).
+    > The current implementation assumes [Edicom](https://edicomgroup.com/electronic-invoicing) as the Electronic Invoicing ISV last-mile connection service provider. Learn more in [e-Invoicing Integration with Microsoft Dynamics 365](https://edicomgroup.com/connectors/microsoft)).
 
 - Become familiar with Electronic invoicing as it's described in [Electronic Invoicing service overview](../global/gs-e-invoicing-service-overview.md) and [Electronic invoicing components](../global/gs-e-invoicing-administration-integration-components.md).
 - Complete the common part of Electronic Invoicing service configuration as described in [Electronic invoicing components](../global/gs-e-invoicing-set-up-overview.md).

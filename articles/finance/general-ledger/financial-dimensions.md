@@ -84,6 +84,8 @@ When you activate a financial dimension, the table is updated so that it include
 
 When you select **Activate all**, all inactive or renamed dimensions are updated to active, and which is shown in the **Status changes** field. The system must be in maintenance mode when activating financial dimensions.  
 
+You can have up to 88 total financial dimensions "activated". However, the realistic limit is no more than 10 to 20 user-created dimensions to avoid severe performance problems.
+
 ### Translations
 
 The **Text translation** page is used to translate the following text in various languages: 

@@ -22,7 +22,7 @@ ms.assetid: 08fd46ef-2eb8-4942-985d-40fd757b74a8
 
 Account structures use the main account and financial dimensions to create a set of rules that determine the order and values used when entering the account number. You can set up as many account structures as you need for your business. The account structures are assigned to a company's ledger setup, so they can be shared.
 
-When creating an account structure, the maximum number of segments is 11. If you need more than 11 segments, thoroughly evaluate your setup and requirements, as it impacts the user experience. Consider if a segment could be derived in a reporting scenario using a hierarchy instead of during data entry, or by using a user-defined field. For example, if you want to report on location, but you can figure location by department or cost center, you won't need location as a financial dimension. If after evaluation you do determine more than 11 segments are needed, you can add additional segments using advanced rules.
+When creating an account structure, the maximum number of segments is 11. If you need more than 11 segments, thoroughly evaluate your setup and requirements, as it impacts the user experience. Consider if a segment could be derived in a reporting scenario using a hierarchy instead of during data entry, or by using a user-defined field. For example, if you want to report on location, but you can figure location by department or cost center, you won't need location as a financial dimension. If after evaluation you do determine more than 11 segments are needed, you can add additional segments using advanced rules. With advanced rules, you can add up to 16 segments.
 
 Account structures require the main account. The main account doesn't need to be the first segment in the structure, but it does identify what account structure is being used during the account number entry. Because of this, a main account value can only exist in one structure assigned to the ledger so that they don't overlap. After the account structure is identified, the allowed values list is filtered to guide the user through picking only valid dimension values, decreasing the possibility of an incorrect journal entry.
 
@@ -57,6 +57,8 @@ In this simplified example, all values and blank are allowed so \* and "&nbsp;" 
 ## Segments and allowed values
 The **Segments** and **Allowed values details** section provides a grid like experience for entering the rules that will be followed on validation during posting. You can type directly in the cells in the grid, import it from Excel, or use the **Allowed value details** section to guide you through it.
 
+[![Maximum dimensions per account rule.](./media/max-dimensions-per-account-rule.png)](./media/max-dimensions-per-account-rule.png)
+
 The **Allowed value details** section guides you through creating criteria using **Operators** such as begins with, is between, includes, and many others.
 
 [![Allow values.](./media/account.png)](./media/account.png) 
@@ -73,11 +75,13 @@ When entering a journal and selecting an account in the profit and loss range, s
 
 ## More than seven criteria needed
 
-If you have more than seven criteria that are needed, you can continue adding them on the next line. You will notice when working in the **Allowed value details** section that the **+Add new** criteria is no longer active after the seventh criteria is entered. This is due to factors such as: 
- - Column width 
- - How the data is stored 
+If you have more than seven criteria that are needed, you can continue adding them on the next line. You will notice when working in the **Allowed value details** section that the **+Add new** criteria is no longer active after the seventh criteria is entered. This is due to factors such as:
+ - Column width
+ - How the data is stored
  - Performance of the **Allowed value details** control
- - Usability  
+ - Usability
+
+[![Seven constraints on segment.](./media/save-seven-constraints-segment.png)](./media/save-seven-constraints-segment.png)  
 
 > [!NOTE]
 > An upgrade from Microsoft Dynamics AX 2012 where more than seven criteria are specified isn't supported. It must be corrected before you complete the upgrade to finance and operations apps. 

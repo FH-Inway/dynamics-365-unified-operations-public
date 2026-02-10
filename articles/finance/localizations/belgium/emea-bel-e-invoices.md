@@ -321,7 +321,7 @@ You can check the results of the submission by going to **Organization administr
 > [!NOTE]
 > Submitted electronic invoices are also available in the Outbound folder and its subfolders in your [Ediwin](https://ediwin.edicomgroup.com/) portal. There, you can monitor further processing of the documents.
 
-The following types of invoices are processed during the submission process.
+The following types of invoices are processed during the submission.
 
  - Invoices based on Sales orders - electronic invoices of **380** type are generated.
  - Credit notes based on Sales orders - electronic invoices of **381** type are generated.

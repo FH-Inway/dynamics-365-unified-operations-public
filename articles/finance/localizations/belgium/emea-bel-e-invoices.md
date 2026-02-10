@@ -321,6 +321,17 @@ You can check the results of the submission by going to **Organization administr
 > [!NOTE]
 > Submitted electronic invoices are also available in the Outbound folder and its subfolders in your [Ediwin](https://ediwin.edicomgroup.com/) portal. There, you can monitor further processing of the documents.
 
+The following types of invoices are processed during the submission process.
+
+ - Invoices based on Sales orders - electronic invoices of **380** type are generated.
+ - Credit notes based on Sales orders - electronic invoices of **381** type are generated.
+ - Free text invoices - electronic invoices of **380** type are generated.
+ - Free text credit notes - electronic invoices of **381** type are generated.
+ - Project invoices - electronic invoices of **380** type are generated.
+ - Project credit notes - electronic invoices of **381** type are generated.
+ - Customer prepayment invoices created using [Customer prepayment invoices](../../accounts-receivable/customer-prepayment-invoice.md) functionality - electronic invoices of **386** type are generated.
+ - Customer prepayment credit notes that created as reversals of initial prepayment invoices after a final invoice is issued  - electronic invoices of **381** type are generated.
+
 ## Receive incoming electronic invoices
 
 Before you can import incoming invoices, you must configure some other parameters directly in Finance.

@@ -110,14 +110,21 @@ Default dimensions are typically copied or merged with other dimension combinati
 
 To define whether a main account has a **Not fixed** or **Fixed** value for each financial dimension used across all account structures for the ledger, follow these steps:
 
-1. Go **General Ledger** \> **Chart of Accounts** \> **Accounts** \> **Main Account**.
-2. In the **Legal entities** override FastTab, select the appropriate legal entity and click on **Default dimension**.
+1. Go to **General ledger > Chart of accounts > Accounts > Main accounts**.
+2. Select the main account.
+3. On the **Legal entity overrides** FastTab, select the appropriate legal entity.
+4. Select **Default dimensions**.
 
 ### Specify the default dimensions for an account
 
-If a financial dimension is **Fixed**, the specified value (including a blank value) overrides transaction values at the time of posting.
+If a financial dimension is **Fixed**, the specified value (including a blank value) overrides transaction values at the time of posting. This applies to all sources, including values entered on journal lines or documents.
 
 If a financial dimension is **Not fixed**, it uses a default value that can be overwritten. This applies to all default values in the system, including those from master records.
+
+> [!IMPORTANT]
+> A **Fixed** dimension always overwrites the dimension value at posting time, even if a user manually enters a different value. If a voucher displays different dimensions than the values entered on a journal, or if dimensions appear blank after posting, check whether the main account has fixed dimensions configured. To resolve unexpected overwrites, change the dimension from **Fixed value** to **Not fixed**, remove the default dimension, or set a default value that honors the account structure constraints.
+
+For more information, see [Default and fixed financial dimensions on the main account](/dynamics365/finance/general-ledger/default-dimensions#defaultfixed-financial-dimensions-on-the-main-account).
 
 ### Copy vs. merge
 

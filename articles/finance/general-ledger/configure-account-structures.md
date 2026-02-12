@@ -78,7 +78,7 @@ When entering a journal and selecting an account in the profit and loss range, s
 
 ## More than seven criteria needed
 
-A single segment row can have up to seven constraints (criteria).
+A single segment row can have up to seven criteria.
 
 [![Seven constraints on segment.](./media/save-seven-constraints-segment.png)](./media/save-seven-constraints-segment.png)
 

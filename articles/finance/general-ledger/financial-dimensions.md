@@ -57,7 +57,7 @@ To limit the dimension value to the letters "CC" and three numbers, enter **CC-\
 
 ## Entity-backed dimensions
 
-To create an entity-backed financial dimension, in the **Use values from** field, select a system-defined entity to base the financial dimension on. For entity-backed dimensions, the values are defined somewhere else in the system, such as in Customers or Stores entities. Some entity-backed dimensions are shared across legal entities, whereas other entity-backed dimensions are company-specific.
+To create an entity-backed financial dimension, in the **Use values from** field, select a system-defined entity to base the financial dimension on. For entity-backed dimensions, the values are defined somewhere else in the system, such as in Customers or Stores entities. Some entity-backed dimensions are shared across legal entities, whereas other entity-backed dimensions are company-specific. Dimensions that are company-specific (also known as company-striped dimensions) are only visible when accessed as a user from the associated company.
 
 For example, to create dimension values for projects, select **Projects**. This allows any value from the project table to be used as a dimension value directly.
 A dimension value is then created for each project name. The **Financial dimension values** page shows the values for the entity. If those values are company-specific, the page also shows the company.

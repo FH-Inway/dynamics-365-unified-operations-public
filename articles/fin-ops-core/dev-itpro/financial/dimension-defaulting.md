@@ -123,8 +123,8 @@ If a financial dimension is **Not fixed**, it uses a default value that can be o
 
 > [!IMPORTANT]
 > A **Fixed** dimension always overwrites the dimension value at posting time, even if a user manually enters a different value. If a voucher displays different dimensions than the values entered on a journal, or if dimensions appear blank after posting, check whether the main account has fixed dimensions configured. To resolve unexpected overwrites, change the dimension from **Fixed value** to **Not fixed**, remove the default dimension, or set a default value that honors the account structure constraints.
+For more information, see [Default and fixed financial dimensions on the main account](../../../finance/general-ledger/Default-dimensions.md#defaultfixed-financial-dimensions-on-the-main-account).
 
-For more information, see [Default and fixed financial dimensions on the main account](/dynamics365/finance/general-ledger/default-dimensions#defaultfixed-financial-dimensions-on-the-main-account).
 
 ### Copy vs. merge
 

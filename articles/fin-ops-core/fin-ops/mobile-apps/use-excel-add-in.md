@@ -89,15 +89,26 @@ You can use the designer to adjust the columns that are automatically added to t
 > If the **Design** button doesn't appear below the **Filter** button in the Excel add-in, you must enable the data source designer. Select the **Options** button (the gear symbol), and then select the **Enable design** check box.
 
 1. In the Excel add-in, select **Design**. All the data sources are listed.
+
+![](media/select-design.png)
+
 2. Next to the data source, select the **Edit** button (the pencil symbol).
+
+![](media/select-edit-icon.png)
+
 3. In the **Selected fields** list, adjust the list of fields as you require:
 
     - To add a field from the **Available fields** list to the **Selected fields** list, select the field, and then select **Add**. Alternatively, double-click the field in the **Available fields** list.
     - To remove a field from the **Selected fields** list, select the field, and then select **Remove**. Alternatively, double-click the field.
     - To change the order of fields in the **Selected fields** list, select a field, and then select **Up** or **Down**.
 
+
+![](media/select-add-dimension-column.png)
+
 4. To apply your changes to the data source, select **Update**. Then select **Done** to exit the designer.
 5. If you added a field (column), select **Refresh** to pull in an updated set of data.
+
+![](media/refresh-dimension-data.png)
 
 ## Change the publish batch size
 When users publish changes to data records by using the Excel add-in, the updates are submitted in batches. The default (and maximum) publish batch size is 100 rows; however, the **Allow configuration of the publish batch size in the Excel add-in** feature gives you flexibility in lowering the publish batch size, especially if you are seeing time outs when attempting to publish updates from Excel.

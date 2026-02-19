@@ -82,9 +82,9 @@ For an entity-backed financial dimension, no dimension values can be created fro
 
 When you activate a financial dimension, the table is updated so that it includes the name of the financial dimension. Deleted dimensions are removed. You can create and edit dimension values before you activate a financial dimension. However, a financial dimension can't be consumed anywhere until it's activated. For example, you can't add a financial dimension to an account structure until the financial dimension has been activated. 
 
-When you select **Activate all**, all inactive or renamed dimensions are updated to active, and which is shown in the **Status changes** field. The system must be in maintenance mode when activating financial dimensions.  
+When you select **Activate all**, all inactive or renamed dimensions are updated to active, and which is shown in the **Status changes** field. The system must be in maintenance mode when activating financial dimensions.
 
-You can have up to 88 total financial dimensions "activated". However, the realistic limit is no more than 10 to 20 user-created dimensions to avoid severe performance problems.
+You can have up to 88 total financial dimensions "activated". However, for maximum performance, we recommend no more than 20 user-created dimensions. If more dimensions are required, consider using concatenated values in [highly variable dimensions](https://learn.microsoft.com/en-us/dynamics365/finance/cost-accounting/high-var-dimensions).
 
 ### Translations
 

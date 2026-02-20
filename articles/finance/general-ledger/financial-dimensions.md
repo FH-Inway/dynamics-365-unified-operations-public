@@ -84,7 +84,7 @@ When you activate a financial dimension, the table is updated so that it include
 
 When you select **Activate all**, all inactive or renamed dimensions are updated to active, and which is shown in the **Status changes** field. The system must be in maintenance mode when activating financial dimensions.
 
-You can have up to 88 total financial dimensions "activated". However, for maximum performance, we recommend no more than 20 user-created dimensions. If more dimensions are required, consider using concatenated values in [highly variable dimensions](https://learn.microsoft.com/en-us/dynamics365/finance/cost-accounting/high-var-dimensions).
+You can have up to 88 custom (user-created) financial dimensions "activated". However, for maximum performance, we recommend no more than 20 custom dimensions. If more dimensions are required, consider using [financial tags](https://learn.microsoft.com/en-us/dynamics365/finance/general-ledger/financial-tag).
 
 ### Translations
 

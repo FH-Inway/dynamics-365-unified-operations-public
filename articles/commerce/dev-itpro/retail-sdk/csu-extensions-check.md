@@ -1,6 +1,6 @@
 ---
 title: Commerce Scale Unit extensions health check
-description: This article explains how to use the Commerce Scale Unit extensions health check feature in Microsoft Dynamics 365 Commerce.
+description: Learn how to use the Commerce Scale Unit (CSU) extensions health check feature in Microsoft Dynamics 365 Commerce.
 author: aneesmsft
 ms.date: 08/09/2024
 ms.topic: how-to

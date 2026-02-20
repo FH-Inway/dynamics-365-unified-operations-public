@@ -34,6 +34,18 @@ This procedure creates and validates journals and journal lines. You can try thi
 12. Click **Post**.
 13. Click **Voucher**.
 
+## Validate transaction data integrity
+
+Dynamics F&O easily allows you to validate the data integrity of a financial dimension associated with a particular transaction.
+
+After navigating to **General ledger > Journal entries > General journals**, selecting the desired journal and clicking **Lines** from the action pane, right click the dimension combination in the account of interest. Then, select **Validate data integrity** from the drop down menu.
+
+![](../media/validate-data-integrity.png)
+
+If data integrity errors are found, reset the dimension value by renaming it. For example, rename "Cust-01" to "Cust-01_rename", then rename it back to "Cust-01".
+
+As this rename process may take a few minutes, check its status on the **Misc** tab of the **System administration > Periodic tasks > Data maintenance** module. There you should see the **Dimension value rename and modify chart of accounts delimiter process** batch job.
+
 
 
 [!INCLUDE[footer-include](../../../includes/footer-banner.md)]

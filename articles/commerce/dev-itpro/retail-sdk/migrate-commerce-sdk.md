@@ -56,7 +56,7 @@ The Commerce SDK provides these benefits:
 | Build pipeline | You can use sample YAML files that are available on GitHub to set up the pipeline. However, the Commerce SDK is designed to work with your own Azure DevOps pipeline setup. | The build pipeline is based on the dirs.proj file that's available in the Retail SDK. |
 | Updates | To update the extensions, consume the latest package that's available in the public feed. | You must do updates from LCS. You must follow the LCS update process. |
 
-## Overview of the migration steps
+## Migration steps
 
 1. Set up your [local development environment](https://github.com/microsoft/Dynamics365Commerce.ScaleUnit/blob/release/9.33/src/ScaleUnitSample/Readme.md), or configure the [LCS development environment](../../../fin-ops-core/dev-itpro/dev-tools/access-instances.md).
 1. Uninstall the Store Commerce app, Hardware Station, and Cloud Scale Unit - Self-hosted that you installed by using the legacy installers. Then install the required application by using the [new sealed installers](https://community.dynamics.com/ax/b/axforretail/posts/introducing-sealed-installers).

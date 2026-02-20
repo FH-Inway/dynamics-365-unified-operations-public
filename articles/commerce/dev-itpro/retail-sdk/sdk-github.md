@@ -16,7 +16,7 @@ ms.custom:
 
 [!include [banner](../../includes/banner.md)]
 
-This article describes how to download Microsoft Dynamics 365 Commerce software development kit (SDK) samples from GitHub and reference packages. 
+This article describes how to download Microsoft Dynamics 365 Commerce software development kit (SDK) samples from GitHub and reference packages.    
 
 > [!NOTE]
 > This article applies to Commerce SDK version 10.0.16 or later. For more information about how to download earlier versions of the Commerce SDK, see [Retail software development kit (SDK)](retail-sdk-overview.md).
@@ -27,9 +27,9 @@ The Commerce SDK supports rapid development, full MSBuild integration, and packa
 
 :::image type="content" source="media/developer-environment.png" alt-text="Screenshot of commerce components.":::
 
-## Extension components in Dynamics 365 Commerce 
+## Extension components in Dynamics 365 Commerce
 
-The following tables provide information about the components in the Commerce SDK that you can customize for different scenarios. 
+The following tables provide information about the components in the Commerce SDK that you can customize for different scenarios.
 
 ### Client (Store Commerce)
 

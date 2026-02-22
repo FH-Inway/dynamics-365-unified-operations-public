@@ -68,6 +68,18 @@ If critical problems arise while you're testing V4, you can return to V3.0.9. Th
     - [Downgrade to V3 for Android](https://install.appcenter.ms/orgs/warehousing-dynamics-365/apps/dynanics-365-for-finance-and-operations-warehousing-android/distribution_groups/official%20release)
     - [Downgrade to V3 for Windows](https://install.appcenter.ms/orgs/warehousing-dynamics-365/apps/dynanics-365-for-finance-and-operations-warehousing-windows/distribution_groups/official%20release)
 
+- **How to Install the Microsoft Certificate from an MSIX bundle File** 
+    1. Navigate to the folder that contains the MSIX bundle folder
+    2. Right‑click the  MSIX  and select Properties.
+    3. In the Properties window, open the Digital Signatures tab.
+    4. From the list of signatures, select the Microsoft signature.
+    5. Click Details, then select View Certificate.
+    6. Click Install Certificate.
+    7. Choose the certificate store location.
+    8. Select Local Machine and click Next.
+    9. Select Trusted Root Certification Authorities.
+    10. Click Next, then Finish to complete the certificate installation.
+  
 ## <a name="authentication"></a>Authentication
 
 ### Authentication in cloud environments
@@ -100,7 +112,7 @@ The following table summarizes the supported authentication methods for each pla
 | --- | --- | --- |
 | **Windows** | Device code, Username/password, Broker | Device code, Username/password |
 | **Android** | Device code, Username/password | Username/password only |
-| **iOS** | Username/password only | *Not Supported* |
+| **iOS** | Username/password only | Username/password only |
 
 ## <a name="rollout"></a>Transition period support
 

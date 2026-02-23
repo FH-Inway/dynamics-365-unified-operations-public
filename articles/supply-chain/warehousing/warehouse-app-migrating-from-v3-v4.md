@@ -26,6 +26,8 @@ For V4, Microsoft rewrote the code for the Warehouse Management mobile app to ta
 >
 > - The [Migration information](#migration-information) section provides important advice that can help you avoid unexpected disruptions during the migration process.
 > - The [Rollout](#rollout) section provides the rollout schedule and download details.
+> - Please check the [Migrating from V3 and V4 for iOS](#migration-information) section before uptake v4 for iOS device. This section provides important advice that can help you avoid unexpected disruptions during the migration process.
+
 
 ## <a name="rollout"></a>Rollout
 
@@ -37,7 +39,7 @@ The general availability release of V4 is available for the following platforms 
 
 - **Google Android** – Available globally starting at the end of January 2026 from [Google Play](https://play.google.com/store/apps/details?id=com.Microsoft.WarehouseManagement) and [Microsoft App Center](https://install.appcenter.ms/orgs/warehousing-dynamics-365/apps/dynanics-365-for-finance-and-operations-warehousing-android/distribution_groups/official%20release)
 - **Microsoft Windows** – Available globally starting in February 2026 from [Microsoft App Center](https://install.appcenter.ms/orgs/warehousing-dynamics-365/apps/dynanics-365-for-finance-and-operations-warehousing-windows/distribution_groups/official%20release).
-- **Apple iOS** – Available globally starting in February 2026 from the Apple App Store. As of January 2026, it's available through [Apple Test Flight](https://testflight.apple.com/).
+- **Apple iOS** – The official release of WMA iOS v4 begins on 23 February 2026. As of January 2026, it's available through [Apple Test Flight](https://testflight.apple.com/).
 
 ## <a name="migration-information"></a>Migration information
 
@@ -62,6 +64,23 @@ V4 supports a smooth transition from V3. The following considerations summarize 
 >
 > - Application stores, including the Microsoft Store, Google Play, and the Apple App Store, prioritize user-driven updates and device state over enterprise-wide synchronization. When **auto-updates** are enabled on your store configurations, the store services the new version and installs when the device state is available.
 > - To ensure a consistent and predictable migration, we strongly recommend using a Mobile Device Management (MDM) solution, such as Microsoft Intune. Unlike app stores, an MDM provides a dedicated management channel that allows administrators to control over the updates.
+
+### <a name="migration-information-ios"></a> Migrating from V3 and V4 for iOS
+
+***Release Information***: The official release of WMA iOS v4 begins on 23 February 2026.
+The rollout will be phased, starting with a limited percentage of users. The rollout scope will be gradually increased over time to ensure stability and quality.
+If you do not see WMA iOS v4 available in the App Store, we strongly recommend joining **TestFlight** to access and test the v4 version.
+
+To ensure a smooth migration, we recommend that you to check the following points:
+
+- **Authentication Changes**: WMA iOS V4 introduces important changes to authentication, ***Device Code*** authentication is no longer supported in iOS v4. Before upgrading, ensure that your environment supports user/password authentication to avoid login issues.
+- **Connection Configuration**: When upgrading from V3 to V4, The existing connection settings will **not be preserved**. Users must manually re-add their connections after upgrading to V4. Manual reconfiguration is required, you can generate and scan QR codes for easy setup. Learn more in [Use a QR code to connect the mobile app to Supply Chain Management](warehouse-app-qr-code.md).
+ 
+To ensure a smooth migration, we recommend that you:
+- Join TestFlight to validate V4 behavior in your environment. You can join through [Apple Test Flight](https://testflight.apple.com/).
+- Confirm that user/password authentication is properly configured.
+- If you want to avoid auto-update, make sure that you disabled the auto update on your app store configurations.
+
 
 ### If you need to return to V3
 

@@ -44,7 +44,7 @@ After navigating to **General ledger > Journal entries > General journals**, sel
 
 If data integrity errors are found, reset the dimension value by renaming it. For example, rename "Cust-01" to "Cust-01_rename", then rename it back to "Cust-01".
 
-As this rename process may take a few minutes, check its status on the **Misc** tab of the **System administration > Periodic tasks > Data maintenance** module. There you should see the **Dimension value rename and modify chart of accounts delimiter process** batch job.
+As this rename process may take a few minutes, check its status on the **Misc** tab of the **System administration > Periodic tasks > Data maintenance** module. There you should see the **Dimension value rename and modify chart of accounts delimiter process** data maintenance action.
 
 
 

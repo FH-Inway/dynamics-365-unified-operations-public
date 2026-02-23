@@ -58,6 +58,11 @@ V4 supports a smooth transition from V3. The following considerations summarize 
 - **Concurrent operation** – V3 and V4 can operate simultaneously in the same warehouse environment without conflicts provided they're installed on separate devices. You can use different authentication methods for each version without conflict. This capability allows for a phased rollout of V4 without disrupting ongoing operations. However, you can't run V3 and V4 on the same device at the same time.
 - **V3 Requests remain active** – Microsoft *does not block** requests coming from V3. You can continue using V3 until you're ready to migrate.
 
+> [!TIP]
+>
+> - Application stores, including the Microsoft Store, Google Play, and the Apple App Store, prioritize user-driven updates and device state over enterprise-wide synchronization. When **auto-updates** are enabled on your store configurations, the store services the new version and installs when the device state is available.
+> - To ensure a consistent and predictable migration, we strongly recommend using a Mobile Device Management (MDM) solution, such as Microsoft Intune. Unlike app stores, an MDM provides a dedicated management channel that allows administrators to control over the updates.
+
 ### If you need to return to V3
 
 If critical problems arise while you're testing V4, you can return to V3.0.9. The following conditions apply:

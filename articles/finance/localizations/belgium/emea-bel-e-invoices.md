@@ -4,7 +4,7 @@ description: Learn how to get started with Electronic invoicing for Belgium in M
 author: ilikond
 ms.author: ikondratenko
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 02/24/2026
 ms.custom: 
   - bap-template
 ms.reviewer: johnmichalak
@@ -199,9 +199,9 @@ The buyer's EndpointID determination uses the following hierarchy of built-in [R
 
 - If you define the Global Location Number (GLN), also known as a European article numbering (EAN), for the customer as an active Registration Number with the **EAN** Registration category, the system uses it as the customer's EndpointID and uses the **0088** constant (EAN Location Code) as the EndpointID **schemeID** attribute's value.
 
-- If you don't define the EAN registration number, the system uses the customer's active Registration Number of the **Enterprise ID** Registration category as the customer's EndpointID and dynamically determines the EndpointID **schemeID** attribute's value depending on the country from the Buyer's address. For example, **0208** for Belgium, **0002** for France, etc.
+- If you don't define the EAN registration number, the system uses the customer's active Registration Number of the **Enterprise ID** Registration category as the customer's EndpointID and dynamically determines the EndpointID **schemeID** attribute's value depending on the country/region from the Buyer's address. For example, **0208** for Belgium, **0002** for France, etc.
 
-- If you don't define the EAN and Enterprise ID registration numbers, the system uses the customer's active Registration Number of the **VAT ID** Registration category as the customer's EndpointID and dynamically determines the EndpointID **schemeID** attribute's value depending on the country from the Buyer's address. For example, **9925** - Belgium VAT number, **9957** - French VAT number, etc.
+- If you don't define the EAN and Enterprise ID registration numbers, the system uses the customer's active Registration Number of the **VAT ID** Registration category as the customer's EndpointID and dynamically determines the EndpointID **schemeID** attribute's value depending on the country/region from the Buyer's address. For example, **9925** - Belgium VAT number, **9957** - French VAT number, etc.
 
 - If you don't define the VAT ID registration number, the system uses the **Tax exempt number** defined in customer's master data.
   

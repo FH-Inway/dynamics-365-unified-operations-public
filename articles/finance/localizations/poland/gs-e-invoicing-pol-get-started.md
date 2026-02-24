@@ -2,7 +2,7 @@
 title: Electronic invoicing for Poland
 description: Learn how to get started with electronic invoicing for Poland in Microsoft Dynamics 365 Finance.
 author: ikondratenko
-ms.date: 02/03/2026
+ms.date: 02/24/2026
 ms.update-cycle: 180-days
 ms.topic: how-to
 ms.collection:
@@ -296,13 +296,13 @@ To configure electronic document properties, follow these steps:
 1. In the **Type** field, enter the value to use as an extra data key (`Klucz`) in the resulting XML file of an electronic invoice.
 1. In the **Group description** field, enter the **KSEF** value. 
   > [!NOTE]
-  > Only the properties with the **KSEF** value in the **Group description** field will be considered during the electronic invoices generation process.
-5. Select **Applicability** to add an applicable table.
-6. On the **Electronic document property type applicability setup** page, in the **Table name** field, select **Customer invoice journal** and **Project invoice**.
-7. Add as many extra document properties as you need.
-8. Save your changes, and return to the **Electronic document property types** page.
+  > Only the properties with the **KSEF** value in the **Group description** field will be considered during the electronic invoice generation process.
+1. Select **Applicability** to add an applicable table.
+1. On the **Electronic document property type applicability setup** page, in the **Table name** field, select **Customer invoice journal** and **Project invoice**.
+1. Add as many extra document properties as you need.
+1. Save your changes and return to the **Electronic document property types** page.
 
-:::image type="content" source="e-inv-pol-properties.jpg" alt-text="Screenshot of the Electronic document property types configuration.":::
+:::image type="content" source="e-invoice-poland-properties.jpg" alt-text="Screenshot of the Electronic document property types configuration.":::
 
 #### Enter extra invoice data
 

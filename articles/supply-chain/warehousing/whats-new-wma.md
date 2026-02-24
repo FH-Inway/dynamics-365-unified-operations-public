@@ -18,6 +18,27 @@ ms.custom:
 
 This article lists new features, fixes, improvements, and known issues for each released version of the Warehouse Management mobile app for Microsoft Dynamics 365 Supply Chain Management.
 
+## Version 4.0.37.0
+
+Version 4.0.37.0 adds the following fixes and improvements:
+
+- Fixed an issue when the domain name is present in the connection configuration, user had to enter complete email address.
+
+## Version 4.0.36.0
+
+Version 4.0.36.0 adds the following fixes and improvements:
+
+- Fixed an issue that caused fields on the Custom Legacy page to be displayed incorrectly.
+- Added support for on-premises environments on iOS.
+- Fixed an issue where duplicate names in the XML caused connection failures. 
+- Fixed an issue where the Copilot summary was not refreshed.
+- Fixed an issue where popup list item names were parsed incorrectly, causing an error.
+- Fixed an issue where spinner values were reset incorrectly after an error occurred.
+- Fixed an issue where sending multiple requests caused an application error. 
+- Improved error messages to provide better clarity for users. 
+- Improved authentication for on-premises environments on Windows. If you experience issues with a previously working on-premises authentication on Windows, edit the connection and set broker No.
+- Fixed an issue where the pull-to-refresh gesture on the work list page didn't refresh correctly.  
+ 
 ## Version 4.0.35.0
 
 Version 4.0.35.0 adds the following fixes and improvements:

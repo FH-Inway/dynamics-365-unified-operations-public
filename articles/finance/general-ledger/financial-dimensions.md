@@ -1,5 +1,5 @@
 ---
-title: Financial dimensions
+title: Financial dimensions and tags
 description: Learn about the various types of financial dimensions and tags and how they're set up.
 author: anaborges02
 ms.author: aolson
@@ -176,7 +176,7 @@ If you're using a template to create a master record, make sure that the templat
 
 > [!NOTE]
 > You can intentionally default a dimension value to blank by assigning a fixed dimension value of blank on a main account (via *Legal entity overrides*).  
->  
+> 
 > If you don't intend for a blank dimension value to be defaulted, ensure that the dimension’s fixed value is set to **Not fixed**, or provide a valid fixed value that complies with the account structure.
 
 ## Derived dimensions

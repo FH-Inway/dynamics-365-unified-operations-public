@@ -1,10 +1,10 @@
 ---
 title: X++ compile-time functions
-description: Learn about and access compile-time functions and describes their syntax, parameters, and return values. via an overview.
+description: Learn about and access compile-time functions and describes their syntax, parameters, and return values via an overview.
 author: josaw1
 ms.author: josaw
 ms.topic: language-reference
-ms.date: 11/03/2017
+ms.date: 02/24/2026
 ms.reviewer: johnmichalak
 audience: Developer
 ms.search.region: Global
@@ -20,7 +20,7 @@ This article lists the compile-time functions and describes their syntax, parame
 
 ## Overview
 
-Compile-time functions are executed early during the compilation of X++ code. They should be used wherever possible to make the code resilient to changes to the metadata stored in the Application Explorer. Compile-time functions have their input value verified by the compiler. If the input value is not found to match any existing object in the Application Explorer, the compiler issues an error. The inputs to these functions must be literal values, because the compiler cannot determine the value that a variable contains at run time. A compile-time function is a metadata assertion function. It takes arguments that represents an entity in the Application Explorer and validates the arguments at compile time. It has no effect at run time. To support the validation of form, report, query, and menu metadata, use the **AutoDeclaration** property on controls. It is always better to get a compilation error than us a string literal and get errors at runtime.
+Compile-time functions are executed early during the compilation of X++ code. They should be used wherever possible to make the code resilient to changes to the metadata stored in the Application Explorer. Compile-time functions have their input value verified by the compiler. If the input value isn't found to match any existing object in the Application Explorer, the compiler issues an error. The inputs to these functions must be literal values, because the compiler can't determine the value that a variable contains at run time. A compile-time function is a metadata assertion function. It takes arguments that represent an entity in the Application Explorer and validates the arguments at compile time. It has no effect at run time. To support the validation of form, report, query, and menu metadata, use the **AutoDeclaration** property on controls. It's always better to get a compilation error than us a string literal and get errors at runtime.
 
 Some common compile time functions are as follows:
 
@@ -38,10 +38,10 @@ and
 str s = classStr("MyClass"); // class name in quotes.
 ```
 
-are semantically identical. In the descriptions below we will simply show the arguments, and not specify a type, that will be obvious from the context.
+are semantically identical. In the descriptions below we'll simply show the arguments, and not specify a type, that's obvious from the context.
 
 > [!NOTE]
-> X++ compile time functions cannot be called from a .NET program.
+> X++ compile time functions can't be called from a .NET program.
 
 ### Functions
 
@@ -123,7 +123,7 @@ The name of the configuration key.
 
 ### Remarks
 
-Use this function instead of literal text to retrieve a string that contains the configuration key name. If the key does not exist, the function generates a syntax error at compile time. For more information about compile-time functions, see [Overview](#overview).
+Use this function instead of literal text to retrieve a string that contains the configuration key name. If the key doesn't exist, the function generates a syntax error at compile time. For more information about compile-time functions, see [Overview](#overview).
 
 ### Example
 
@@ -860,7 +860,7 @@ str menuItemActionStr(menuitem)
 
 ### Return Value
 
-The name of the action menu item, if it is valid.
+The name of the action menu item, if it's valid.
 
 ### Remarks
 
@@ -964,7 +964,7 @@ var s = menuStr(Administration);
 ```
 
 ## methodStr
-Returns the name of an class intance method.
+Returns the name of a class instance method.
 
 ### Syntax
 
@@ -981,10 +981,10 @@ str methodStr(class, method)
 
 ### Return Value
 
-The name of the specified instance method, if it is valid.
+The name of the specified instance method, if it's valid.
 
 ### Remarks
-This function will diagnose errors for methods that are static. Use staticMethodStr for static methods.
+This function diagnoses errors for methods that are static. Use staticMethodStr for static methods.
 For more information about compile-time functions, see [Overview](#overview).
 
 ### Example
@@ -1160,7 +1160,7 @@ var r = reportStr(AssetAddition);
 ```
 
 ## resourceStr
-Validates that the specified resource exists in the Application Explorer; if it does not, a compiler error occurs.
+Validates that the specified resource exists in the Application Explorer; if it doesn't, a compiler error occurs.
 
 ### Syntax
 
@@ -1176,7 +1176,7 @@ str resourceStr(resourcename)
 
 ### Return Value
 
-The name of the specified resource, if it is valid.
+The name of the specified resource, if it's valid.
 
 ### Remarks
 
@@ -1283,7 +1283,7 @@ For more information about compile-time functions, see [Overview](#overview).
 
 
 ## staticMethodStr
-Validates that the specified static method exists in the specified class; if it does not, a compiler error occurs.
+Validates that the specified static method exists in the specified class; if it doesn't, a compiler error occurs.
 
 ### Syntax
 
@@ -1300,15 +1300,15 @@ str staticMethodStr(class, int method)
 
 ### Return Value
 
-The name of the static method, if it is valid.
+The name of the static method, if it's valid.
 
 ### Remarks
-This function will fail if the designated method is not static. Use the methodStr function if you wish to return the names of instance methods.
+This function fails if the designated method isn't static. Use the methodStr function if you wish to return the names of instance methods.
 For more information about compile-time functions, see [Overview](#overview).
 
 
 ## tableCollectionStr
-Validates that the specified table collection exists in the Application Explorer; if it does not, a compiler error occurs.
+Validates that the specified table collection exists in the Application Explorer; if it doesn't, a compiler error occurs.
 
 ### Syntax
 
@@ -1324,7 +1324,7 @@ str tableCollectionStr(tablecollection)
 
 ### Return Value
 
-The name of the specified table collection, if it is valid.
+The name of the specified table collection, if it's valid.
 
 ### Remarks
 
@@ -1367,7 +1367,7 @@ var fg = tableFieldGroupStr(AccountingDistribution, Editing);
 ```
 
 ## tableMethodStr
-Validates that the specified instance method exists in the specified table; if it does not, a compiler error occurs.
+Validates that the specified instance method exists in the specified table; if it doesn't, a compiler error occurs.
 
 ### Syntax
 
@@ -1384,7 +1384,7 @@ str tableMethodStr(table, method)
 
 ### Return Value
 
-The name of the instance method, if it is valid.
+The name of the instance method, if it's valid.
 
 ### Remarks
 
@@ -1431,7 +1431,7 @@ Customers is the label of the CustTable table.
 ```
 
 ## tableStaticMethodStr
-Validates that the specified static method exists in the specified table; if it does not, a compiler error occurs.
+Validates that the specified static method exists in the specified table; if it doesn't, a compiler error occurs.
 
 ### Syntax
 
@@ -1552,7 +1552,7 @@ myVariable is the variable name.
 ```
 
 ## webActionItemStr
-Validates that the specified web action item exists in the Application Explorer; if it does not, a compiler error occurs.
+Validates that the specified web action item exists in the Application Explorer; if it doesn't, a compiler error occurs.
 
 ### Syntax
 
@@ -1568,7 +1568,7 @@ str webActionItemStr(webactionitem)
 
 ### Return Value
 
-The name of the specified web action item, if it is valid.
+The name of the specified web action item, if it's valid.
 
 ### Remarks
 
@@ -1582,7 +1582,7 @@ str s = webActionItemStr(EPFlushData);
 ```
 
 ## webDisplayContentItemStr
-Validates that the specified web display content item exists in the Application Explorer; if it does not, a compiler error occurs.
+Validates that the specified web display content item exists in the Application Explorer; if it doesn't, a compiler error occurs.
 
 ### Syntax
 
@@ -1598,7 +1598,7 @@ str webDisplayContentItemStr(webdisplaycontentitem)
 
 ### Return Value
 
-The name of the specified web display content item, if it is valid.
+The name of the specified web display content item, if it's valid.
 
 ### Remarks
 
@@ -1702,7 +1702,7 @@ str s = workflowtaskstr(MyWorkflowTask);
 ```
 
 ## workflowTypeStr
-Validates that the specified workflow type exists in the Application Explorer; if it does not, a compiler error occurs.
+Validates that the specified workflow type exists in the Application Explorer; if it doesn't, a compiler error occurs.
 
 ### Syntax
 

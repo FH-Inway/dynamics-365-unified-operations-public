@@ -121,13 +121,13 @@ The cross-company inventory view displays:
 > [!NOTE]
 > If a fulfillment group isn't configured for the current store, the system doesn't show cross-company results.
 
-## Current limitations
+## Feature limitations
 
-Be aware of the following limitations in the current release:
+Be aware of the following feature limitations as of the Commerce version 10.0.47 release.
 
 ### Cross-company stores hidden from order fulfillment
 
-While store associates can view cross-company inventory, cross-company stores and warehouses are currently hidden from the following POS screens:
+While store associates can view cross-company inventory, cross-company stores and warehouses are hidden from the following POS screens:
 - Order fulfillment location selection
 - Pick-up store selection
 - Ship-from location selection

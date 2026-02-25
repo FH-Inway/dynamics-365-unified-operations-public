@@ -1,5 +1,5 @@
 ---
-title: Enable cross-company inventory lookup for POS
+title: Enable cross-company inventory lookup for POS (preview)
 description: Learn how to enable and configure the cross-company inventory lookup feature in Microsoft Dynamics 365 Commerce point of sale (POS) to view inventory availability across different legal entities.
 author: yufeih
 ms.date: 02/25/2026
@@ -12,9 +12,10 @@ ms.custom:
   - bap-template
 ---
 
-# Enable cross-company inventory lookup for POS
+# Enable cross-company inventory lookup for POS (preview)
 
 [!include [banner](includes/banner.md)]
+[!include [banner](includes/preview-banner.md)]
 
 This article explains how to enable and configure cross-company inventory lookup feature in Microsoft Dynamics 365 Commerce point of sale (POS). This feature allows retail associates to view real-time inventory availability across multiple legal entities and warehouse locations, enabling better customer service and informed purchase decisions.
 
@@ -24,7 +25,7 @@ Cross-company inventory lookup extends the standard POS inventory lookup functio
 - **Selling entities**: Multiple other legal entities operate retail stores and sales channels.
 - **Cross-entity visibility**: Store associates need to check inventory in warehouses that belong to different legal entities.
 
-This feature is particularly valuable for European retailers and other organizations with complex multientity structures. It enables store associates to get a holistic inventory view across the entire organization within a single POS application, helping them guide customers to the nearest available store regardless of the legal entity.
+This feature is valuable for European retailers and other organizations with complex multientity structures. It enables store associates to get a holistic inventory view across the entire organization within a single POS application, helping them guide customers to the nearest available store regardless of the legal entity.
 
 Additionally, this feature supports warehouse location breakdown for organizations that configure warehouses with multiple locations and track inventory at the location level for more granular control.
 
@@ -41,12 +42,12 @@ Store associates can use cross-company inventory lookup to:
 
 ## Prerequisites
 
-Before enabling cross-company inventory lookup, ensure that:
+Before enabling the cross-company inventory lookup feature, ensure that:
 
-- Your environment is running Dynamics 365 Commerce version **10.0.47** or later.
+- Your environment is running Dynamics 365 Commerce version *10.0.47* or later.
 - Commerce Scale Unit (CSU) is properly configured and running.
 - Inventory Visibility Service (IVS) integration is enabled and configured. For more information, see [Enable Inventory Visibility for Commerce](/dynamics365/supply-chain/inventory/inventory-visibility-commerce-enable).
-- The Commerce-IVS integration is using **API version 2.0** (not version 1.0).
+- The Commerce-IVS integration is using *API version 2.0* (not version 1.0).
 - The standard POS inventory lookup operation is already configured and working.
 - Appropriate security roles and permissions are set up for cross-entity access.
 

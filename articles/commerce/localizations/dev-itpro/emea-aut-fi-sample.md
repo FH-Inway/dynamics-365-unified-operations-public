@@ -9,7 +9,8 @@ ms.reviewer: v-chgriffin
 ms.search.region: Global
 ms.author: josaw
 ms.search.validFrom: 2019-03-01
-
+ms.custom: 
+  - bap-template
 ---
 
 # Fiscal registration service integration sample for Austria

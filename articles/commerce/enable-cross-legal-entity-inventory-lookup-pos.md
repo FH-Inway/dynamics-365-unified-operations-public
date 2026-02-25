@@ -44,10 +44,10 @@ Store associates can use cross-company inventory lookup to:
 
 Before enabling the cross-company inventory lookup feature, ensure that:
 
-- Your environment is running Dynamics 365 Commerce version *10.0.47* or later.
+- Your environment is running Dynamics 365 Commerce version 10.0.47 or later.
 - Commerce Scale Unit (CSU) is properly configured and running.
 - Inventory Visibility Service (IVS) integration is enabled and configured. For more information, see [Enable Inventory Visibility for Commerce](/dynamics365/supply-chain/inventory/inventory-visibility-commerce-enable).
-- The Commerce-IVS integration is using *API version 2.0* (not version 1.0).
+- The Commerce-IVS integration is using API version 2.0 (not version 1.0).
 - The standard POS inventory lookup operation is already configured and working.
 - Appropriate security roles and permissions are set up for cross-entity access.
 

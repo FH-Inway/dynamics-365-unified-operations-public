@@ -58,8 +58,8 @@ Cross-company inventory view is disabled by default to minimize disruption to ex
 To enable cross-company inventory view, follow these steps:
 
 1. In Commerce headquarters, go to **System administration > Workspaces > Feature management**.
-2. Search for and select **Enable cross-company inventory view on Commerce**.
-3. Select **Enable now**.
+1. Search for and select **Enable cross-company inventory view on Commerce**.
+1. Select **Enable now**.
 
 When this feature is enabled:
 - POS and can query cross-company inventory (prerequisite: Commerce-IVS integration enabled with API v2.0).
@@ -78,12 +78,12 @@ Fulfillment groups determine which warehouses and stores are included in invento
 To add cross-entity warehouses to fulfillment groups, follow these steps:
 
 1. In headquarters, go to **Retail and Commerce > Channels > Fulfillment groups**.
-2. Select an existing fulfillment group, or select **New** to create a new one.
-3. On the **Fulfillment group** page, select **Add line** to add warehouses.
-4. In the **Company** column, select the legal entity that owns the warehouse.
-5. In the **Warehouse** column, select the warehouse to add.
-6. Repeat steps 3-5 to add warehouses from multiple legal entities.
-7. Select **Save**.
+1. Select an existing fulfillment group, or select **New** to create a new one.
+1. On the **Fulfillment group** page, select **Add line** to add warehouses.
+1. In the **Company** column, select the legal entity that owns the warehouse.
+1. In the **Warehouse** column, select the warehouse to add.
+1. Repeat steps 3-5 to add warehouses from multiple legal entities.
+1. Select **Save**.
 
 > [!TIP]
 > You can now add warehouses from different legal entities without switching between entity UIs. All cross-entity warehouses can be configured from a single fulfillment group page.
@@ -93,10 +93,10 @@ To add cross-entity warehouses to fulfillment groups, follow these steps:
 To link stores to fulfillment groups, follow these steps:
 
 1. In headquarters, go to **Retail and Commerce > Channels > Stores > All stores**.
-2. Select the store to configure.
-3. On the **General** FastTab, in the **Fulfillment group** field, select the fulfillment group that includes the cross-entity warehouses.
-4. Select **Save**.
-5. Run distribution schedule **1070** (Channel configuration) to sync the changes to Commerce Scale Unit.
+1. Select the store to configure.
+1. On the **General** FastTab, in the **Fulfillment group** field, select the fulfillment group that includes the cross-entity warehouses.
+1. Select **Save**.
+1. Run distribution schedule **1070** (Channel configuration) to sync the changes to Commerce Scale Unit.
 
 ## Use cross-company inventory lookup in POS
 
@@ -107,8 +107,8 @@ Once configured, store associates can use the cross-company inventory lookup fea
 To view cross-company inventory, follow these steps:
 
 1. In POS, search for a product using the search bar or by scanning a barcode.
-2. From the product details page, select the **Inventory lookup** operation.
-3. On the **Inventory lookup** page, select the **Cross-company inventory** tab. The system displays inventory availability for the product across all warehouses and stores in different legal entities that are configured in the fulfillment group linked to the current store.
+1. From the product details page, select the **Inventory lookup** operation.
+1. On the **Inventory lookup** page, select the **Cross-company inventory** tab. The system displays inventory availability for the product across all warehouses and stores in different legal entities that are configured in the fulfillment group linked to the current store.
 
 The cross-company inventory view displays:
 - **Company**: The legal entity that owns the warehouse or store
@@ -139,7 +139,7 @@ This means store associates can see inventory availability in cross-company loca
 
 ## Distribution schedules
 
-After configuring cross-company inventory lookup, run the following distribution schedules to sync changes to Commerce Scale Unit and POS:
+After you configure cross-company inventory lookup, run the distribution schedules in the following table to sync the changes to Commerce Scale Unit and POS.
 
 | Schedule | Description |
 |----------|-------------|

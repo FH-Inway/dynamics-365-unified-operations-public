@@ -109,7 +109,7 @@ export default class MyCustomApplicationStartTrigger extends ApplicationStartTri
 }
 ```
 
-### Configure extension packages
+### Configuring extension packages
 
 POS loads the list of configured extension package definitions from the headless Commerce engine by calling the **GetExtensionPackageDefinitions** API. The **GetExtensionPackageDefinitions** API runs the **GetExtensionPackageDefinitions** Commerce runtime (CRT) request. To configure POS to load your extension package, add a CRT trigger for **GetExtensionPackageDefinitionsRequest**, and add your extension package definition to the list of definitions in **GetExtensionPackageDefinitionsResponse**, as shown in the following example.
 

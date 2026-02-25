@@ -40,6 +40,7 @@ To consume external or partner libraries in POS extensions, follow these steps:
 
     > [!NOTE]
     > - The **modulePath** value must match the **KnockoutjsFile** variable in the MSBuild target that you added in the previous step.
+    > - If the external library depends on other libraries, include all the dependent libraries in the package manifest and msbuild target to copy the dependencies.
 
     ```JSON
     "dependencies": [
@@ -50,8 +51,6 @@ To consume external or partner libraries in POS extensions, follow these steps:
         }
     ]
     ```
-
-    > - If the external library depends on other libraries, include all the dependent libraries in the package manifest and msbuild target to copy the dependencies.
 
 1. Update your **Pos.Extensions** project file so that it includes the **Knockout.js** type declarations.
 

@@ -40,17 +40,23 @@ The agent can determine what each email is about (for example, whether it's a pu
 Learn more in [Review and apply purchase order changes received in vendor emails](supplier-com-agent-apply-email-changes.md).
 
 Specifically, the agent will help on the following scenarios:
-- Increase/decrease order quantity
-- Cancel order quantity/cancel line
-- Price increase/decrease
-- Updating confirmed delivery date
-- Updating confirmed shipping date
+
+- **Increase/decrease order quantity** &ndash; The Dynamics 365 Supplier Communications Agent detects a supplier's request to increase or decrease the ordered quantity by reading the email body and any attachments (PDF). It summarizes the requested change, identifies the impacted PO/line, and flags it for approval when needed.
+- **Cancel quantity/cancel line** &ndash; The agent recognizes that the supplier is asking to cancel (for one line or multiple lines) and matches the message to the correct purchase order and purchase order line. It provides a short summary of what is being reduced.
+- **Price increase/decrease** &ndash; The agent detects a requested unit price increase/decrease (including supporting rationale if provided) by reading the supplier's email and any attached documentation. It summarizes the old vs. new price (where available) and flags it as a commercial change requiring buyer decision/approval.
+- **Cancel balance** &ndash; When a supplier indicates they will not fulfill the remaining (open) balance of a PO, the agent detects this intent and identifies the affected PO/lines. It summarizes what portion is being cancelled (if stated) and flags it as an exception that typically needs buyer intervention (alternate sourcing, renegotiation, etc.).
+- **Updating confirmed delivery date** &ndash; If the supplier confirms or revises the order confirmation date, the agent extracts the date change from the email/attachment and links it to the correct PO. It summarizes what changed (previous vs. updated date if present) and surfaces it so the buyer can quickly validate and accept.
+- **Updating confirmed shipping date (ETA based on ETD)** &ndash; When the supplier provides only an ETD/ship date (not an "into warehouse" date), the agent detects which date is provided and indicates the ETA date. The agent can learn to infer/derive the receiving ETA using agreed transit-time assumptions.
+- **Match unit of measure** &ndash; If the supplier uses a different unit representation (e.g., "packs" vs. "each"), the agent identifies the unit mismatch and still extracts the intent of the change. The agent can learn/standardize unit patterns over time and presents a clear summary for the buyer rather than failing the match.
+- **Follow up for not confirmed purchase order** &ndash; For POs that remain unconfirmed after a defined threshold (e.g., 7 days), the agent identifies the gap and prompts follow-up with the vendor.
+- **Follow up on delayed purchase order** &ndash; For POs that are delayed beyond a defined threshold, the agent identifies the gap and prompts follow-up with the vendor.
 
 The agent currently does not support the following scenarios:
-- Splitting a line into multiple deliveries
-- Changing site for delivery receipt for specific line
-- Changing vendor for a specific line
-- Changing vendor for the purchase order
+
+- **Splitting a line into multiple deliveries** &ndash; When a supplier proposes splitting delivery (e.g., "ship 30 now, 70 later"), the agent should extract the proposed delivery breakdown from the email/attachment and summarize it. It should clearly call out new delivery dates/quantities and associate them to the correct PO lines and split them into multiple deliveries. This scenario is not yet supported.
+- **Changing site for delivery receipt for specific line** &ndash; If the supplier requests shipping to a different site/warehouse for a particular line, the agent should extract the new delivery location from the message/attachment and match it to the PO line. It should summarize the requested site change and highlight it as a logistics-impacting update requiring review before acceptance. This scenario is not yet supported.
+- **Changing vendor for a specific line** &ndash; When a supplier asks to ship from a different operating entity (same supplier, different state/account), the agent should detect that the request implies a vendor account change for processing. It should summarize the reason and proposed vendor ID (if provided) and flag it as an exception scenario for procurement to validate and approve. This scenario is not yet supported.
+- **Changing vendor for the purchase order** &ndash; When a supplier asks to ship from a different operating entity (same supplier, different state/account) for the entire purchase order, the agent should detect that the request implies a vendor account change for processing. It should summarize the reason and proposed vendor ID (if provided) and flag it as an exception scenario for procurement to validate and approve. This scenario is not yet supported.
 
 ## Cost
 

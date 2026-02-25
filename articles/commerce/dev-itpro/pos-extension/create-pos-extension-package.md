@@ -18,18 +18,18 @@ ms.custom:
 
 This article explains how to create a Point of Sale (POS) extension package project in Microsoft Dynamics 365 Commerce.
 
-A POS extension package project is a set of extensions that, when they're combined, enable a custom end-to-end POS scenario that uses Microsoft Visual Studio. POS extension package projects apply to extension scenarios for both Modern POS (MPOS) and Cloud POS (CPOS).
+A POS extension package project is a set of extensions that, when combined, enable a custom end-to-end POS scenario that uses Microsoft Visual Studio. POS extension package projects apply to extension scenarios for both Modern POS (MPOS) and Cloud POS (CPOS).
 
 1. In Visual Studio, create a new .NET Standard class library project that uses .NET Standard 2.0, and name it **POS.Extensions**.
-1. Delete the class file that is created together with the project.
-1. Create a shared properties file (XML file) that all projects in the customization package use. This shared file can be used for different Microsoft Dynamics 365 Commerce extensions, such as Commerce runtime (CRT), Retail Server, and Hardware Service extensions. Name the file. For this example, the file is named **CustomizationPackage.props**.
+1. Delete the class file that's created together with the project.
+1. Create a shared properties file (XML file) that all projects in the customization package use. You can use this shared file for different Microsoft Dynamics 365 Commerce extensions, such as Commerce runtime (CRT), Retail Server, and Hardware Service extensions. Name the file. For this example, the file is named **CustomizationPackage.props**.
 1. Add the file to the same directory as the solution file that you created.
 1. Add the following property values to the file:
 
     + **PackagePublisher** – The identity of the package publisher (for example, `CN=Contoso Ltd.`). If the package contains MPOS extensions, this value must match the subject of the app signing certificate.
     + **PackagePublisherDisplayName** – The display name of the package publisher (for example, `Contoso Ltd.`).
     + **PackageVersion** – The version of the customization package. This value must be a version string in quad notation, where the major version isn't 0 (zero) (for example, `1.0.0.0`).
-    + **PackageName** – The package name. This value must be a string that is between three and 50 characters long, and it must consist of only alphanumeric characters, and periods or hyphens. The string can't end in a period.
+    + **PackageName** – The package name. This value must be a string that's between three and 50 characters long, and it must consist of only alphanumeric characters, and periods or hyphens. The string can't end in a period.
     + **PackageDisplayName** – The display name of the package.
     + **PackageDescription** – The package description.
 
@@ -73,7 +73,7 @@ A POS extension package project is a set of extensions that, when they're combin
     1. Select the package, and then select **Install**.
 
         > [!TIP]
-        > All the Commerce NuGet packages can be found in the following public repository:
+        > You can find all the Commerce NuGet packages in the following public repository:
         >
         > [https://pkgs.dev.azure.com/commerce-partner/Registry/_packaging/dynamics365-commerce/nuget/v3/index.json](https://pkgs.dev.azure.com/commerce-partner/Registry/_packaging/dynamics365-commerce/nuget/v3/index.json)
 
@@ -94,7 +94,7 @@ A POS extension package project is a set of extensions that, when they're combin
 
     :::image type="content" source="media/json-file.png" alt-text="Screenshot of adding the tsconfig.json file.":::
 
-    1. Remove all the fields from the JavaScript Object Notation (JSON), and make the file extend from the **pos-tsconfig-base.json** file by adding an **extends** field. When you finish, the XML file should resemble the following example.
+    1. Remove all the fields from the JavaScript Object Notation (JSON), and make the file extend from the **pos-tsconfig-base.json** file by adding an **extends** field. When you finish, the JSON file should resemble the following example.
 
         ```JSON
         {
@@ -126,7 +126,7 @@ A POS extension package project is a set of extensions that, when they're combin
         + **description** – A description of the extension package functionality.
         + **publisher** – The name of the extension package's publisher or organization.
         + **version** – The version of the extension package. This value must follow the semantic versioning pattern.
-        + **minimumPosVersion** – The minimum POS version that is required to run the extension package. The version number depends on the POS NuGet package that you're consuming and the POS app that is installed. For example, the extension project shouldn't use POS APIs or extension artifacts from a version that is later than the version of the POS app that is installed. At runtime, the POS app checks the version of the extension package. If it's later than the version of the installed POS app, the extension package isn't be loaded.
+        + **minimumPosVersion** – The minimum POS version that is required to run the extension package. The version number depends on the POS NuGet package that you're consuming and the POS app that is installed. For example, the extension project shouldn't use POS APIs or extension artifacts from a version that is later than the version of the POS app that is installed. At runtime, the POS app checks the version of the extension package. If it's later than the version of the installed POS app, the extension package isn't loaded.
 
         Here's an example of a manifest file.
 

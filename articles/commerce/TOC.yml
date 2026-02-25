@@ -964,7 +964,7 @@
             href: inventory-aware-product-listing.md
           - name: Configure inventory availability checks for cart and checkout actions
             href: inventory-availability-checks.md
-          - name: Enable cross legal entity inventory lookup for POS
+          - name: Enable cross legal entity inventory lookup for POS (preview)
             href: enable-cross-legal-entity-inventory-lookup-pos.md
         - name: Store inventory
           items:

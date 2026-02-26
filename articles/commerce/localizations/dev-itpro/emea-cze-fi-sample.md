@@ -3,7 +3,7 @@ title: Fiscal registration service integration sample for the Czech Republic
 description: This article provides an overview of the fiscal integration sample for the Czech Republic in Microsoft Dynamics 365 Commerce.
 author: EvgenyPopovMBS
 ms.date: 02/26/2026
-ms.topic: how-to
+ms.topic: overview
 ms.reviewer: v-griffinc
 ms.search.region: Global
 ms.author: anupamar

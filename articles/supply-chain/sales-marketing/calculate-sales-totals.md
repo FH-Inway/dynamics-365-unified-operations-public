@@ -22,7 +22,7 @@ This article describes the purpose of each field on the form, how to schedule th
 
 ## Overview
 
-The form allows administrators to control how far back the system recalculates sales totals and whether the job runs interactively or as a scheduled batch process. The recalculation updates:
+The form allows users to control how far back the system recalculates sales totals and whether the job runs interactively or as a scheduled batch process. The recalculation updates:
 
 - Order‑level totals  
 - Quotation‑level totals  
@@ -35,7 +35,7 @@ The form allows administrators to control how far back the system recalculates s
 ### **Ignore documents updated before (days)**  
 Defines how many days of activity to include in the recalculation.  
 The system computes a cutoff date as:
-Cutoff date = Today – <entered number="" of="" days=""></entered>
+Cutoff date = Today – entered number of days
 
 Only documents updated *after* this date are recalculated.
 

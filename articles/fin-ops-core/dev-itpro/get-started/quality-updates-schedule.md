@@ -69,7 +69,7 @@ The following table shows the high-level train schedule. It includes a descripti
 | 10.0.45 PQU-3 | December 3, 2025 | December 8, 2025 to January 25, 2026| Canceled* |
 | 10.0.45 PQU-4 | December 31, 2025 | January 5, 2026 to February 8, 2026| Completed |
 | 10.0.45 PQU-5 | January 28, 2026 | February 2, 2026 to March 8, 2026| In-Progress |
-| 10.0.45 PQU-6 | February 25, 2026 | March 2, 2026 to April 5, 2026| Not Started |
+| 10.0.45 PQU-6 | February 25, 2026 | March 2, 2026 to April 5, 2026| In-Progress |
 | 10.0.45 PQU-7 | March 25, 2026 | March 30, 2026 to May 3, 2026| Not Started |
 | 10.0.45 PQU-8 | April 22, 2026 | April 27, 2026 to May 30, 2026| Not Started |
 | 10.0.45 PQU-9 | May 27, 2026 | June 1, 2026 to July 5, 2026| Not Started |
@@ -154,7 +154,7 @@ The following table shows the high-level train schedule. It includes a descripti
 | Station 5 | March 20 to March 23, 2026 | April 1 to April 2, 2026 |
 | Station 6 | March 21 to March 24, 2026 | April 1 to April 2, 2026 |
 
-### <a name="schedule"></a> [NEW] Proactive quality update upcoming 10.0.45 Release-5 train schedule
+### <a name="schedule"></a> Proactive quality update upcoming 10.0.45 Release-5 train schedule
 
 **App version: 10.0.2345.153**
 
@@ -170,6 +170,23 @@ The following table shows the high-level train schedule. It includes a descripti
 | Station 4 | February 16 to February 19, 2026 | February 28 to March 1, 2026 |
 | Station 5 | February 23 to February 26, 2026 | March 7 to March 8, 2026 |
 | Station 6 | February 24 to February 27, 2026 | March 7 to March 8, 2026 |
+
+### <a name="schedule"></a> [NEW] Proactive quality update upcoming 10.0.45 Release-6 train schedule
+
+**App version: 10.0.2345.175**
+
+**Platform version: 7.0.7690.117**
+
+**Unified Environment Provisioning Application Version: 10.0.45.8**
+
+| Stations | Upcoming Sandbox Schedule | Upcoming production Schedule |
+|---|---|---|
+| Station 1 | March 2 to March 5, 2026 | NA |
+| Station 2 | March 9 to March 12, 2026 | March 21 to March 22, 2026 |
+| Station 3 | March 10 to March 13, 2026 | March 21 to March 22, 2026 |
+| Station 4 | March 16 to March 19, 2026 | March 28 to March 1, 2026 |
+| Station 5 | March 23 to March 26, 2026 | April 4 to April 5, 2026 |
+| Station 6 | March 24 to March 27, 2026 | April 4 to April 5, 2026 |
 
 ### <a name="schedule"></a> [NEW] Proactive quality update upcoming 10.0.46 Release-1 train schedule
 

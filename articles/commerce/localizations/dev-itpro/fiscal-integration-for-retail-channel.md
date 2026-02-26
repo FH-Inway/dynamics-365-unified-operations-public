@@ -62,7 +62,7 @@ The following typical fiscal registration flow starts with an event in the POS (
 
 The following examples show fiscal registration execution flows for typical fiscal devices or services.
 
-### Fiscal registration is done through a device connected to the Hardware station
+### Fiscal registration is done via a device connected to the Hardware station
 
 This configuration is used when a physical fiscal device, such as a fiscal printer, is connected to the Hardware station. It's also applicable when the communication with a fiscal device or service is done via software that is installed on the Hardware station. In this case, the fiscal document provider is located on the CRT, and the fiscal connector is located on Hardware station.
 

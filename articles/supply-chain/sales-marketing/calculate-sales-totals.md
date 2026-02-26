@@ -15,8 +15,6 @@ ms.custom:
 
 [!include [banner](../../includes/banner.md)]
 
-## Introduction
-
 The *Calculate sales totals* batch job recalculates and updates aggregated metrics for sales orders and sales quotations. This critical maintenance task ensures that all summary totals, delivery metrics, and key performance indicators (KPIs) shown on inquiry pages, workspaces, and analytics dashboards remain accurate and up-to-date. The recalculation updates:
 
 - Order‑level totals  

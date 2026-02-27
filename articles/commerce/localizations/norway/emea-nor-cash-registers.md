@@ -144,7 +144,7 @@ Set the **Allow printing receipt copy** permission to an appropriate value:
 - **Allow only once, and only if HQ DB is available** – The operator can print a copy of a receipt only one time, and only if the HQ database is available through Commerce Data Exchange: Real-time Service, so that the system can verify that no copies of the receipt were previously printed in any store.
 - **Never** – The operator can't print a copy of a receipt.
 
-### Configure custom fields for receipt formats used in sales receipts
+### Configure custom fields so that they can be used in receipt formats for sales receipts
 
 On **Language text**, add records for the labels of the custom fields for receipt layouts. The **Language ID**, **Text ID**, and **Text** values that are shown in the table are examples. You can change them to meet your requirements.
 

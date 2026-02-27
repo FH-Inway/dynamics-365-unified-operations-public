@@ -17,7 +17,7 @@ ms.custom:
 [!include[banner](../../../finance/includes/banner.md)]
 
 > [!NOTE]
-> The functionality described in this article supports the Phase 1 requirements of the E-invoicing implementation in the Kingdom of Saudi Arabia. For information about the features that support the Phase 2 requirements of the e-invoicing implementation in the Kingdom of Saudi Arabia, see [Generate and submit simplified electronic invoices for Saudi Arabia](emea-sau-simplified-e-invoices.md).
+> The functionality described in this article supports the Phase 1 requirements of the e-invoicing implementation in the Kingdom of Saudi Arabia. For information about the features that support the Phase 2 requirements of the e-invoicing implementation in the Kingdom of Saudi Arabia, see [Generate and submit simplified electronic invoices for Saudi Arabia](emea-sau-simplified-e-invoices.md).
 
 This article explains the functionality for printing quick response (QR) codes available for Saudi Arabia in Microsoft Dynamics 365 Commerce.
 

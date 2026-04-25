@@ -9,6 +9,8 @@ ms.topic: troubleshooting-general
 ms.date: 03/10/2026
 ms.custom:
   - bap-template
+ms.collection:
+  - ai-assisted
 ---
 
 # Troubleshoot Planning Optimization
@@ -279,6 +281,38 @@ After running a master plan, you might receive the following error:
 > Supply setting with id: \<SettingID\> for MinMax on product \<ProductID\> does not match the active planning attributes for this product and was ignored.
 
 If you see this error, check the tracking and coverage dimensions for the specified product. For example, if the product is being tracked by serial number, then the serial number dimension can't be used as a coverage dimension because the system doesn't know which serial numbers should be supplied. Either deselect the serial number as a coverage dimension or change the item coverage group to a group that doesn't use serial number tracking (if serial tracking isn't needed for the specified product).
+
+## Planning Optimization client request retry count exceeded
+
+After running master planning, you receive the following error message:
+
+> Planning Optimization client request retry count exceeded.
+
+or
+
+> Planning Optimization run failed.
+
+This error can occur for different reasons. Check the following causes and fixes.
+
+### Cause 1: Transient service failure
+
+Planning Optimization is a cloud-based service. Occasionally, transient service failures can occur that are specific to a particular region. These temporary outages can prevent Planning Optimization from completing a run.
+
+**Fix**: Wait a short time and then retry the master planning run. If the issue persists for more than a few hours, contact Microsoft Support, because the issue might require action from the service engineering team.
+
+### Cause 2: Connection lost after a database refresh
+
+If you recently performed a database refresh on your environment, the Planning Optimization connection might be broken. The connection status on the **Planning Optimization parameters** page (**Master planning** \> **Setup** \> **Planning Optimization parameters**) might show *Not connected* even though the add-in appears as installed.
+
+A database refresh is environment-specific, and it resets the Planning Optimization service binding. This is a known behavior.
+
+**Fix**: Uninstall and reinstall the Planning Optimization Add-in for your environment from the admin center. After reinstallation, verify that the connection status shows *Connected* on the **Planning Optimization parameters** page. Learn more in [Get started with master planning](get-started.md).
+
+### Cause 3: Temporary connectivity issue
+
+Intermittent network or service connectivity issues between your environment and the Planning Optimization service can cause this error.
+
+**Fix**: Retry the master planning run. If the error occurs repeatedly, check the **Planning Optimization parameters** page to verify the connection status. If the connection status shows *Not connected*, try reinstalling the add-in. If the status shows *Connected* and the error persists, contact Microsoft Support.
 
 ## Related information
 

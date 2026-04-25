@@ -6,9 +6,11 @@ ms.author: henrikan
 ms.reviewer: kamaybac
 ms.search.form: ReqCreatePlanWorkspace
 ms.topic: troubleshooting-general
-ms.date: 03/10/2026
+ms.date: 04/25/2026
 ms.custom:
   - bap-template
+ms.collection:
+  - ai-assisted
 ---
 
 # Troubleshoot Planning Optimization
@@ -49,6 +51,18 @@ The Planning Optimization Add-in might fail to install due to an error on your P
 ## Planning Optimization job times out
 
 Planning Optimization has a set timeout of 60 minutes. Therefore, if it runs for more than 60 minutes, the planning job stops because of a timeout.
+
+> [!TIP]
+> The following table summarizes the most effective approaches for improving Planning Optimization performance. Try them in order of impact.
+>
+> | Approach | When to use | Impact |
+> |---|---|---|
+> | [Reduce time fences](#review-your-setup-to-remove-time-fences-and-options-that-arent-needed) | Time fences are larger than your business requires | High &ndash; coverage time fence has the largest effect |
+> | [Plan only needed products](#plan-only-for-the-products-you-need) | Many items are included that don't need planning | High |
+> | [Split large jobs](#split-large-planning-jobs-into-several-smaller-jobs) | A single job plans too many items for the 60-minute window | High |
+> | [Reduce scheduling time](#reduce-scheduling-time) | Finite capacity scheduling is enabled and adds significant time | Medium |
+> | [Reduce resource group size](#consider-reducing-the-size-of-your-resource-groups) | Large resource groups slow down scheduling calculations | Medium |
+> | [Review item coverage](#review-your-item-coverage-settings) | Multiple coverage lines apply the same settings for all warehouses | Low to medium |
 
 If your Planning Optimization jobs frequently time out, consider implementing one or more of the options that are described in the following subsections.
 

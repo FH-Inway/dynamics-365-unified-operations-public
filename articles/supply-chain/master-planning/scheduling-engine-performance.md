@@ -46,7 +46,7 @@ The basic process of scheduling an order consists of three main steps:
 
 ## Load data into the engine
 
-The scheduling engine uses a more abstract data model than the Supply Chain Management database because itÆs a generic engine that handles multiple data sources. The concepts of route, secondary operations, and run time are translated into the generic job and constraint model that the engine exposes. The logic for building the model includes significant business logic and varies depending on the source data. The responsible X++ class is `WrkCtrScheduler`, which includes derived classes for planned production orders, released production orders, and project forecasts.
+The scheduling engine uses a more abstract data model than the Supply Chain Management database because it's a generic engine that handles multiple data sources. The concepts of route, secondary operations, and run time are translated into the generic job and constraint model that the engine exposes. The logic for building the model includes significant business logic and varies depending on the source data. The responsible X++ class is `WrkCtrScheduler`, which includes derived classes for planned production orders, released production orders, and project forecasts.
 
 For example, consider a route shown in the following table and image, which is relatively simple.
 

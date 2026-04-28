@@ -1,6 +1,6 @@
 ---
 title: Support policy for the Warehouse Management mobile app
-description: Learn about the support policies that apply to the Warehouse Management mobile app, including the V3 end-of-support milestone in May 2026 and the rolling 12-month support window for version 4 and all later releases that starts on May 1, 2027.
+description: Learn about the support policies that apply to the Warehouse Management mobile app, including the V3 end-of-support milestone in May 2026 and the rolling 12-month support window for V4 and later releases that starts on May 1, 2027.
 author: pefreita
 ms.author: pefreita
 ms.reviewer: kamaybac
@@ -12,88 +12,96 @@ ms.custom:
 
 # Support policy for the Warehouse Management mobile app
 
-This article describes the support policies that apply to the Warehouse Management mobile app. Two distinct policies apply, depending on which version your devices run:
+This article describes the support policies for the Warehouse Management mobile app. Two policies apply, based on the version your devices run:
 
-- **Version 3 (V3)** reaches its official end of support in May 2026. After that milestone, Microsoft no longer accepts support cases related to the V3 client software. Migrate devices to V4 before May 2026 to maintain support coverage.
-- **Version 4 (V4) and all later releases** follow a rolling 12-month support window that begins on May 1, 2027. After that date, a release is eligible for support cases only if its publication date is within the 12 months that precede the date when the support case is opened. This policy applies to V4 and to every subsequent release of the app, regardless of whether that release is a major, minor, or patch version.
+- **Version 3 (V3)** reaches end of support in May 2026. After that date, Microsoft no longer accepts support cases for V3. Migrate to V4 before May 2026 to keep support coverage.
+- **Version 4 (V4) and all later releases** follow a rolling 12-month support window starting May 1, 2027. After that date, a release is eligible for support cases only if its publication date is within the previous 12 months. This rule applies to every V4 release. It also applies to later major, minor, and patch versions.
 
-These policies are essential to ensure the quality, security, performance, and platform compatibility of the Warehouse Management mobile app. By focusing engineering and support investment on a current set of releases, Microsoft can deliver timely security updates, address platform-level changes from Apple, Google, and Microsoft, and provide a consistent troubleshooting baseline. Investigating issues against legacy or out-of-window releases would slow the delivery of these improvements and dilute the protections that warehouse operations depend on.
+These policies help keep the app secure, reliable, and compatible with current platforms. By focusing on recent releases, Microsoft can:
 
-The app continues to function regardless of release age. These policies define the scope of support case intake, not service availability or the ability to sign in.
+- Deliver security fixes faster.
+- Keep up with changes in Apple, Google, and Microsoft platforms.
+- Provide a consistent baseline for troubleshooting.
+
+The app keeps working on older releases. The policies define when Microsoft accepts support cases. They don't affect service availability or sign-in.
 
 ## Version 3 support policy
 
-As announced in the [Migration to V4 Guide](warehouse-app-migrating-from-v3-v4.md), version 3 (V3) of the Warehouse Management mobile app reaches its official end of support in May 2026. Migrate devices to V4 before that date to maintain support coverage.
+V3 of the Warehouse Management mobile app reaches end of support in May 2026. For details, see the [Migration to V4 Guide](warehouse-app-migrating-from-v3-v4.md). Migrate devices to V4 before that date to keep support coverage.
 
-V3 is based on the *Xamarin* framework, which is no longer supported, so Microsoft can't provide any new features or bug fixes for V3.
+V3 runs on the *Xamarin* framework. Xamarin is no longer supported, so Microsoft can't ship new features or bug fixes for V3.
 
 ### Scope of support after May 2026
 
-Back-end APIs remain compatible with V3 during the migration window so that V3 clients can continue to operate while customers transition to V4. The duration of this back-end compatibility isn't guaranteed and may end as Supply Chain Management services evolve.
+Back-end APIs stay compatible with V3 during the migration period. This compatibility lets V3 clients keep running while you move to V4. The compatibility duration isn't guaranteed and may end as Supply Chain Management services change.
 
-- **No new releases** – Microsoft can't build, patch, or release updates for V3 because the underlying Xamarin framework is deprecated.
-- **Support cases** – Microsoft support teams no longer accept or investigate support cases related specifically to the V3 client software.
+- **No new releases** – Microsoft can't build, patch, or ship updates for V3. The Xamarin framework is deprecated.
+- **Support cases** – Microsoft no longer accepts support cases for the V3 client.
 
-Devices that remain on V3 after May 2026 follow the V3 support policy described in this section. The 12-month rolling window described later in this article applies to V4 and all later releases only; it doesn't apply to V3.
+Devices that stay on V3 after May 2026 follow this V3 policy. The 12-month rolling window doesn't apply to V3.
 
 ### Examples of out-of-scope scenarios
 
-The following list provides examples of issues that Microsoft no longer investigates for V3.
+The following table lists examples of issues that Microsoft no longer investigates for V3.
 
 - **Authentication and identity (Microsoft Entra ID)** – V3 uses legacy authentication libraries that Microsoft no longer maintains.
-    - **Unsupported** – Failures related to modern Microsoft Authentication Library (MSAL) flows, *Device not compliant* errors, and new conditional access policies enforced by Microsoft Entra ID.
-    - **Resolution** – Migrate to V4 to use current and secure authentication protocols.
+    - **Unsupported** – Failures with modern Microsoft Authentication Library (MSAL) flows, *Device not compliant* errors, and new conditional access policies in Microsoft Entra ID.
+    - **Resolution** – Migrate to V4 to use current authentication protocols.
 
-- **Client-side performance and connectivity** – The networking stack and libraries within V3 are frozen at their current versions.
-    - **Unsupported** – Issues regarding local latency, connection drops, or timeouts originating from the outdated client-side libraries.
-    - **Note** – If a performance issue is verified to be a server-side or service-wide latency issue, Microsoft continues to investigate it as part of standard cloud service support.
+- **Client-side performance and connectivity** – The V3 networking stack and libraries are frozen at their current versions.
+    - **Unsupported** – Local latency, connection drops, or timeouts caused by the outdated V3 libraries.
+    - **Note** – If a performance issue is verified as a server-side or service-wide problem, Microsoft still investigates it as part of standard cloud service support.
 
-- **Operating system (OS) compatibility** – Because Apple (iOS) and Google (Android) continually release new operating system versions, legacy apps often encounter breaking changes.
-    - **Unsupported** – Crashes, UI glitches, or failure to launch on mobile OS versions released after the final V3 release.
-    - **Resolution** – Continued compatibility is only guaranteed for the V4 application, which is built on the latest software development kits (SDKs).
+- **Operating system (OS) compatibility** – Apple and Google release new OS versions often. Legacy apps often break on those new OS versions.
+    - **Unsupported** – Crashes, UI glitches, or launch failures on mobile OS versions released after the final V3 release.
+    - **Resolution** – Use V4 for ongoing OS compatibility. V4 is built on the latest software development kits (SDKs).
 
 ## Version 4 and later support policy
 
-Starting **May 1, 2027**, version 4 (V4) and every later release of the Warehouse Management mobile app follow a rolling 12-month support window. At any time on or after May 1, 2027, a release is eligible for support cases only if its publication date is within the previous 12 months relative to the date the support case is opened. The same rolling 12-month rule applies to every release that Microsoft publishes from V4 onward, regardless of whether it's a major, minor, or patch version.
+Starting **May 1, 2027**, V4 and every later release follow a rolling 12-month support window. On or after that date, a release is eligible for support cases only if its publication date is within the previous 12 months. The window is evaluated on the date the support case is opened.
+
+This rule applies to every release from V4 onward. It applies to major, minor, and patch versions equally.
 
 ### How publication date is defined
 
-For the purposes of this policy, the publication date of a release is the date when the release first becomes available on Microsoft App Center. Subsequent availability on the Microsoft Store, Google Play, or the Apple App Store can occur later (especially on iOS, because of store review timelines), but the publication date that determines support eligibility is always the App Center release date. Each V4 and later release, starting from version 4.1.0.0, includes its publication date in [What's new or changed in the Warehouse Management mobile app](warehouse-app-whats-new.md).
+The publication date of a release is the date the release first becomes available on Microsoft App Center. Releases on the Microsoft Store, Google Play, and the Apple App Store can appear later. iOS releases often arrive later because of store review times. Even so, the App Center date is always the date that determines support eligibility.
+
+Each V4 and later release, starting with version 4.1.0.0, lists its publication date in [What's new or changed in the Warehouse Management mobile app](warehouse-app-whats-new.md).
 
 ### Examples
 
-- A release that's published on **April 30, 2026** is eligible for support cases until **April 30, 2027**. Because that boundary falls before May 1, 2027, the release becomes ineligible for support cases on May 1, 2027 (the date the rolling window policy takes effect).
-- A release that's published on **June 15, 2026** is eligible for support cases until **June 15, 2027**.
-- A release that's published on **August 1, 2027** is eligible for support cases until **August 1, 2028**.
+- A release published on **April 30, 2026** is eligible for support cases until **April 30, 2027**. Because that date falls before May 1, 2027, the release becomes ineligible on May 1, 2027 (the date the policy takes effect).
+- A release published on **June 15, 2026** is eligible for support cases until **June 15, 2027**.
+- A release published on **August 1, 2027** is eligible for support cases until **August 1, 2028**.
 
-The window is evaluated on the date the support case is opened. There is no grace period beyond the 12-month boundary. Update the device to a release within the support window before opening a support case.
+There is no grace period after the 12-month boundary. Update the device to a supported release before you open a support case.
 
 ### Why the 12-month window matters
 
-Limiting support to the most recent 12 months of releases is critical to maintain the quality, security, and reliability that warehouse operations depend on. It allows Microsoft to:
+The 12-month window is critical for keeping the app secure and reliable. It lets Microsoft:
 
-- Deliver timely security fixes and respond to vulnerabilities on a current code base, instead of backporting fixes across many legacy builds.
-- Keep pace with platform-level changes from Apple, Google, and Microsoft (operating system updates, authentication libraries, and store policies) that often introduce breaking behavior in older releases.
-- Diagnose issues against a known, well-tested baseline so that root-cause analysis is fast and accurate.
-- Focus engineering investment on improvements that benefit all customers, rather than on issues that have already been resolved in newer releases.
+- Ship security fixes on a current code base. Backporting across many legacy builds slows fix delivery.
+- Keep up with platform changes from Apple, Google, and Microsoft. OS updates, authentication libraries, and store policies often break older releases.
+- Diagnose issues against a known, well-tested baseline. This makes root-cause analysis faster and more accurate.
+- Focus engineering work on changes that help all customers. Issues already fixed in newer releases don't need re-investigation.
 
 ### Scope of the 12-month window
 
-- **Support cases** – Microsoft support teams accept and investigate support cases only when the affected device runs a V4 or later release whose publication date is within the previous 12 months. For older releases, you're asked to update to a supported version before a support case can be investigated.
-- **Critical production outages** – Microsoft may still investigate severity-1 incidents that block widespread production operations, on a case-by-case basis. The standard guidance is to first update to a supported release. This exception isn't a substitute for keeping deployments current.
-- **Preview builds** – Preview or beta builds distributed through Microsoft App Center are not part of the 12-month support window. Use preview builds only for evaluation; report issues through the [preview feedback channel](warehouse-app-whats-new.md).
-- **App availability** – The app continues to run on devices regardless of the installed version. Microsoft doesn't deliberately block out-of-window clients, and back-end services don't reject their connections at the protocol level. However, Supply Chain Management services evolve over time, and older releases may eventually become incompatible with newer back-end behavior. Compatibility for out-of-window releases is not guaranteed.
-- **Security and platform fixes** – Critical fixes are delivered in current releases. Devices that stay on older releases don't receive those fixes.
+- **Support cases** – Microsoft accepts and investigates support cases only when the device runs a V4 or later release with a publication date within the previous 12 months. For older releases, update to a supported version before opening a case.
+- **Critical production outages** – Microsoft may still investigate severity-1 incidents that block widespread production operations. These cases are reviewed individually. The standard guidance is still to update to a supported release first. This exception isn't a substitute for staying current.
+- **Preview builds** – Preview and beta builds from Microsoft App Center aren't part of the 12-month window. Use them only for evaluation. Report issues through the [preview feedback channel](warehouse-app-whats-new.md).
+- **App availability** – The app keeps running on any installed version. Microsoft doesn't block out-of-window clients, and back-end services don't reject their connections. However, Supply Chain Management services change over time. Older releases may eventually stop working with newer back-end behavior. Compatibility for out-of-window releases isn't guaranteed.
+- **Security and platform fixes** – Critical fixes ship in current releases. Devices on older releases don't get those fixes.
 
 ### How to identify the installed version
 
-To identify the version of the Warehouse Management mobile app that's installed on a device, open the app and review the version information shown on the sign-in screen or in the app's **Settings** page. Compare that value to the publication dates listed in [What's new or changed in the Warehouse Management mobile app](warehouse-app-whats-new.md).
+To check which version is installed, open the app. The version appears on the sign-in screen or in **Settings**. Compare it to the publication dates in [What's new or changed in the Warehouse Management mobile app](warehouse-app-whats-new.md).
 
 ### How to stay within the support window
 
-- Keep auto-update enabled in your app store, or schedule mass-deployment updates through Microsoft Intune or another mobile device management (MDM) solution. For details, see [Mass deploy the mobile app with user-based authentication](warehouse-app-intune-user-based.md).
-- Track release dates in [What's new or changed in the Warehouse Management mobile app](warehouse-app-whats-new.md). Each V4 and later release, starting from version 4.1.0.0, is tagged with its release date.
-- Plan a rollout cadence that updates devices at least once per year so that no installation drifts past the 12-month window.
+- Turn on auto-update in your app store, or push updates through Microsoft Intune or another mobile device management (MDM) solution. For details, see [Mass deploy the mobile app with user-based authentication](warehouse-app-intune-user-based.md).
+- Track release dates in [What's new or changed in the Warehouse Management mobile app](warehouse-app-whats-new.md). Every V4 and later release, starting with 4.1.0.0, has a publication date.
+- Update devices at least once a year. This keeps every device inside the 12-month window.
 
 ## Related information
 

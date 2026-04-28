@@ -74,7 +74,7 @@ Each V4 and later release, starting with version 4.1.0.0, lists its publication 
 - A release published on **June 15, 2026** is eligible for support cases until **June 15, 2027**.
 - A release published on **August 1, 2027** is eligible for support cases until **August 1, 2028**.
 
-There is no grace period after the 12-month boundary. Update the device to a supported release before you open a support case.
+There's no grace period after the 12-month boundary. Update the device to a supported release before you open a support case.
 
 ### Why the 12-month window matters
 
@@ -82,15 +82,15 @@ The 12-month window is critical for keeping the app secure and reliable. It lets
 
 - Ship security fixes on a current code base. Backporting across many legacy builds slows fix delivery.
 - Keep up with platform changes from Apple, Google, and Microsoft. OS updates, authentication libraries, and store policies often break older releases.
-- Diagnose issues against a known, well-tested baseline. This makes root-cause analysis faster and more accurate.
-- Focus engineering work on changes that help all customers. Issues already fixed in newer releases don't need re-investigation.
+- Diagnose issues against a known, well-tested baseline. This approach makes root-cause analysis faster and more accurate.
+- Focus engineering work on changes that help all customers. Issues already fixed in newer releases don't need reinvestigation.
 
 ### Scope of the 12-month window
 
 - **Support cases** – Microsoft accepts and investigates support cases only when the device runs a V4 or later release with a publication date within the previous 12 months. For older releases, update to a supported version before opening a case.
-- **Critical production outages** – Microsoft may still investigate severity-1 incidents that block widespread production operations. These cases are reviewed individually. The standard guidance is still to update to a supported release first. This exception isn't a substitute for staying current.
+- **Critical production outages** – Microsoft might still investigate severity-1 incidents that block widespread production operations. The team reviews these cases individually. The standard guidance is still to update to a supported release first. This exception isn't a substitute for staying current.
 - **Preview builds** – Preview and beta builds from Microsoft App Center aren't part of the 12-month window. Use them only for evaluation. Report issues through the [preview feedback channel](warehouse-app-whats-new.md).
-- **App availability** – The app keeps running on any installed version. Microsoft doesn't block out-of-window clients, and back-end services don't reject their connections. However, Supply Chain Management services change over time. Older releases may eventually stop working with newer back-end behavior. Compatibility for out-of-window releases isn't guaranteed.
+- **App availability** – The app keeps running on any installed version. Microsoft doesn't block out-of-window clients, and back-end services don't reject their connections. However, Supply Chain Management services change over time. Older releases might eventually stop working with newer back-end behavior. Compatibility for out-of-window releases isn't guaranteed.
 - **Security and platform fixes** – Critical fixes ship in current releases. Devices on older releases don't get those fixes.
 
 ### How to identify the installed version
@@ -99,7 +99,7 @@ To check which version is installed, open the app. The version appears on the si
 
 ### How to stay within the support window
 
-- Turn on auto-update in your app store, or push updates through Microsoft Intune or another mobile device management (MDM) solution. For details, see [Mass deploy the mobile app with user-based authentication](warehouse-app-intune-user-based.md).
+- Turn on autoupdate in your app store, or push updates through Microsoft Intune or another mobile device management (MDM) solution. For details, see [Mass deploy the mobile app with user-based authentication](warehouse-app-intune-user-based.md).
 - Track release dates in [What's new or changed in the Warehouse Management mobile app](warehouse-app-whats-new.md). Every V4 and later release, starting with 4.1.0.0, has a publication date.
 - Update devices at least once a year. This keeps every device inside the 12-month window.
 

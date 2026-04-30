@@ -1,8 +1,8 @@
 ---
 title: Support policy for the Warehouse Management mobile app
 description: Learn about the support policies that apply to the Warehouse Management mobile app, including the V3 end-of-support milestone in May 2026 and the rolling 12-month support window for V4 and later releases that starts on May 1, 2027.
-author: pefreita
-ms.author: pefreita
+author: Mirzaab
+ms.author: mirzaab
 ms.reviewer: kamaybac
 ms.topic: conceptual
 ms.date: 04/28/2026
@@ -12,7 +12,7 @@ ms.custom:
 
 # Support policy for the Warehouse Management mobile app
 
-This article describes the support policies for the Warehouse Management mobile app. Two policies apply, based on the version your devices run:
+This article describes the support policies for the Warehouse Management mobile app. The policy that applies to you depends on the version you are running:
 
 - **Version 3 (V3)** reaches end of support in May 2026. After that date, Microsoft no longer accepts support cases for V3. Migrate to V4 before May 2026 to keep support coverage.
 - **Version 4 (V4) and all later releases** follow a rolling 12-month support window starting May 1, 2027. After that date, a release is eligible for support cases only if its publication date is within the previous 12 months. This rule applies to every V4 release. It also applies to later major, minor, and patch versions.
@@ -23,7 +23,7 @@ These policies help keep the app secure, reliable, and compatible with current p
 - Keep up with changes in Apple, Google, and Microsoft platforms.
 - Provide a consistent baseline for troubleshooting.
 
-The app keeps working on older releases. The policies define when Microsoft accepts support cases. They don't affect service availability or sign-in.
+Older releases of the app continue to function. The policies define when Microsoft accepts support cases. They don't affect service availability or sign-in.
 
 ## Version 3 support policy
 
@@ -64,15 +64,15 @@ This rule applies to every release from V4 onward. It applies to major, minor, a
 
 ### How publication date is defined
 
-The publication date of a release is the date the release first becomes available on Microsoft App Center. Releases on the Microsoft Store, Google Play, and the Apple App Store can appear later. iOS releases often arrive later because of store review times. Even so, the App Center date is always the date that determines support eligibility.
+The publication date of a release is the date the release first becomes available on Microsoft App Center. Releases on the Microsoft Store, Google Play, and the Apple App Store can appear later. iOS releases often arrive later because of store review times. Even so, the Microsoft App Center date is always the date that determines support eligibility.
 
-Each V4 and later release, starting with version 4.1.0.0, lists its publication date in [What's new or changed in the Warehouse Management mobile app](warehouse-app-whats-new.md).
+Each V4 and later release, starting with version 4.1.1.0, lists its publication date in [What's new or changed in the Warehouse Management mobile app](warehouse-app-whats-new.md).
 
 ### Examples
 
-- A release published on **April 30, 2026** is eligible for support cases until **April 30, 2027**. Because that date falls before May 1, 2027, the release becomes ineligible on May 1, 2027 (the date the policy takes effect).
-- A release published on **June 15, 2026** is eligible for support cases until **June 15, 2027**.
-- A release published on **August 1, 2027** is eligible for support cases until **August 1, 2028**.
+- A release published on *April 30, 2026* is eligible for support cases until *April 30, 2027*. Because that date falls before May 1, 2027, the release becomes ineligible on May 1, 2027 (the date the policy takes effect).
+- A release published on *June 15, 2026* is eligible for support cases until *June 15, 2027*.
+- A release published on *August 1, 2027* is eligible for support cases until *August 1, 2028*.
 
 There's no grace period after the 12-month boundary. Update the device to a supported release before you open a support case.
 
@@ -100,8 +100,8 @@ To check which version is installed, open the app. The version appears on the si
 ### How to stay within the support window
 
 - Turn on autoupdate in your app store, or push updates through Microsoft Intune or another mobile device management (MDM) solution. For details, see [Mass deploy the mobile app with user-based authentication](warehouse-app-intune-user-based.md).
-- Track release dates in [What's new or changed in the Warehouse Management mobile app](warehouse-app-whats-new.md). Every V4 and later release, starting with 4.1.0.0, has a publication date.
-- Update devices at least once a year. This keeps every device inside the 12-month window.
+- Track release dates in [What's new or changed in the Warehouse Management mobile app](warehouse-app-whats-new.md). Every V4 and later release, starting with 4.1.1.0, has a publication date.
+- Update devices at least once a year. This practice keeps every device inside the 12-month support window.
 
 ## Related information
 

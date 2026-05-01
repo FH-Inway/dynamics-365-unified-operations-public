@@ -4,7 +4,7 @@ description: Access links to Microsoft Dynamics 365 Finance documentation resour
 author: liza-golub
 ms.author: egolub
 ms.topic: overview
-ms.date: 12/18/2025
+ms.date: 05/01/2026
 ms.custom: 
   - bap-template
 ms.reviewer: johnmichalak
@@ -57,8 +57,5 @@ This article provides links to documentation resources for Italy.
 - [Bills of exchange protest import](emea-ita-exil-protest-boe.md)
 - [Customer electronic invoices](emea-ita-e-invoices.md)
 - [Vendor electronic invoices](emea-ita-vend-e-invoices.md)
-
-
-
 
 [!INCLUDE[footer-include](../../../includes/footer-banner.md)]

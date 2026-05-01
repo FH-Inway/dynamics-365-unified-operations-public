@@ -138,7 +138,7 @@ For more information and examples, see [Elimination rules](./elimination-rules.m
 ## Currency revaluation in a consolidation company
 When you consolidate data from one accounting currency to another, you must still run currency revaluation if exchange rates change, so that your account balances are correctly revalued. When you originally consolidate the data, use the **Currency translation** tab to select the initial exchange rates that should be used for translation during the consolidation process. After a new exchange rate is entered (for example, in the next month), you must revalue the account balances. The unrealized gains or losses are then updated based on the new exchange rate and date.
 
-For more information about currency revaluation in a consolidation company see [Currency revaluation in a consolidation company](currency-revaluation-consolidation-company.md).
+When **Foreign currency revaluation** runs in the Consolidation company, the exchange rate type defaults from the Ledger setup page. If there is a legal entity override on the Main account for the consolidation company, it will use that exchange rate type. But it does not use the legal entity override for each legal entity in the consolidation company. It only uses the one for the consolidation company. 
 
 For more information about how currency revaluation works in the **General ledger** module, see [Foreign currency revaluation for General ledger](./foreign-currency-revaluation-general-ledger.md).
 

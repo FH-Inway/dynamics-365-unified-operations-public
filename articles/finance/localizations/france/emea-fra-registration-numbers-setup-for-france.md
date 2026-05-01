@@ -182,6 +182,9 @@ Set up a Registration ID of **SIRET** type and assign it to the customers and ve
 
 ![Screenshot of an example Registration IDs setup for French customer delivery establishment.](../media/emea-fra-vat-id-setup-cust-invoice-reg-id.png)
 
+> [!NOTE]
+> Registration IDs are date-sensitive. Ensure that the **Effective** date is specified on the **General** tab of the **Registration IDs** FastTab.
+
 In France, a counterparty may operate under the legal status of entrepreneur individuel (for example, as a micro‑entrepreneur), where a natural person conducts business activities 
 in their own name and is assigned official business identifiers such as SIREN, SIRET, or VAT ID.
 Such counterparties must be configured as **Organization** party type in Dynamics 365 Finance to allow establishment‑level Registration IDs to be assigned and validated during invoice posting.

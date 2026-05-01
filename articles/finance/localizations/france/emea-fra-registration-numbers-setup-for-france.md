@@ -78,6 +78,19 @@ If no such registration ID is found, the system falls back to the primary addres
 
 ### Example 3
 
+The **SIREN** is the official identifier of a legal entity in France. It must be specified on invoices as part of the business identification details of the parties, in accordance with French invoicing requirements.
+
+![Screenshot of an example SIREN setup for France for head company.](../media/emea-fra-vat-id-setup-siren-fr.png)
+
+### Example 4
+
+The **SIRET** is the unique identifier of an establishment in France, composed of the company’s SIREN and an additional code that distinguishes each location.
+
+![Screenshot of an example SIRET setup for France for head company.](../media/emea-fra-vat-id-setup-siret-fr.png)
+
+
+### Example 5
+
 If your legal entity has establishments outside France and the [Multiple VAT registration numbers](https://learn.microsoft.com/en-us/dynamics365/finance/localizations/global/emea-multiple-vat-registration-numbers) feature is enabled, addresses in those countries/regions should already be configured with the required VAT ID–type registration IDs.
 
 In this case:
@@ -93,7 +106,7 @@ For example, if your French legal entity has VAT ID registration in Germany:
 
 With this setup, when an establishment in Germany is selected on the invoice, on invoice posting runtime the system retrieves the German VAT ID from the legal entity address in Germany that is assigned the **Head company** purpose. 
 
-### Example 4
+### Example 6
 
 When your legal entity has its primary address outside France (for example, in Germany) and also has one or many establishments in France, additional setup is required to ensure correct identification in French invoices:
 
@@ -131,19 +144,31 @@ At the same time, the **VAT ID** registration settings for Germany should be con
 
 ## Legal entity Registration IDs
 
-Set up a Registration ID of **VAT ID** and **SIREN** types and assign them to the legal entity’s address with the **Head company** purpose or to the **primary address**.
+Set up a Registration ID of **VAT ID**, **SIREN** and **SIRET** types and assign them to the legal entity’s address with the **Head company** purpose or to the **primary address**.
 
-If your legal entity has only one establishment, set up a Registration ID of **SIRET** type and assign it to the address with the **Invoice** purpose. 
+![Screenshot of an example Registration IDs setup for French legal entity.](../media/emea-fra-vat-id-setup-le-reg-ids.png)
 
-You can assign multiple purposes to the same address. 
-For example, if your legal entity has only one address and it is primary address in France, assign to this address the following purposes: **Head company**, **Invoice**, **Delivery**.
+> [!NOTE]
+> Registration IDs are date-sensitive. Ensure that the **Effective** date is specified on the **General** tab of the **Registration IDs** FastTab.
 
 ## Establishment Registration IDs
 
-Each [Establishment](../../../fin-ops-core/fin-ops/organization-administration/organizations-organizational-hierarchies.md#establishments) 
-represents a physical or operational unit of legal entity.
+Each [Establishment](../../../fin-ops-core/fin-ops/organization-administration/organizations-organizational-hierarchies.md#establishments) represents a physical or operational unit of legal entity in France.
 
-If your legal entity has multiple establishments, set up a Registration ID of **SIRET** type for each of those establishments and assign it to the establishment's address with the **Invoice** purpose or to the **primary address** of that establishment.
+If your legal entity has only one establishment in France, disable the following parameters:
+
+| Parameter name | Parameter location in Finance | Description |
+|----------------|-----------------|-------------|
+| **Require establishment on vendor invoice** checkbox | **Accounts payable** > **Setup** > **Accounts payable parameters** > **Invoice** tab > **Invoice** FastTab | When enabled, the system enforces establishment requirements on vendor invoice header or lines: <br>• Enables the **Establishment** field on vendor invoice documents. <br> • Applies defaulting logic to automatically populate the **Establishment** where possible, based on **Site** setup or **Financial dimensions** on the document. <br>• Validates that an **Establishment** is specified before posting and prevents posting if the field is empty. <br> > **NOTE**: The **Establishment** value can't be changed after the invoice is posted. |
+| **Require establishment on customer invoice** checkbox |  **Accounts receivable** > **Setup** > **Accounts receivable parameters** > **Updates** tab > **Invoice** FastTab | When enabled, the system enforces establishment requirements on the customer invoice header. <br>• Enables the **Establishment** field on customer invoice documents. <br> • Applies defaulting logic to automatically populate the **Establishment** where possible, based on **Site** setup or **Financial dimensions** on the document. <br>• Validates that an **Establishment** is specified before posting and prevents posting if the field is empty. <br> > **NOTE**: The **Establishment** value can't be changed after the invoice is posted. |
+| **Require establishment on project invoice** checkbox | **Project management and accounting** > **Setup** > **Project management and accounting parameters** > **Invoice** tab | When enabled, the system enforces establishment requirements on the project invoice header. <br>• Enables the **Establishment** field on project invoice documents. <br> • Applies defaulting logic to automatically populate the **Establishment** where possible, based on **Financial dimensions** on the document. <br>• Validates that an **Establishment** is specified before posting and prevents posting if the field is empty. <br> > **NOTE**: The **Establishment** value can't be changed after the invoice is posted. |
+
+If your legal entity has multiple establishments in France, enable these parameters accordingly in module parameters and set up a Registration ID of **SIRET** type for each of the establishments and assign it to the establishment's address with the **Invoice** purpose or to the **primary address** of that establishment.
+
+![Screenshot of an example Registration IDs setup for French establishment.](../media/emea-fra-vat-id-setup-establishment-reg-id.png)
+
+> [!NOTE]
+> Registration IDs are date-sensitive. Ensure that the **Effective** date is specified on the **General** tab of the **Registration IDs** FastTab.
 
 ## Customer and vendor Registration IDs
 
@@ -151,7 +176,11 @@ Customers and vendors may also have establishment‑level Registration IDs assig
 
 Set up a Registration ID of **VAT ID**, **SIREN** and **SIRET** types and assign them to the customers and vendors address with the **Head company** purpose or to the **primary address**.
 
+![Screenshot of an example Registration IDs setup for French customer head company.](../media/emea-fra-vat-id-setup-cust-head-com-reg-ids.png)
+
 Set up a Registration ID of **SIRET** type and assign it to the customers and vendors address with the **Invoice** purpose. If customer or vendor has multiple establishments, set up a Registration ID of **SIRET** type for each address of that customer or vendor that represents an establishment and assign **Invoice** and **Delivery** purposes to those addresses.
+
+![Screenshot of an example Registration IDs setup for French customer delivery establishment.](../media/emea-fra-vat-id-setup-cust-invoice-reg-id.png)
 
 In France, a counterparty may operate under the legal status of entrepreneur individuel (for example, as a micro‑entrepreneur), where a natural person conducts business activities 
 in their own name and is assigned official business identifiers such as SIREN, SIRET, or VAT ID.

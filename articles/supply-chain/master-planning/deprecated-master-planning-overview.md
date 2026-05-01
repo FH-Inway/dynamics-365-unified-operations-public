@@ -6,7 +6,7 @@ ms.author: henrikan
 ms.reviewer: kamaybac
 ms.search.form:
 ms.topic: overview
-ms.date: 04/25/2026
+ms.date: 05/01/2026
 ms.custom:
   - bap-template
 ms.collection:
@@ -25,7 +25,7 @@ As [previously announced](../get-started/removed-deprecated-features-scm-updates
 Planning Optimization is the master planning engine for Supply Chain Management and completely replaces the built-in master planning engine.
 
 > [!WARNING]
-> If you're still using the deprecated master planning engine (classic MRP), you should strongly reconsider doing so. The engine receives no support and has no active development. We strongly encourage you to complete the migration to Planning Optimization as soon as possible so that you can take advantage of the many performance improvements and other new capabilities provided by the new service.
+> If you're still using the deprecated master planning engine, you should strongly reconsider doing so. The engine receives no support and has no active development. We strongly encourage you to complete the migration to Planning Optimization as soon as possible so that you can take advantage of the many performance improvements and other new capabilities provided by the new service.
 
 Work with a partner to evaluate and plan the migration to Planning Optimization.
 
@@ -40,8 +40,8 @@ There's currently no timeline for the full removal of the deprecated master plan
 
 Although the deprecated master planning engine isn't being removed right now, it's important to understand what *deprecated* means in practice:
 
-- **No new features** &ndash; Microsoft isn't investing in new capabilities for the deprecated engine.
-- **No support** &ndash; The deprecated master planning engine has been deprecated for a long time and receives no support from Microsoft. There are no bug fixes, no new features, and no investment in the engine going forward. Customers who continue to use it do so entirely at their own risk.
-- **Version restrictions** &ndash; Starting in Supply Chain Management version 10.0.41, the deprecated master planning engine is blocked for all new deployments. Existing deployments can continue using it on a per-company basis.
+- **No new features** – Microsoft isn't investing in new capabilities for the deprecated engine.
+- **No support** – The deprecated master planning engine has been deprecated for a long time and receives no support from Microsoft. There are no bug fixes, no new features, and no investment in the engine going forward. Customers who continue to use it do so entirely at their own risk.
+- **Version restrictions** – Starting in Supply Chain Management version 10.0.41, the deprecated master planning engine is blocked for all new deployments. Existing deployments can continue using it on a per-company basis.
 
-We strongly recommend that you begin planning your migration to Planning Optimization now, even though there's no removal date. For guidance, see [Migration to Planning Optimization for master planning](new-master-planning-engine.md).
+We strongly recommend that you begin planning your migration to Planning Optimization now, even though there's no removal date. Learn more in [Migration to Planning Optimization for master planning](new-master-planning-engine.md).

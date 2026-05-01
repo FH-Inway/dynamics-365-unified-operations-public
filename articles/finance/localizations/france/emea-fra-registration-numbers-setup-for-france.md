@@ -122,7 +122,7 @@ The **Registration categories** for France should then be configured as follows.
 
 ![Screenshot of an example SIRET setup for France.](../media/emea-fra-vat-id-setup-siret.png)
 
-At the same time, the **VAT ID** registration settings for Germany should be configured based on the legal entity’s **primary address** in Germany:
+At the same time, the **VAT ID** registration settings for Germany should be configured based on the legal entity’s **primary address** in Germany for correct invoicing from Germany:
 
 - Ensure that the German VAT ID–type registration ID is configured for this address.
 - Configure the **VAT ID** registration category for Germany to include the **primary address** in Legal entity settings.

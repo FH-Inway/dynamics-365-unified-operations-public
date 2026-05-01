@@ -65,9 +65,9 @@ For example, a VAT ID-type registration number is required for legal entity, cus
 
 ### Example 2
 
-If customers or vendors of your legal entity may have their primary address outside of France but also have VAT ID registration in France, you can extend the VAT ID registration settings for France by adding **Head company** purpose for the **Customer** and **Vendor** settings:
+If customers or vendors have their primary address outside France but are also registered for VAT in France, you can extend the French VAT ID registration settings by assigning the **Head company** purpose in the **Customer** and **Vendor** registration setup:
 
-![Screenshot of an example VAT ID setup for France.](../media/emea-fra-vat-id-setup-head-company.png)
+![Screenshot of an example VAT ID setup for France for head company.](../media/emea-fra-vat-id-setup-head-company.png)
 
 When these settings are enabled, on invoice posting runtime the system first attempts to retrieve a French VAT ID–type registration ID from the customer or vendor address that:
 
@@ -89,9 +89,35 @@ In this case:
 
 For example, if your French legal entity has VAT ID registration in Germany:
 
-![Screenshot of an example VAT ID setup for France.](../media/emea-fra-vat-id-setup-multi-tax-legal-entity.png)
+![Screenshot of an example VAT ID setup for France - multiple tax registration ids.](../media/emea-fra-vat-id-setup-multi-tax-legal-entity.png)
 
 With this setup, when an establishment in Germany is selected on the invoice, on invoice posting runtime the system retrieves the German VAT ID from the legal entity address in Germany that is assigned the **Head company** purpose. 
+
+### Example 4
+
+When your legal entity has its primary address outside France (for example, in Germany) and also has one or many establishments in France, additional setup is required to ensure correct identification in French invoices:
+
+- Assign the **Head company** purpose to the legal entity address in France that represents the head office.
+- For this address, configure the required registration IDs, including **SIREN**, **SIRET**, and **VAT ID**.
+
+In addition:
+
+- Create as many [establishments](https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/fin-ops/organization-administration/organizations-organizational-hierarchies#establishments) in France as there are registered SIRET numbers for your company.
+- For each establishment, define a primary address in France and assign the corresponding SIRET registration ID.
+
+The **Registration categories** for France should then be configured as follows.
+
+**SIREN** registration type for France.
+
+![Screenshot of an example SIREN setup for France.](../media/emea-fra-vat-id-setup-siren.png)
+
+**VAT ID** registration type for France.
+
+![Screenshot of an example VAT ID setup for France with primary address outside France.](../media/emea-fra-vat-id-setup-vat-id.png)
+
+**SIRET** registration type for France.
+
+![Screenshot of an example SIRET setup for France.](../media/emea-fra-vat-id-setup-siret.png)
 
 ## Legal entity Registration IDs
 

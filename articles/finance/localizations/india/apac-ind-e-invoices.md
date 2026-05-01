@@ -59,14 +59,14 @@ The process of setting up the EM functionality to interoperate with the IRP syst
 1. In the list of data package files, find and download **Indian IRP integration setup V5.zip**.
 1. After the file is downloaded, open Finance, and select the company that you want to interoperate with the IRP system.
 1. Go to **Workspaces** \> **Data management**.
-1. In the **Data management** workspace, go to **Framework parameters** \> **Entity settings**, and select **Refresh entity list**. Wait for confirmation that the refresh is complete. For more information about how to refresh the entity list, see [Entity list refresh](../../../fin-ops-core/dev-itpro/data-itpro/data-entities/data-entities.md#entity-list-refresh).
+1. In the **Data management** workspace, go to **Framework parameters** \> **Entity settings**, and select **Refresh entity list**. Wait for confirmation that the refresh is complete. For more information about how to refresh the entity list, see [Entity list refresh](../../../fin-ops-core/dev-itpro/data-entities/data-entities.md#entity-list-refresh).
 1. Validate that the source data and target data are correctly mapped. For more information, see [Validate that the source data and target data are mapped correctly](../../../fin-ops-core/fin-ops/data-entities/data-import-export-job.md#validate-that-the-source-data-and-target-data-are-mapped-correctly).
 1. Before you use the data entities to import the data from the package, follow these steps for each data entity in the package:
 
     1. Sync the mapping of the source data and target data. In the package list, select a data entity, and then, on the Action Pane, select **Modify target mapping**.
     1. Above the grid for the package, select **Generate mapping** to create a mapping from scratch, and then save the mapping.
 
-    For more information about data management, see [Data management overview](../../../fin-ops-core/dev-itpro/data-itpro/data-entities/data-entities-data-packages.md).
+    For more information about data management, see [Data management overview](../../../fin-ops-core/dev-itpro/data-entities/data-entities-data-packages.md).
 
 1. Import data from the Indian IRP integration setup V5.zip file into the selected company. In the **Data management** workspace, select **Import**, specify a group name, select **Add file**, and then, in the drop-down dialog box, set the **Source data format** field to **Package**.
 1. Select **Upload and add**, select the **Indian IRP integration setup V5.zip** file on your computer, and upload it.

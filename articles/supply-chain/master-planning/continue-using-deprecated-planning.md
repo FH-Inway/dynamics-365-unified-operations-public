@@ -4,7 +4,7 @@ description: Learn how to continue using the deprecated master planning engine f
 author: Henrikan
 ms.author: henrikan
 ms.topic: how-to
-ms.date: 09/18/2023
+ms.date: 05/01/2026
 ms.custom: bap-template
 ms.collection:
   - ai-assisted
@@ -23,7 +23,7 @@ Starting in Supply Chain Management version 10.0.41, the deprecated master plann
 
 ## Companies where planning processes are disabled
 
-Starting with release 10.0.32, you must install the Planning optimization add-in before you can enable planning processes, even if you plan to continue using the deprecated master planning engine. If the company where you want to use deprecated master planning has planning processes disabled, follow the steps in this section to enable them.
+Starting with release 10.0.32, you must install the Planning Optimization Add-in before you can enable planning processes, even if you plan to continue using the deprecated master planning engine. If the company where you want to use deprecated master planning has planning processes disabled, follow the steps in this section to enable them.
 
 When you try to set **Disable all planning processes** to *No* on the **Master planning parameters** page without the Planning Optimization Add-in installed, you receive one of the following error messages:
 

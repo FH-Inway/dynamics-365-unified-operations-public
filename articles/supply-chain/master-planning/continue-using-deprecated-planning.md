@@ -16,7 +16,7 @@ ms.search.form: MpsIntegrationParameters, MpsFitAnalysis
 
 [!include [banner](../../includes/banner.md)]
 
-Starting in Supply Chain Management version 10.0.41, the deprecated master planning engine is blocked for all new legal entities (companies) added to existing deployments. There is no manual way to enable the deprecated master planning engine for these companies. However, for existing companies, it is possible to continue to use the [deprecated master planning engine](deprecated-master-planning-overview.md) until they're ready to be migrated.
+Starting in Supply Chain Management version 10.0.41, the deprecated master planning engine is blocked for all new legal entities (companies) added to existing deployments. There's no manual way to enable the deprecated master planning engine for these companies. However, existing companies can continue to use the [deprecated master planning engine](deprecated-master-planning-overview.md) until they're ready to migrate.
 
 > [!IMPORTANT]
 > The deprecated master planning engine is only available to existing companies that are already using it.
@@ -42,7 +42,7 @@ To resolve this error and enable planning processes, follow these steps:
 > [!NOTE]
 > Starting in Supply Chain Management version 10.0.41, the deprecated master planning engine is blocked for all new legal entities (companies) added to existing deployments. If you're setting up a new company, you must use Planning Optimization. To continue using the deprecated engine for existing companies, see the next section.
 
-## Excluding companies from using Planning Optimization and continue to use deprecated master planning
+## Exclude companies from using Planning Optimization and continue to use deprecated master planning
 
 Follow these steps to set a company to continue to use the deprecated master planning engine on an environment that is otherwise enabled to use Planning Optimization:
 

@@ -115,9 +115,19 @@ The **Registration categories** for France should then be configured as follows.
 
 ![Screenshot of an example VAT ID setup for France with primary address outside France.](../media/emea-fra-vat-id-setup-vat-id.png)
 
+> [!NOTE]
+> For correct VAT reporting in multiple tax registration scenario, the [Multiple VAT registration numbers](https://learn.microsoft.com/en-us/dynamics365/finance/localizations/global/emea-multiple-vat-registration-numbers) feature must be enabled.
+
 **SIRET** registration type for France.
 
 ![Screenshot of an example SIRET setup for France.](../media/emea-fra-vat-id-setup-siret.png)
+
+At the same time, the **VAT ID** registration settings for Germany should be configured based on the legal entity’s **primary address** in Germany:
+
+- Ensure that the German VAT ID–type registration ID is configured for this address.
+- Configure the **VAT ID** registration category for Germany to include the **primary address** in Legal entity settings.
+
+![Screenshot of an example VAT ID setup for Germany.](../media/emea-fra-vat-id-setup-deu-vat-id.png)
 
 ## Legal entity Registration IDs
 

@@ -57,6 +57,42 @@ For France, the following **Registration categories** are configured:
 - which invoice party roles must provide a Registration ID
 - and which address purposes are evaluated during invoice posting
 
+### Example 1
+
+For example, a VAT ID-type registration number is required for legal entity, customers and vendors with primary address in France:
+
+![Screenshot of an example VAT ID setup for France.](../media/emea-fra-vat-id-setup.png)
+
+### Example 2
+
+If customers or vendors of your legal entity may have their primary address outside of France but also have VAT ID registration in France, you can extend the VAT ID registration settings for France by adding **Head company** purpose for the **Customer** and **Vendor** settings:
+
+![Screenshot of an example VAT ID setup for France.](../media/emea-fra-vat-id-setup-head-company.png)
+
+When these settings are enabled, on invoice posting runtime the system first attempts to retrieve a French VAT ID–type registration ID from the customer or vendor address that:
+
+- belongs to the French country/region privided the delivery or ship-from address defined for the invoice is in France, and
+- is assigned the **Head company** purpose.
+
+If no such registration ID is found, the system falls back to the primary address, provided it is also in French country/region as the delivery or ship-from address of the invoice, and retrieves the French VAT ID from there.
+
+### Example 3
+
+If your legal entity has establishments outside France and the [Multiple VAT registration numbers](https://learn.microsoft.com/en-us/dynamics365/finance/localizations/global/emea-multiple-vat-registration-numbers) feature is enabled, addresses in those countries/regions should already be configured with the required VAT ID–type registration IDs.
+
+In this case:
+
+- Assign the **Head company** purpose to these addresses.
+- Add the **Head company** purpose to the VAT ID registration category for the relevant countries in the Legal entity settings.
+- Create [Establishments](https://learn.microsoft.com/en-us/dynamics365/fin-ops-core/fin-ops/organization-administration/organizations-organizational-hierarchies#establishments) for each country where your company is registered for VAT.
+- For each establishment, configure a primary address in the corresponding country/region. This address does not require a VAT ID–type registration ID.
+
+For example, if your French legal entity has VAT ID registration in Germany:
+
+![Screenshot of an example VAT ID setup for France.](../media/emea-fra-vat-id-setup-multi-tax-legal-entity.png)
+
+With this setup, when an establishment in Germany is selected on the invoice, on invoice posting runtime the system retrieves the German VAT ID from the legal entity address in Germany that is assigned the **Head company** purpose. 
+
 ## Legal entity Registration IDs
 
 Set up a Registration ID of **VAT ID** and **SIREN** types and assign them to the legal entity’s address with the **Head company** purpose or to the **primary address**.
@@ -77,11 +113,9 @@ If your legal entity has multiple establishments, set up a Registration ID of **
 
 Customers and vendors may also have establishment‑level Registration IDs assigned to their addresses.
 
-Set up a Registration ID of **VAT ID** and **SIREN** types and assign them to the customers and vendors address with the **Head company** purpose or to the **primary address**.
+Set up a Registration ID of **VAT ID**, **SIREN** and **SIRET** types and assign them to the customers and vendors address with the **Head company** purpose or to the **primary address**.
 
-Set up a Registration ID of **SIRET** type and assign it to the customers and vendors address with the **Invoice** purpose.
-
-If customer or vendor has multiple establishments, set up a Registration ID of **SIRET** type for each address of that customer or vendor that represents an establishment and assign **Invoice** and **Delivery** purposes to those addresses.
+Set up a Registration ID of **SIRET** type and assign it to the customers and vendors address with the **Invoice** purpose. If customer or vendor has multiple establishments, set up a Registration ID of **SIRET** type for each address of that customer or vendor that represents an establishment and assign **Invoice** and **Delivery** purposes to those addresses.
 
 In France, a counterparty may operate under the legal status of entrepreneur individuel (for example, as a micro‑entrepreneur), where a natural person conducts business activities 
 in their own name and is assigned official business identifiers such as SIREN, SIRET, or VAT ID.

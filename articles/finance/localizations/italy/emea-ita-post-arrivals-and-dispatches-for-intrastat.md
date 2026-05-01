@@ -298,8 +298,7 @@ This part of the example shows how to use a sales order to sell goods (items) to
     1. In the **Intrastat (Transfer)** dialog box, set the **Customer invoice** option to **Yes**.
     1. Select **OK** to transfer the transactions, and review the Intrastat journal. The credit note transaction is marked as a correction and has negative invoice amount.
 
-        :::image type="content" source="../media/ita_intrastat_journal_sales_order.png" alt-text="Screenshot of the Intrastat journal page."
-:::
+        :::image type="content" source="../media/ita_intrastat_journal_sales_order.png" alt-text="Screenshot of the Intrastat journal page.":::
 
         :::image type="content" source="../media/ita_intrastat_journal_sales_order_line_details.png" alt-text="Screenshot of the Intrastat journal line details for sales order.":::
 

@@ -6,11 +6,11 @@ ms.author: atrukawk
 ms.topic: article
 ms.custom: 
   - bap-template
+  - sfi-image-nochange
 ms.date: 05/01/2026
 ms.reviewer: johnmichalak
 audience: Application User
 ms.search.region: Italy
-ms.custom: sfi-image-nochange
 ---
 
 # Customer electronic invoices

@@ -104,21 +104,21 @@ Find more information about how to set up number sequences in [Set up number seq
 1. To specify the number sequence that the system should use for the progressive numbers that are included in the file name for the report file, on the **Format designer** page, on the **Mapping** tab, select **Add root**.
 1. In the drop-down dialog box, expand **Dynamics 365 for Operations**, and then select **Number sequence**.
 
-      :::image type="content" source="../media/add-num-seq.png" alt-text="Screenshot of adding a number sequence to your format.":::
+   :::image type="content" source="../media/add-num-seq.png" alt-text="Screenshot of adding a number sequence to your format.":::
 
 1. Enter a name, select the number sequence that you created earlier, and then select **OK** to create the number sequence.
 
-       :::image type="content" source="../media/num0seq-name.png" alt-text="Screenshot of specifying a name for your number sequence in ER format.":::
+   :::image type="content" source="../media/num0seq-name.png" alt-text="Screenshot of specifying a name for your number sequence in ER format.":::
 
 1. On the **Format designer** page, select **File** on the left side, and then, on the **Mapping** tab, select the **Edit** button (pencil symbol) for the **File name** field.
 
-    :::image type="content" source="../media/file-name-edit.png" alt-text="Screenshot of editing the formula for name of the file with number sequence name.":::
+   :::image type="content" source="../media/file-name-edit.png" alt-text="Screenshot of editing the formula for name of the file with number sequence name.":::
 
 1. Update **"IT"&model.Frontispiece.FiscalCode&"_LI_00000"** with a formula that includes a link to the new number sequence:
-    
-      - **"IT"&model.Frontispiece.FiscalCode&"_LI_"&LIPE_file_num**. Here, **LIPE_file_num** is the name that you gave to the number sequence. To add **LIPE_file_num** to the formula, click **Add data source**. When you've finished, select **Save**.
 
-      :::image type="content" source="../media/file-name-formula-designer.png" alt-text="Screenshot of editing the formula for file name with number sequence name.":::
+    - **"IT"&model.Frontispiece.FiscalCode&"_LI_"&LIPE_file_num**. Here, **LIPE_file_num** is the name that you gave to the number sequence. To add **LIPE_file_num** to the formula, click **Add data source**. When you've finished, select **Save**.
+
+     :::image type="content" source="../media/file-name-formula-designer.png" alt-text="Screenshot of editing the formula for file name with number sequence name.":::
 
 1. Save your changes in the ER format, and complete the configuration.
 
@@ -128,13 +128,13 @@ The values of some format tags must be filled in manually. The tags are included
 
 By default, the **Quarterly VAT Communication** format includes all possible parameters. To add, delete, or update parameters in the report dialog box, on the **Format designer** page, on the **Mapping** tab, switch to **Group view**, and then select the **Empty containers** element.
 
-   :::image type="content" source="../media/empty-containers.png" alt-text="Screenshot of the Empty containers element.":::
+:::image type="content" source="../media/empty-containers.png" alt-text="Screenshot of the Empty containers element.":::
 
 The **Empty containers** element includes all the input parameters for the report. Before you delete an input parameter, you must unbind it or update the mapping for the corresponding field. Expand the format structure tree on the left side of the **Format designer** page, find the corresponding field, and delete or update the binding.
 
 To add an input parameter, add it in the corresponding node in the **Empty containers** element, select a tag in the format structure tree, and then select **Bind**.
 
-   :::image type="content" source="../media/binding.png" alt-text="Screenshot of binding an input parameter.":::
+:::image type="content" source="../media/binding.png" alt-text="Screenshot of binding an input parameter.":::
 
 When you've finished updating the format, save, close, and complete it.
 
@@ -195,7 +195,6 @@ A new menu item for the **Quarterly VAT communication (LIPE)** report must be as
     - **3**: Analytical – effective
     - **4**: Entities that operate in sectors such as telecommunications, water supply, electricity, waste collection, and disposal sectors
 
-1.  Select **OK** to generate the report.
-
+1. Select **OK** to generate the report.
 
 [!INCLUDE[footer-include](../../../includes/footer-banner.md)]

@@ -49,11 +49,11 @@ The company's fiscal year is from January 1 through December 31. The balance she
 
 1. Go to **General ledger** > **Inquiries and reports** > **Fiscal journal**, and run the report. The transaction is reported on the fiscal journal line. The **Posting date** field is set to April15, and the **Competence date** field is set to December 31.
 
-    :::image type="content" source="../media/ITA-Competence-date-for-transactions-3-fiscal-journal.png" alt-text="Screenshot of the Fiscal journal page." :::
+    :::image type="content" source="../media/ITA-Competence-date-for-transactions-3-fiscal-journal.png" alt-text="Screenshot of the Fiscal journal page.":::
 
 1. Go to **General ledger**> **Inquiries and reports** > **Trial balance**, and run the report.
 
-    :::image type="content" source="../media/ITA-Competence-date-for-transactions-4-trial-balance.png" alt-text="Screenshot of the Trial balance page." :::
+    :::image type="content" source="../media/ITA-Competence-date-for-transactions-4-trial-balance.png" alt-text="Screenshot of the Trial balance page.":::
 
 1. Go to **General ledger** > **Inquiries and reports** > **Voucher transactions**.
 1. On the **Voucher transactions** page, add the **Transaction date** column.

@@ -31,32 +31,26 @@ To activate the credit invoicing functionality complete the following steps.
 1. Go to **General ledger** > **Journal entries** > **General journal** and select **Lines**.
 1. On the Action Pane, select **Functions** \> **Credit invoicing**.
 
-    :::image type="content" source="../media/ita-credit-invoicing-gl.png" alt-text="Screenshot of the General journal lines page with Credit invoicing option."
-:::
+    :::image type="content" source="../media/ita-credit-invoicing-gl.png" alt-text="Screenshot of the General journal lines page with Credit invoicing option.":::
 
 1. Go to **Accounts receivable** > **Invoices** > **All free text invoices**.
 1. On the Action Pane, on the **Invoice** tab, in the **Functions** group, select **Credit invoicing**.
 
-   :::image type="content" source="../media/ita-credit-invoicing-fti.png" alt-text="Screenshot of the All free text invoices page with Credit invoicing option."
-:::
+   :::image type="content" source="../media/ita-credit-invoicing-fti.png" alt-text="Screenshot of the All free text invoices page with Credit invoicing option.":::
 
 1. Go to **Accounts receivable** > **Orders** > **All sales orders**.
 1. On the Action Pane, on the **Invoice** tab, in the **Correction** group, select **Credit invoicing**.
 
-    :::image type="content" source="../media/ita-credit-invoicing-so.png" alt-text="Screenshot of the All sales orders page with Credit invoicing option."
-:::
+    :::image type="content" source="../media/ita-credit-invoicing-so.png" alt-text="Screenshot of the All sales orders page with Credit invoicing option.":::
 
 1. Go to **Accounts payable** > **Invoices** > **Invoice journal**.
 1. Select **Lines**, and  on the Action Pane, select **Functions** > **Credit invoicing**.
 
-   :::image type="content" source="../media/ita-credit-invoicing-apij.png" alt-text="Screenshot of the Invoice journal lines page with Credit invoicing option."
-:::
+   :::image type="content" source="../media/ita-credit-invoicing-apij.png" alt-text="Screenshot of the Invoice journal lines page with Credit invoicing option.":::
 
 1. Go to **Accounts payable** > **Purchase orders** > **All purchase orders**.
 1. On the Action Pane, on the **Invoice** tab, in the **Introduce** group, select **Credit invoicing**.
 
-   :::image type="content" source="../media/ita-credit-invoicing-po.png" alt-text="Screenshot of the All purchase orders page with Credit invoicing page."
-:::
-
+   :::image type="content" source="../media/ita-credit-invoicing-po.png" alt-text="Screenshot of the All purchase orders page with Credit invoicing page.":::
 
 [!INCLUDE[footer-include](../../../includes/footer-banner.md)]

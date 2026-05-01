@@ -20,7 +20,7 @@ ms.dyn365.ops.version: AX 7.0.0
 
 This article provides links to documentation resources for Italy. 
 
-- [Sales tax books]()
+- Sales tax books
   - [Configure system parameters to report Sales tax books](emea-ita-vat-statements-details.md)
   - [Configure and report Sales tax books for Italy](emea-ita-fiscal-books.md)
   - [Sales tax settlement and numbering of pages in Sales tax books](emea-ita-vat-settlement.md)
@@ -31,7 +31,7 @@ This article provides links to documentation resources for Italy.
 - [Fiscal journal report](emea-ita-fiscal-journal-er.md)
 - [Competence date for transactions](emea-ita-competence-date.md)
 - [General ledger simulations (Italy)](emea-ita-exil-general-ledger-simulations.md)
-- [Intrastat]()
+- Intrastat
   - [Italian Intrastat](emea-ita-intrastat.md)
   - [Post arrivals and dispatches for Intrastat](emea-ita-post-arrivals-and-dispatches-for-intrastat.md)
   - [Intrastat (IT) file format](/dynamics/s-e/365business/dynamices365finance_itintrastatfile)

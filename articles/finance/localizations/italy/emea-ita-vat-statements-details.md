@@ -32,7 +32,7 @@ As of Dynamics 365 Finance version 10.0.39, the ER format of Italian sales tax b
 
 ## <a id="number-sequences"></a>Number sequences and number sequence groups
 
-Set up as many number sequences and number sequence groups as you require to cover all the required types of sales tax transactions. For more information about number sequences in Finance, see [Number sequences overview](/fin-ops-core/fin-ops/organization-administration/number-sequence-overview).
+Set up as many number sequences and number sequence groups as you require to cover all the required types of sales tax transactions. For more information about number sequences in Finance, see [Number sequences overview](../../../fin-ops-core/fin-ops/organization-administration/number-sequence-overview.md).
 
 For continuous numbering of documents in Italian sales tax books, number sequences must be continuous, and they must have the **Company** scope.
 

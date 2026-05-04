@@ -4,7 +4,7 @@ description: Learn about the system requirements for the setup of a dual-write c
 author: RamaKrishnamoorthy
 ms.author: johnmichalak
 ms.topic: article
-ms.date: 01/15/2026
+ms.date: 05/04/2026
 ms.custom: 
   - bap-template
 ms.reviewer: johnmichalak

@@ -52,11 +52,11 @@ When you use the **Consolidations** module, you get many benefits:
 
 ## Supported consolidation scenarios
 
-Here are some of the consolidation scenarios that Consolidate online supports:
+Consolidate online supports these consolidation scenarios:
 
 - Single-level consolidations across legal entities
 - Consolidations that involve eliminations
-- Minority interest (For this scenario, manual calculation and entry in the company must be used.)
+- Minority interest (For this scenario, use manual calculation and entry in the company.)
 - Multiple charts of accounts across legal entities
 - Different fiscal calendars across multiple legal entities
 - Consolidations that involve multiple reporting currencies

@@ -4,7 +4,7 @@ description: Learn about the Accounting source explorer page, which you can use 
 author: JodiChristiansen
 ms.author: twheeloc
 ms.topic: concept-article
-ms.date: 05/01/2025
+ms.date: 05/04/2026
 ms.reviewer: twheeloc
 audience: Application User
 ms.search.region: Global

@@ -68,6 +68,7 @@ If your Planning Optimization jobs frequently time out, consider implementing on
 
 <a name="review-time-fences"></a>
 
+
 ### Review your setup to remove time fences and options that you don't need
 
 Follow these steps to review your setup and remove time fences and other options that you don't need:
@@ -251,7 +252,7 @@ Follow these steps to review your setup for time fences and options that you don
 
 Your data export might complete more quickly if you reduce the number of products that the system considers for each planning run. Consider using one or both of the following strategies:
 
-- Identify products and variants that don't need to be fulfilled by master planning, and set their **Product lifecycle state** value to a state where the **Is active for planning** option is set to *No*. (Learn more in [Exclude products that have specific product lifecycle states](product-lifecycle-state.md)). The **Change lifecycle state for obsolete products** page can help you identify products that aren't used in any transactions for a while. These products might now be obsolete. Therefore, you can remove them from your planning.
+- Identify products and variants that don't need to be fulfilled by master planning, and set their **Product lifecycle state** value to a state where the **Is active for planning** option is set to *No*. (Learn more in [Exclude products that have specific product lifecycle states](product-lifecycle-state.md)). The **Change lifecycle state for obsolete products** page can help you identify products that haven't been used in any transactions for a while. These products might now be obsolete. Therefore, you can remove them from your planning.
 - Use a [plan filter](plan-filters.md#apply-a-plan-filter) to remove unneeded items from your plan.
 
 ## No planned orders are created
@@ -295,6 +296,39 @@ After running a master plan, you might receive the following error message:
 > Supply setting with id: \<SettingID\> for MinMax on product \<ProductID\> does not match the active planning attributes for this product and was ignored.
 
 If you see this error, check the tracking and coverage dimensions for the specified product. For example, if the product is tracked by serial number, you can't use the serial number dimension as a coverage dimension because the system doesn't know which serial numbers it should supply. Either deselect the serial number as a coverage dimension or change the item coverage group to a group that doesn't use serial number tracking (if serial tracking isn't needed for the specified product).
+
+## Planning Optimization client request retry count exceeded
+
+After running master planning, you receive one of the following error messages:
+
+> Planning Optimization client request retry count exceeded.
+
+or
+
+> Planning Optimization run failed.
+
+This error can occur for different reasons. Check the following causes and fixes.
+
+### Cause 1: Transient service failure
+
+Planning Optimization is a cloud-based service. Occasionally, transient service failures can occur that are specific to a particular region. These temporary outages can prevent Planning Optimization from completing a run.
+
+**Fix**: Wait a short time and then retry the master planning run. If the issue persists for more than a few hours, contact Microsoft Support because the issue might require action from the service engineering team.
+
+### Cause 2: Connection lost after a database refresh
+
+If you recently performed a database refresh on your environment, the Planning Optimization connection might be broken. The connection status on the **Planning Optimization parameters** page (**Master planning** \> **Setup** \> **Planning Optimization parameters**) might show *Not connected* even though the add-in appears as installed.
+
+A database refresh is environment-specific, and it resets the Planning Optimization service binding. This is a known behavior.
+
+**Fix**: Uninstall and reinstall the Planning Optimization Add-in for your environment from the admin center. After reinstallation, verify that the connection status shows *Connected* on the **Planning Optimization parameters** page. Learn more in [Get started with master planning](get-started.md).
+
+### Cause 3: Temporary connectivity issue
+
+Intermittent network or service connectivity problems between your environment and the Planning Optimization service can cause this error.
+
+**Fix**: Retry the master planning run. If the error occurs repeatedly, check the **Planning Optimization parameters** page to verify the connection status. If the connection status shows *Not connected*, try reinstalling the add-in. If the status shows *Connected* and the error persists, contact Microsoft Support.
+
 
 ## Related information
 

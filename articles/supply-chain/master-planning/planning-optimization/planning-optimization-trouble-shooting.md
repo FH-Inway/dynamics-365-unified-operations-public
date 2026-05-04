@@ -6,7 +6,7 @@ ms.author: henrikan
 ms.reviewer: kamaybac
 ms.search.form: ReqCreatePlanWorkspace
 ms.topic: troubleshooting-general
-ms.date: 05/01/2026
+ms.date: 05/04/2026
 ms.custom:
   - bap-template
 ms.collection:
@@ -52,7 +52,21 @@ An error in your Power Platform environment might prevent the installation of th
 
 Planning Optimization has a set timeout of 60 minutes. Therefore, if it runs for more than 60 minutes, the planning job stops because of a timeout.
 
+> [!TIP]
+> The following table summarizes the most effective approaches for improving Planning Optimization performance. Try them in order of impact.
+>
+> | Approach | When to use | Impact |
+> |---|---|---|
+> | [Reduce time fences](#review-time-fences) | Time fences are larger than your business requires | High—coverage time fence has the largest effect |
+> | [Plan only needed products](#plan-only-for-the-products-you-need) | Many items are included that don't need planning | High |
+> | [Split large jobs](#split-large-planning-jobs-into-several-smaller-jobs) | A single job plans too many items for the 60-minute window | High |
+> | [Reduce scheduling time](#reduce-scheduling-time) | Finite capacity scheduling is enabled and adds significant time | Medium |
+> | [Reduce resource group size](#consider-reducing-the-size-of-your-resource-groups) | Large resource groups slow down scheduling calculations | Medium |
+> | [Review item coverage](#review-your-item-coverage-settings) | Multiple coverage lines apply the same settings for all warehouses | Low to medium |
+
 If your Planning Optimization jobs frequently time out, consider implementing one or more of the options that are described in the following subsections.
+
+<a name="review-time-fences"></a>
 
 ### Review your setup to remove time fences and options that you don't need
 
@@ -106,7 +120,7 @@ For more information about how to reduce scheduling times, see [Improve scheduli
 
 Review the following settings to make sure that you're planning only for the products that you need:
 
-- Use the **Product lifecycle state** field to indicate products or variants that don't have to be fulfilled by master planning. For each such product, select a product lifecycle state where the **Is active for planning** option is set to *No*. You can use the **Change lifecycle state for obsolete products** page to identify products that haven't been used in any transactions for a while. These products might now be obsolete. Therefore, you can remove them from your planning.
+- Use the **Product lifecycle state** field to indicate products or variants that don't need to be fulfilled by master planning. For each such product, select a product lifecycle state where the **Is active for planning** option is set to *No*. Use the **Change lifecycle state for obsolete products** page to identify products that aren't used in any transactions for a while. These products might now be obsolete. Therefore, you can remove them from your planning.
 - For plans that should only apply for a certain set of items, set up a plan filter to limit the run to just those items. Learn more in [Run planning for a subset of items](plan-filters.md#apply-a-plan-filter).
 - Set item coverage to manual for each warehouse that doesn't need to be supplied by master planning. For each such warehouse listed on the **Warehouses** page, expand the **Master Planning** FastTab and, in the **Item Coverage** field group, set **Manual** to *Yes*.
 
@@ -116,7 +130,7 @@ If you have a large planning job that frequently times out, you might be able to
 
 #### Option 1: Run the same master plan but only for a subset of products
 
-For example, you have a master plan that's named *PlanA*. It runs nightly as a batch job for 1,000 items that have item numbers ranging from *A0001* through *A1000*. If this job often times out after 60 minutes, you can split it into three jobs, each of which runs for a third of the items. You run *PlanA* for the first third (*A0001* through *A0333*), then for the second third (*A0334* through *A0666*), and then for the last third (*A0667* through *A1000*). In this way, each smaller job has the full 60-minute timeout window. You aren't trying to use the same 60 minutes to plan all 1,000 items.
+For example, you have a master plan named *PlanA*. It runs nightly as a batch job for 1,000 items that have item numbers ranging from *A0001* through *A1000*. If this job often times out after 60 minutes, you can split it into three jobs, each of which runs for a third of the items. You run *PlanA* for the first third (*A0001* through *A0333*), then for the second third (*A0334* through *A0666*), and then for the last third (*A0667* through *A1000*). In this way, each smaller job has the full 60-minute timeout window. You're not trying to use the same 60 minutes to plan all 1,000 items.
 
 To split a large job into several jobs, follow these steps:
 
@@ -230,7 +244,7 @@ Follow these steps to review your setup for time fences and options that you don
 
 1. If your plan times out because it generates a large number of orders, consider changing your business strategy for replenishing items. Here are some examples:
 
-    - If you use coverage groups where the **Coverage code** field is set to *Requirement*, a specific supply is created for it each time that there's a demand. Consider whether a **Coverage code** value of *Period* will work for your business. In this case, the system groups all demand for a selected number of days into a single supply order that covers that period. This approach also makes planned orders easier to manage. Alternatively, consider using a **Coverage code** value of *Min/Max*. In this case, a planned order is created only when the on-hand inventory falls below the minimum value. The on-hand inventory is then replenished to its maximum value.
+    - If you use coverage groups where the **Coverage code** field is set to *Requirement*, the system creates a specific supply for it each time that there's a demand. Consider whether a **Coverage code** value of *Period* works for your business. In this case, the system groups all demand for a selected number of days into a single supply order that covers that period. This approach also makes planned orders easier to manage. Alternatively, consider using a **Coverage code** value of *Min/Max*. In this case, the system creates a planned order only when the on-hand inventory falls below the minimum value. The on-hand inventory is then replenished to its maximum value.
     - Consider whether you can purchase or produce items in larger amounts. If you can, increase the **Max. order quantity** value on **Default order settings** page for each item that you're ordering. The higher the value, the fewer orders you're likely to generate for that item.
 
 ### Plan only for the products that you need
@@ -256,7 +270,7 @@ When you enable Planning Optimization, the deprecated master planning engine is 
 
 ## Planning Optimization results are different from earlier results
 
-Planning Optimization differs from the deprecated master planning engine design in some areas. This can also be caused by pending features.
+Planning Optimization differs from the deprecated master planning engine design in some areas. This difference can also be caused by pending features.
 
 **Fix**: Run Planning Optimization fit analysis and then analyze the results while referring to the related documentation to understand the impact. Learn more in [Planning Optimization fit analysis](planning-optimization-fit-analysis.md).
 

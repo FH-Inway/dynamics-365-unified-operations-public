@@ -68,7 +68,6 @@ If your Planning Optimization jobs frequently time out, consider implementing on
 
 <a name="review-time-fences"></a>
 
-
 ### Review your setup to remove time fences and options that you don't need
 
 Follow these steps to review your setup and remove time fences and other options that you don't need:
@@ -245,7 +244,7 @@ Follow these steps to review your setup for time fences and options that you don
 
 1. If your plan times out because it generates a large number of orders, consider changing your business strategy for replenishing items. Here are some examples:
 
-        - If you use coverage groups where the **Coverage code** field is set to *Requirement*, the system creates a specific supply for it each time that there's a demand. Consider whether a **Coverage code** value of *Period* works for your business. In this case, the system groups all demand for a selected number of days into a single supply order that covers that period. This approach also makes planned orders easier to manage. Alternatively, consider using a **Coverage code** value of *Min/Max*. In this case, the system creates a planned order only when the on-hand inventory falls below the minimum value. The on-hand inventory is then replenished to its maximum value.
+    - If you use coverage groups where the **Coverage code** field is set to *Requirement*, the system creates a specific supply for it each time that there's a demand. Consider whether a **Coverage code** value of *Period* works for your business. In this case, the system groups all demand for a selected number of days into a single supply order that covers that period. This approach also makes planned orders easier to manage. Alternatively, consider using a **Coverage code** value of *Min/Max*. In this case, the system creates a planned order only when the on-hand inventory falls below the minimum value. The on-hand inventory is then replenished to its maximum value.
     - Consider whether you can purchase or produce items in larger amounts. If you can, increase the **Max. order quantity** value on **Default order settings** page for each item that you're ordering. The higher the value, the fewer orders you're likely to generate for that item.
 
 ### Plan only for the products that you need
@@ -328,7 +327,6 @@ A database refresh is environment-specific, and it resets the Planning Optimizat
 Intermittent network or service connectivity problems between your environment and the Planning Optimization service can cause this error.
 
 **Fix**: Retry the master planning run. If the error occurs repeatedly, check the **Planning Optimization parameters** page to verify the connection status. If the connection status shows *Not connected*, try reinstalling the add-in. If the status shows *Connected* and the error persists, contact Microsoft Support.
-
 
 ## Related information
 

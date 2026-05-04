@@ -57,7 +57,7 @@ Dual-write has these limitations:
 + Dual-write requires that the finance and operations app and the customer engagement app are deployed in the same Microsoft Azure datacenter.
 + Dual-write isn't triggered by the **doInsert**, **doUpdate**, and **doDelete** events of finance and operations apps. Use the **Insert**, **Update**, and **Delete** events in finance and operations apps when you want to trigger dual-write. 
 + Dual-write doesn't support distributed transactions. For example, if the [product receipt posting process is canceled](../../../fin-ops/data-entities/scm-field-service-procurement.md#cancelling-the-posting-process), dual-write might create the product receipt in Dataverse but doesn't create it in Supply Chain Management.
-+ Dual-write is not supported for **cloud-hosted development environments** (CHE).
++ Dual-write isn't supported on cloud-hosted environments (CHE).
 
 ## One Version
 

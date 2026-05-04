@@ -6,7 +6,7 @@ ms.author: henrikan
 ms.reviewer: kamaybac
 ms.search.form:
 ms.topic: overview
-ms.date: 04/25/2026
+ms.date: 05/04/2026
 ms.custom: 
   - bap-template
 ms.collection:
@@ -23,14 +23,14 @@ When you transition from the deprecated built-in master planning engine to Plann
 
 Use the following table to find the right resource for your situation:
 
-| If you're experiencing... | See this resource |
+| Issue | Resource |
 |---|---|
-| Differences in planned order results, dates, quantities, or behavior | [Expected differences](#expected-differences) (this article) |
-| A feature that doesn't work or is missing in Planning Optimization | [Planning Optimization fit analysis](planning-optimization-fit-analysis.md) |
-| Date or time calculations that produce different results | [Date and time parameters used by Planning Optimization](date-time-used.md) |
-| A master planning parameter that seems to have no effect | [Parameters not used by Planning Optimization](not-used-parameters.md) |
-| Questions about when the deprecated engine will be removed | [Deprecated master planning overview](../deprecated-master-planning-overview.md) |
-| Guidance on the full migration process | [Migration to Planning Optimization](../new-master-planning-engine.md) |
+| Planning Optimization shows different planned order results, dates, quantities, or behavior | [Expected differences](#expected-differences) (this article) |
+| A feature doesn't work or is missing in Planning Optimization | [Planning Optimization fit analysis](planning-optimization-fit-analysis.md) |
+| Date or time calculations produce different results | [Date and time parameters used by Planning Optimization](date-time-used.md) |
+| A master planning parameter seems to have no effect | [Parameters not used by Planning Optimization](not-used-parameters.md) |
+| You have questions about when the deprecated engine will be removed | [Deprecated master planning overview](../deprecated-master-planning-overview.md) |
+| You need guidance on the full migration process | [Migration to Planning Optimization](../new-master-planning-engine.md) |
 
 ## Expected differences
 

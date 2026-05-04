@@ -6,7 +6,7 @@ ms.author: henrikan
 ms.reviewer: kamaybac
 ms.search.form:
 ms.topic: overview
-ms.date: 05/01/2026
+ms.date: 05/04/2026
 ms.custom: 
   - bap-template
 ms.collection:
@@ -17,7 +17,24 @@ ms.collection:
 
 [!include [banner](../../includes/banner.md)]
 
-Planning Optimization results (including planned orders, quantities, and dates) might differ from results from the deprecated master planning engine. Pending features can cause these differences. This article lists differences between Planning Optimization and the deprecated master planning engine that aren't listed on the **[Planning Optimization fit analysis](planning-optimization-fit-analysis.md)** page.
+When you transition from the deprecated built-in master planning engine to Planning Optimization, you might notice differences in planned orders, quantities, and dates. Use this article and the related resources to identify whether an issue you're experiencing is due to an expected difference, an unsupported feature, or a parameter change.
+
+## Identify the type of issue
+
+Use the following table to find the right resource for your situation:
+
+| Issue | Resource |
+|---|---|
+| Planning Optimization shows different planned order results, dates, quantities, or behavior | [Expected differences](#expected-differences) (this article) |
+| A feature doesn't work or is missing in Planning Optimization | [Planning Optimization fit analysis](planning-optimization-fit-analysis.md) |
+| Date or time calculations produce different results | [Date and time parameters used by Planning Optimization](date-time-used.md) |
+| A master planning parameter seems to have no effect | [Parameters not used by Planning Optimization](not-used-parameters.md) |
+| You have questions about when the deprecated engine will be removed | [Deprecated master planning overview](../deprecated-master-planning-overview.md) |
+| You need guidance on the full migration process | [Migration to Planning Optimization](../new-master-planning-engine.md) |
+
+## Expected differences
+
+The following table lists specific differences between Planning Optimization and the deprecated master planning engine that aren't listed on the **[Planning Optimization fit analysis](planning-optimization-fit-analysis.md)** page.
 
 | Feature | How Planning Optimization differs from deprecated master planning |
 |---|---|
@@ -54,6 +71,8 @@ Planning Optimization results (including planned orders, quantities, and dates) 
 
 ## Related information
 
+- [Migration to Planning Optimization for master planning](../new-master-planning-engine.md)
+- [Deprecated master planning overview](../deprecated-master-planning-overview.md)
 - [Planning Optimization fit analysis](planning-optimization-fit-analysis.md)
 - [Parameters not used by Planning Optimization](not-used-parameters.md)
 - [Date and time parameters used by Planning Optimization](date-time-used.md)

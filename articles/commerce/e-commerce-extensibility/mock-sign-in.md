@@ -174,7 +174,7 @@ These steps complete the Microsoft Entra setup. You should now have all of the f
 | ------------- | ------------- |
 | ciamTenant | commerceonboarding |
 | nativeApplicationId | 00001111-aaaa-2222-bbbb-3333cccc4444 |
-| userImpersonationScopeURL | `api://b7ad3e87-d8b0-4c83-b08d-7c34c19f7933/user_impersonation` |
+| userImpersonationScopeURL | `api://aaaabbbb-0000-cccc-1111-dddd2222eeee/user_impersonation` |
 
 #### [Microsoft Entra B2C](#tab/b2c)
 
@@ -192,7 +192,7 @@ These steps complete the Microsoft Entra setup. You should now have all of the f
 | loginDomain | commerceonboardingb2c.b2clogin.com |
 | b2cTenant | commerceonboardingb2c |
 | nativeApplicationId | 66667777-aaaa-8888-bbbb-9999cccc0000 |
-| userImpersonationScopeURL | `https://commerceonboardingb2c.onmicrosoft.com/b7ad3e87-d8b0-4c83-b08d-7c34c19f7933/user_impersonation` |
+| userImpersonationScopeURL | `https://commerceonboardingb2c.onmicrosoft.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/user_impersonation` |
 
 ---
 
@@ -206,7 +206,7 @@ The credentials file is located in the `secrets/` directory in your Node applica
 {
     "ciamTenant": "commerceonboarding",
     "nativeApplicationId": "00001111-aaaa-2222-bbbb-3333cccc4444",
-    "userImpersonationScopeURL": "api://b7ad3e87-d8b0-4c83-b08d-7c34c19f7933/user_impersonation",
+    "userImpersonationScopeURL": "api://aaaabbbb-0000-cccc-1111-dddd2222eeee/user_impersonation",
     "defaultUser": {
         "name": "default",
         "email": "",
@@ -270,7 +270,7 @@ To mock a signed-in business-to-business (B2B) user, use the **isB2bUser** prope
 {
     "ciamTenant": "commerceonboarding",
     "nativeApplicationId": "00001111-aaaa-2222-bbbb-3333cccc4444",
-    "userImpersonationScopeURL": "api://b7ad3e87-d8b0-4c83-b08d-7c34c19f7933/user_impersonation",
+    "userImpersonationScopeURL": "api://aaaabbbb-0000-cccc-1111-dddd2222eeee/user_impersonation",
     "defaultUser": {
         "name": "default",
         "email": "",

@@ -2189,7 +2189,13 @@
                        - name: Fiscal notes for advance payment in Brazil tax reform
                          href: localizations/brazil/brazil-reform-advance-payment.md  
                        - name: Fiscal notes for inventory loss in Brazil tax reform
-                         href: localizations/brazil/brazil-reform-inventory-loss.md  
+                         href: localizations/brazil/brazil-reform-inventory-loss.md 
+                       - name: Fiscal notes for Return and Refual in Brazil tax reform
+                         href: localizations/brazil-reform-return-refusal.md
+                       - name: Fiscal notes for Credit cancellation in Brazil tax reform
+                         href: localizations/brazil/brazil-reform-credit-cancellation.md 
+                       - name: Fiscal notes for Not-processed invoice in Brazil tax reform
+                         href: localizations/brazil/brazil-reform-unprocessed.md                         
                        - name: Work with NFS-e Service Invoices
                          href: localizations/brazil/brazil-nfs-e-service-invoices.md
                        - name: Work with NFS-e Service Invoices for Projects

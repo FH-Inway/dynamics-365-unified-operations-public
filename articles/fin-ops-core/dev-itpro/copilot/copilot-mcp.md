@@ -4,7 +4,7 @@ description: Learn how to use a Model Context Protocol (MCP) server to create an
 author: jaredha
 ms.author: jaredha
 ms.topic: how-to
-ms.date: 06/12/2026
+ms.date: 07/01/2026
 ms.update-cycle: 180-days
 ms.custom: bap-template
 ms.reviewer: johnmichalak
@@ -40,7 +40,7 @@ Before you can use the Dynamics 365 ERP MCP server, you must meet the following 
 - Your environment is Tier 2 or above, or a Unified Developer Environment. The MCP server isn't supported on Cloud Hosted Environments (CHE).
 
 > [!NOTE]
-> An earlier version of the MCP server, known as the "static Dynamics 365 ERP MCP" server, built on the Dataverse connector framework, has 13 tools that enable specific business functions for Dynamics 365 Finance and Supply Chain Management. This static server is **retired in the 2026 calendar year**. The server is still available in finance and operations apps environments with version 10.0.2263.17 and greater. However, to avoid disruption when the static server is retired, use the new dynamic Dynamics 365 ERP MCP server that is the subject of this documentation.
+> An earlier version of the MCP server, known as the "static Dynamics 365 ERP MCP" server, built on the Dataverse connector framework, has 13 tools that enable specific business functions for Dynamics 365 Finance and Supply Chain Management. This static server will be **retired on October 1, 2026**. The static server is still available in finance and operations apps environments with version 10.0.2263.17 and greater. However, to avoid disruption when the static server is retired, use the new dynamic Dynamics 365 ERP MCP server that's the subject of this documentation.
 
 ## Dynamic MCP tools
 
@@ -70,7 +70,7 @@ The following data tools are available in the Dynamics 365 ERP MCP server.
 
 ### Form tools
 
-The form tools in the MCP server enable the agent to navigate server forms to complete tasks. The agent works with the application data and business logic through server APIs the same way a human would perform the task in the application client. Rather than having static tools for specific actions, like Find Approved Vendors or Release Purchase Requisition Lines, the agent uses the tools to open forms, set field values, and select actions available on the form.
+The form tools in the MCP server enable the agent to navigate server forms to complete tasks. The agent works with the application data and business logic through server APIs the same way a human would perform the task in the application client. Rather than having static tools for specific actions, like Find approved vendors or Release purchase requisition lines, the agent uses the tools to open forms, set field values, and select actions available on the form.
 
 Although form tools are conceptually similar to Computer Use Agents (CUA), the tools don't work directly with the application client. Rather than opening a client session for the agent interaction, the tools work through server APIs that provide the agent with the application view model as context, enabling more optimized agent interactions.
 
@@ -129,6 +129,9 @@ When you enable the Dynamics 365 ERP MCP server in your environment, choose whic
 | -------- | --------- |
 | Microsoft Copilot Studio | 7ab7862c-4c57-491e-8a45-d52a7e023983 |
 | Visual Studio Code | aebc6443-996d-45c2-90f0-388ff96faa56 |
+| Microsoft Cowork | 6ab48b67-cd74-4ad4-81af-5932984589be |
+| Finance Agent | 8c1a9936-578e-4d13-9bd9-9afe53ef7de8 |
+| Finance Agent (Sydney) | fb8d773d-7ef8-4ec0-a117-179f88add510 |
 
 Grant access to any other agent platforms that need to access the MCP server. To add new agent platforms, complete the following steps:
 

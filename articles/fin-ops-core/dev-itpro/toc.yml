@@ -2047,7 +2047,7 @@ items:
             href: migration-upgrade/pre-post-upgrade-scripts.md
         - name: Environment operations
           items:
-          - name: Monitor the updgrade
+          - name: Monitor the upgrade
             href: migration-upgrade/monitor-upgrade.md
           - name: Database synchronize performance 
             href: migration-upgrade/database-sync-perf.md

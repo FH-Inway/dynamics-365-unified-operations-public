@@ -802,6 +802,8 @@
                       href: cash-bank-management/clear-reverse-bank-stmt-trx.md
                     - name: Clear reversal company transactions
                       href: cash-bank-management/clear-reverse-comp-trans.md
+                    - name: Reverse a completed bank reconiliation
+                      href: cash-bank-management/bank-reco-reversal.md  
                     - name: Generate vouchers in the reconciliation worksheet
                       href: cash-bank-management/vouchers-adv-bank-rec.md
                     - name: Apply cash in the reconciliation worksheet

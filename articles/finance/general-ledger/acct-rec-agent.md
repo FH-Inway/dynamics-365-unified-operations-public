@@ -32,6 +32,9 @@ Here are some of the benefits:
 - **Improved transparency** – Every exception is logged to capture the history of actions that users, automation, or agents take. As a result, transparency and accountability are enhanced.
 - **Regular reconciliation** – The ability to reconcile on a more regular basis ensures that customer financial records are always up to date. As a result, decision-making and financial planning improve.
 
+>[!NOTE]
+>To improve performance and response quality, Microsoft might automatically update the AI model used by the service. As a result, the model used to generate responses might differ from the one displayed in the user interface.
+
 ## Set up the Account Reconciliation Agent
 
 To set up the Account Reconciliation Agent, follow these steps:

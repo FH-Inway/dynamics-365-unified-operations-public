@@ -4,7 +4,7 @@ description: The Advanced bank reconciliation feature lets you import electronic
 author: music727
 ms.author: mibeinar
 ms.topic: how-to
-ms.date: 05/27/2026
+ms.date: 07/20/2026
 ms.reviewer: twheeloc
 audience: Application User
 ms.search.region: global
@@ -41,7 +41,7 @@ You can upload a bank statement that contains information for either a single ac
 - To import a single bank statement file for a single account, set the **Import statement for multiple bank accounts in all legal entities** option to **No**, and select the bank account that is associated with the statement. Select **Browse** to select the associated bank statement file, and then select **Upload**.
 - To import a single bank statement file for multiple accounts, set the **Import statement for multiple bank accounts in all legal entities** option to **Yes**. Select **Browse** to select the associated bank statement file, and then select **Upload**.
 
-If any statements in the electronic file can't be associated with a bank account or if they're associated with multiple bank accounts by using the identifying fields, they aren't imported. However, other statements in the file can still be imported. You then receive a message that states that the import of bank statements was unsuccessful for specific bank accounts.
+If any statements in the electronic file can't be associated with a bank account or if they're associated with multiple bank accounts by using the identifying fields, they're not imported. However, other statements in the file can still be imported. You then receive a message that states that the import of bank statements was unsuccessful for specific bank accounts.
 
 > [!NOTE]
 > The user who imports the bank statement file must have access to a legal entity to import statements for that legal entity's bank accounts.
@@ -50,7 +50,11 @@ You can use a zip file to upload multiple statement files to Finance in a single
 
 A **Reconcile after import** option is available. When you set this option to **Yes**, the system automatically validates the bank statement, creates a new bank reconciliation and worksheet, and runs the Default matching rule set when the bank statement is uploaded. This functionality automates the process up to the point where transactions must be manually matched.
 
-You can also use Electronic reporting (ER) to periodically import your bank statements from a SharePoint folder. To import bank statements, follow these steps:
+## Import Bank Statements from a SharePoint Folder
+
+**Dynamics 365 Finance** supports automatic importing of bank statements from a **SharePoint folder** as part of the Advanced Bank Reconciliation framework. Bank statement files can be periodically retrieved from a configured SharePoint location and imported without manual intervention.
+
+To import bank statements, follow these steps:
 
 1. Configure SharePoint for a bank statement format. For more information, see [Configure data import from SharePoint](../../fin-ops-core/dev-itpro/analytics/er-configure-data-import-sharepoint.md?context=%2Fdynamics365%2Fcontext%2Ffinance).
 1. In Feature management, enable the **Automatic importing bank statement from SharePoint folder** feature.
@@ -70,38 +74,38 @@ Here's the template for importing a bank statement header:
 - CURRENCY
 - OPENINGBALANCE
 - ENDINGBALANCE
-- FROMDATE 
+- FROMDATE
 - TODATE
 
 Here's the template for importing bank statement lines:
 
-- LINENUMBER 
-- BANKACCOUNT 
-- STATEMENTID 
-- BOOKINGDATE 
-- AMOUNT 
-- BANKSTATEMENTTRANSACTIONCODE 
-- COUNTERAMOUNT 
-- COUNTERCURRENCY 
-- COUNTEREXCHANGERATE 
-- CREDITORREFERENCEINFORMATION 
-- DOCUMENTNUMBER 
-- ENTRYREFERENCE 
-- INSTRUCTEDAMOUNT 
-- INSTRUCTEDCURRENCY 
-- INSTRUCTEDEXCHANGERATE 
-- LINESTATUS 
-- REFERENCENUMBER 
-- RELATEDBANK 
-- RELATEDBANKACCOUNT 
-- REVERSAL 
+- LINENUMBER
+- BANKACCOUNT
+- STATEMENTID
+- BOOKINGDATE
+- AMOUNT
+- BANKSTATEMENTTRANSACTIONCODE
+- COUNTERAMOUNT
+- COUNTERCURRENCY
+- COUNTEREXCHANGERATE
+- CREDITORREFERENCEINFORMATION
+- DOCUMENTNUMBER
+- ENTRYREFERENCE
+- INSTRUCTEDAMOUNT
+- INSTRUCTEDCURRENCY
+- INSTRUCTEDEXCHANGERATE
+- LINESTATUS
+- REFERENCENUMBER
+- RELATEDBANK
+- RELATEDBANKACCOUNT
+- REVERSAL
 - TRADINGPARTY
 
 For more information, see [Data entities overview](../../fin-ops-core/dev-itpro/data-entities/data-entities.md).
 
 ## Validate the bank statement
 
-To validate a statement, on the **Bank statements** page, select **Validate**. Bank statements must be validated before they can be reconciled. This step is automatically completed if you set the **Reconcile after import** option to **Yes** at the time of import.
+To validate a statement, on the **Bank statements** page, select **Validate**. You must validate bank statements before you can reconcile them. If you set the **Reconcile after import** option to **Yes** during import, this step is automatically completed.
 
 Bank statement validation verifies the following details:
 
@@ -160,7 +164,7 @@ After you complete the reconciliation process, mark the Bank reconciliation work
 
 ## Post new transactions that are associated with the reconciliation
 
-Bank statement transactions that you mark as **New** on the reconciliation worksheet are posted on the **Bank statement** page. On the **Bank statement** page, select the statement ID to view the statement details. On the **Accounting** menu, use the **View distributions** and **View accounting** options to view details behind the new transactions and the associated ledger entries. Select the **Post** option to post the bank statement lines that are marked as **New** to the general ledger. You can complete posting only one time per bank statement. To reverse a posted bank statement through a new transaction, turn on the **Reverse posted bank statement with new transactions** feature.
+When you mark bank statement transactions as **New** on the reconciliation worksheet, you post them on the **Bank statement** page. On the **Bank statement** page, select the statement ID to view the statement details. On the **Accounting** menu, use the **View distributions** and **View accounting** options to view details behind the new transactions and the associated ledger entries. Select the **Post** option to post the bank statement lines that are marked as **New** to the general ledger. You can complete posting only one time per bank statement. To reverse a posted bank statement through a new transaction, turn on the **Reverse posted bank statement with new transactions** feature.
 
 To view the voucher of a new transaction on a **Bank statement** page, turn on the **Display vouchers in bank statement** feature.
 

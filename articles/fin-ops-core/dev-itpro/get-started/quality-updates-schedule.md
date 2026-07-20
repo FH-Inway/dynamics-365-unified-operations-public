@@ -4,7 +4,7 @@ description: Learn about the release schedule for proactive quality updates (PQU
 author: rashmansur
 ms.author: sharmaaarsh
 ms.topic: article
-ms.date: 06/23/2026
+ms.date: 07/20/2026
 ms.custom: bap-template
 ms.reviewer: johnmichalak
 ms.search.region: Global
@@ -53,7 +53,7 @@ The following table shows the high-level train schedule. It includes a descripti
 | 10.0.46 PQU-4 | April 29, 2026 | May 4, 2026 to June 6, 2026| Completed |
 | 10.0.46 PQU-5 | May 27, 2026 | June 1, 2026 to July 5, 2026| Completed |
 | 10.0.46 PQU-6 | June 24, 2026 | June 29, 2026 to August 1, 2026| In-Progress |
-| 10.0.46 PQU-7 | July 22, 2026 | July 27, 2026 to August 29, 2026| Not Started |
+| 10.0.46 PQU-7 | July 22, 2026 | July 27, 2026 to August 29, 2026| In-Progress |
 | 10.0.46 PQU-8 | August 21, 2026 | August 31, 2026 to October 3, 2026| Not Started |
 | 10.0.47 PQU-1 | April 8, 2026 | April 8, 2026 to May 2, 2026| Completed |
 | 10.0.47 PQU-2 | April 22, 2026 | April 22, 2026 to May 16, 2026| Canceled |
@@ -73,7 +73,7 @@ The following table shows the high-level train schedule. It includes a descripti
 | 10.0.47 PQU-16 | November 4, 2026 | November 4, 2026 to November 28, 2026| Not Started |
 | 10.0.47 PQU-17 | November 25, 2026 | November 25, 2026 to December 19, 2026| Not Started |
 | 10.0.48 PQU-1 | July 8, 2026 | July 8, 2026 to August 1, 2026| In-Progress |
-| 10.0.48 PQU-2 | July 22, 2026 | July 22, 2026 to August 15, 2026| Not Started |
+| 10.0.48 PQU-2 | July 22, 2026 | July 22, 2026 to August 15, 2026| In-Progress |
 | 10.0.48 PQU-3 | August 5, 2026 | August 5, 2026 to August 29, 2026| Not Started |
 | 10.0.48 PQU-4 | August 19, 2026 | August 19, 2026 to September 12, 2026| Not Started |
 | 10.0.48 PQU-5 | September 2, 2026 | September 2, 2026 to September 26, 2026| Not Started |
@@ -95,7 +95,7 @@ The following table shows the high-level train schedule. It includes a descripti
 > Canceled* - PQU will occur only on Station-1. Releases for other stations have been canceled due to the holiday deployment freeze, and the build will be available for manual uptake.
 > For environments configured with a weekday update schedule, updates are applied on the selected weekday following the published rollout schedule.
 
-### <a name="schedule"></a> [NEW] Proactive quality update upcoming 10.0.46 Release-6 train schedule
+### <a name="schedule"></a> Proactive quality update upcoming 10.0.46 Release-6 train schedule
 
 **App version: 10.0.2428.205**
 
@@ -111,6 +111,23 @@ The following table shows the high-level train schedule. It includes a descripti
 | Station 4 | July 13 to July 16, 2026 | July 25 to July 26, 2026 |
 | Station 5 | July 20 to July 23, 2026 | August 1 to August 2, 2026 |
 | Station 6 | July 21 to July 24, 2026 | August 1 to August 2, 2026 |
+
+### <a name="schedule"></a> [NEW] Proactive quality update upcoming 10.0.46 Release-7 train schedule
+
+**App version: 10.0.2428.220**
+
+**Platform version: 7.0.7778.145**
+
+**Unified Environment Provisioning Application Version: 10.0.46.9**
+
+| Stations | Upcoming sandbox schedule | Upcoming production schedule |
+|---|---|---|
+| Station 1 | July 27 to July 2, 2026 | NA |
+| Station 2 | August 3 to August 6, 2026 | August 15 to August 16, 2026 |
+| Station 3 | August 4 to August 7, 2026 | August 15 to August 16, 2026 |
+| Station 4 | August 10 to August 13, 2026 | August 22 to August 23, 2026 |
+| Station 5 | August 17 to August 20, 2026 | August 29 to August 30, 2026 |
+| Station 6 | August 18 to August 21, 2026 | August 29 to August 30, 2026 |
 
 ### <a name="schedule"></a> Proactive quality update upcoming 10.0.47 Release-7 train schedule
 
@@ -146,7 +163,7 @@ The following table shows the high-level train schedule. It includes a descripti
 | Station 5 | August 3 to August 6, 2026 | August 8 to August 9, 2026 |
 | Station 6 | August 3 to August 6, 2026 | August 8 to August 9, 2026 |
 
-### <a name="schedule"></a> [NEW] Proactive quality update upcoming 10.0.48 Release-1 train schedule
+### <a name="schedule"></a> Proactive quality update upcoming 10.0.48 Release-1 train schedule
 
 **App version: 10.0.2645.81**
 
@@ -162,6 +179,23 @@ The following table shows the high-level train schedule. It includes a descripti
 | Station 4 | July 20 to July 23, 2026 | July 25 to July 26, 2026 |
 | Station 5 | July 27 to July 30, 2026 | August 1 to August 2, 2026 |
 | Station 6 | July 27 to July 30, 2026 | August 1 to August 2, 2026 |
+
+### <a name="schedule"></a> [NEW] Proactive quality update upcoming 10.0.48 Release-2 train schedule
+
+**App version: 10.0.2645.90**
+
+**Platform version: 7.0.7996.81**
+
+**Unified Environment Provisioning Application Version: 10.0.48.3**
+
+| Stations | Upcoming sandbox schedule | Upcoming production schedule |
+|---|---|---|
+| Station 1 | July 22 to July 25, 2026 | NA |
+| Station 2 | July 27 to July 30, 2026 | August 1 to August 2, 2026 |
+| Station 3 | July 27 to July 30, 2026 | August 1 to August 2, 2026 |
+| Station 4 | August 3 to August 6, 2026 | August 8 to August 9, 2026 |
+| Station 5 | August 10 to August 13, 2026 | August 15 to August 16, 2026 |
+| Station 6 | August 10 to August 13, 2026 | August 15 to August 16, 2026 |
 
 > [!IMPORTANT]
 > At least five days in advance, Microsoft updates the preceding schedule and send a notification for the set of environments that are scheduled to receive these quality updates. The preceding schedule is applicable only to environments that are notified about an upcoming update. For information on the dark hours for each region, see [What are the planned maintenance windows by region?](../deployment/plannedmaintenance-selfservice.md#windows).

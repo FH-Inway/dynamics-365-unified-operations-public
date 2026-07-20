@@ -614,6 +614,8 @@
                   href: accounts-receivable/collections-process-automate.md
                 - name: Configure parameters for collections process automation
                   href: accounts-receivable/config-paramtrs-collections-proc-automate.md
+                - name: Collection letter automation overview
+                  href: accounts-receivable/cm-collection-letter-automation.md
                 - name: Set up and generate accounts receivable aging information
                   href: accounts-receivable/tasks/set-up-accounts-receivable-aging-information.md
                 - name: Create a write-off journal for a customer

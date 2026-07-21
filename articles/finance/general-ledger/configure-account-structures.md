@@ -4,7 +4,7 @@ description: Learn about account structures and financial dimensions, including 
 author: aprilolson
 ms.author: aolson
 ms.topic: article
-ms.date: 03/02/2026
+ms.date: 07/10/2026
 ms.update-cycle: 1095-days
 ms.custom: evergreen
 ms.reviewer: twheeloc
@@ -20,30 +20,32 @@ ms.assetid: 08fd46ef-2eb8-4942-985d-40fd757b74a8
 
 [!include[banner](../includes/banner.md)]
 
-Account structures use the main account and financial dimensions to create a set of rules that determine the order and values used when entering the account number. You can set up as many account structures as you need for your business. Assign the account structures to a company's ledger setup so you can share them. For a detailed definition, see the [glossary entry for account structure](/dynamics365/guidance/business-processes/glossary#a).
+Account structures use the main account and financial dimensions to create a set of rules that determine the order and values when entering the account number. You can set up as many account structures as you need for your business. Assign the account structures to a company's ledger setup so you can share them. For a detailed definition, see the [glossary entry for account structure](/dynamics365/guidance/business-processes/glossary#a).
+
+Account structures and advanced rules only apply to journal lines and accounting distributions that use the **Ledger** account type. They don't validate financial dimensions for **non-ledger** account types like Vendor, Customer, or Bank accounts. To guide data entry for these non-ledger account types, set default financial dimensions on the non-ledger record.
 
 ## Account structures are trees presented as tables
 
-An account structure is stored internally as a tree, but the configuration page displays it as a flat table (grid) for maximum compatibility with export to Excel. Understanding this tree structure helps explain some behaviors you may encounter when working with account structures.
+An account structure is stored internally as a tree, but the configuration page displays it as a flat table (grid) for maximum compatibility with export to Excel. Understanding this tree structure helps explain some behaviors you might encounter when working with account structures.
 
 ### How changes propagate across rows
 
 Because the grid is a flattened view of a tree, a single row in the grid represents a path from the root of the tree down to a leaf. Multiple rows can share the same parent branch while differing only in their rightmost (leaf) segments.
 
-When you change a value on a segment that is shared across multiple rows — typically one of the leftmost segments — the change is applied to every row that shares that branch. This is by design: those rows are all part of the same branch of the tree, so editing the branch updates all of its leaves.
+When you change a value on a segment that is shared across multiple rows - typically one of the leftmost segments - the change applies to every row that shares that branch. This design ensures that all rows are part of the same branch of the tree, so editing the branch updates all of its leaves.
 
 For example, if four rows all share the same **Business Unit** value of \* (all values), and you change **Business Unit** to `001` on any single row, all four rows update to `001`.
 
 ![Diagram showing how account structure rows share tree branches, causing changes to propagate.](media/account-structure-tree-propagation.png)
 
-In this example, all four rows share the same **MainAccount** (400000..999999) and **BusinessUnit** (001) values — highlighted in the green box. These two columns form a shared branch of the tree. Because all four rows share this branch, changing the **BusinessUnit** value on any single row updates all four rows at once.
+In this example, all four rows share the same **MainAccount** (400000..999999) and **BusinessUnit** (001) values - highlighted in the green box. These two columns form a shared branch of the tree. Because all four rows share this branch, changing the **BusinessUnit** value on any single row updates all four rows at once.
 
-The columns highlighted in the red box — **Department**, **CostCenter**, and **ItemGroup** — are the leaf segments where the four rows differ from each other. Because each row has different values in these columns (for example, departments 022, 023, 024, and 025..034), they represent separate leaves on the same branch. Changing a value in these columns affects only that individual row, not the others.
+The columns highlighted in the red box - **Department**, **CostCenter**, and **ItemGroup** - are the leaf segments where the four rows differ from each other. Because each row has different values in these columns (for example, departments 022, 023, 024, and 025..034), they represent separate leaves on the same branch. Changing a value in these columns affects only that individual row, not the others.
 
 The underlying tree for this example looks like this:
 
-- **400000..999999** (MainAccount — shared root)
-  - **001** (BusinessUnit — shared branch)
+- **400000..999999** (MainAccount - shared root)
+  - **001** (BusinessUnit - shared branch)
     - **"";022** → **"";007..008** → **"";**\*
     - **023** → **009..012** → **"";**\*
     - **024** → **"";013..014** → **"";**\*
@@ -53,26 +55,26 @@ If this behavior isn't what you want, you can work around it by copying the valu
 
 ### Overlapping criteria
 
-For any combination of segment values, there must be exactly one valid path — both within a single structure and across all structures on the same ledger. If more than one path can match the same input, the system reports an **overlapping criteria** error during activation.
+For any combination of segment values, there must be exactly one valid path - both within a single structure and across all structures on the same ledger. If more than one path can match the same input, the system reports an **overlapping criteria** error during activation.
 
 #### Within a single structure
 
-Overlapping criteria within a structure commonly occurs when:
+Overlapping criteria within a structure commonly occur when:
 
-- A segment column is moved to a different position, causing ranges that were previously distinct to now create multiple valid paths.
+- You move a segment column to a different position, causing ranges that were previously distinct to now create multiple valid paths.
 - Two rows share the same parent values but have overlapping (not identical) criteria on a middle segment.
 
 For example, if two rows both allow **Business Unit** `001` but lead to different **Cost Center** criteria, the system can't determine which branch to follow.
 
 ![Example of overlapping criteria within a single account structure.](media/account-structure-overlap-within.png)
 
-To fix this, consolidate the criteria so that each combination of segment values follows a single path. For instance, merge the overlapping cost center values into a single row using a range like `040;050`.
+To fix this error, consolidate the criteria so that each combination of segment values follows a single path. For instance, merge the overlapping cost center values into a single row using a range like `040;050`.
 
 #### Across account structures
 
 The same rule applies across structures. When you activate a structure, the system compares its criteria against all other **active** structures on the same ledger. If two structures allow the same main account value (or overlapping ranges), activation fails.
 
-A common source of confusion is that activation always compares the **draft** being activated against the **active** versions of other structures — not their drafts. If you have multiple structures in draft mode at the same time, the form shows the draft versions, but activation checks against the active versions you can no longer see on screen.
+A common source of confusion is that activation always compares the **draft** being activated against the **active** versions of other structures - not their drafts. If you have multiple structures in draft mode at the same time, the form shows the draft versions, but activation checks against the active versions you can no longer see on screen.
 
 #### Moving values between structures
 
@@ -81,12 +83,12 @@ To move a main account value from one structure to another without triggering an
 For example, suppose AS1 (active) allows `100..199` and AS2 (active) allows `200..299`, and you want to move account `250` to AS1 and `150` to AS2:
 
 1. Edit both structures to **remove** the values you're moving (exclude `150` from AS1 and `250` from AS2).
-2. Activate both structures. The moved values are temporarily unavailable.
-3. Edit both structures again to **add** the values to their new homes (`250` to AS1, `150` to AS2).
-4. Activate both structures again.
+1. Activate both structures. The moved values are temporarily unavailable.
+1. Edit both structures again to **add** the values to their new homes (`250` to AS1, `150` to AS2).
+1. Activate both structures again.
 
 > [!NOTE]
-> The **Validate** button on the account structure form performs a limited check and may pass even when overlapping criteria exist. The full overlap detection only runs during activation, when the system builds all possible tree paths. Validation is not a substitute for activation.
+> The **Validate** button on the account structure form performs a limited check and might pass even when overlapping criteria exist. The full overlap detection only runs during activation, when the system builds all possible tree paths. Validation isn't a substitute for activation.
 
 ## Specifying valid dimensions with account structures
 
@@ -117,30 +119,30 @@ Each line in the grid can hold up to seven criteria for a given segment. This li
 
 ![Seven constraints on a segment.](media/save-seven-constraints-segment.png)
 
-If you need more than seven criteria, select **Duplicate in the Segment** and **Allowed values section**. This copies the criteria to a new line, where you can type over or modify the **Allowed value details** section to add the extra criteria.
+If you need more than seven criteria, select **Duplicate in the Segment** and **Allowed values section**. This action copies the criteria to a new line, where you can type over or modify the **Allowed value details** section to add the extra criteria.
 
 > [!NOTE]
 > An upgrade from Microsoft Dynamics AX 2012 isn't supported when you specify more than seven criteria. You must correct this issue before you complete the upgrade to finance and operations apps.
 
 ### Valid and invalid characters in criteria
 
-All criteria in account structures are compared as **strings**, not numbers. This is an important distinction that affects how ranges work.
+The system compares all criteria in account structures as strings, not numbers. This distinction affects how ranges work.
 
 #### Numeric value ranges are string-based
 
-Because ranges are compared as strings, values of different lengths can produce unexpected results. For example, the value `1000000` (seven digits) falls within the string range `100000..399999` (six digits), even though numerically 1,000,000 is far larger than 399,999.
+Because the system compares ranges as strings, values of different lengths can produce unexpected results. For example, the value `1000000` (seven digits) falls within the string range `100000..399999` (six digits), even though numerically 1,000,000 is far larger than 399,999.
 
-This is because string comparison works character by character from left to right — the same way sorting a column of text numbers in Excel produces the order: 1, 10, 11, 12, ..., 19, 2, 20, ...
+This result occurs because string comparison works character by character from left to right. The same way sorting a column of text numbers in Excel produces the order: 1, 10, 11, 12, ..., 19, 2, 20, ...
 
 If you need to use ranges with values of different lengths, prefix shorter values with leading zeros to ensure consistent string comparison. For example, use the range `0100000..0399999` instead of `100000..399999` so that `1000000` no longer falls within it.
 
 #### Using the correct delimiter
 
-When entering multiple criteria values directly in the grid, use **semicolons** ( ; ) to separate values — not **commas** ( , ).
+When entering multiple criteria values directly in the grid, use **semicolons** ( ; ) to separate values - not **commas** ( , ).
 
-Commas are valid characters within a dimension value. If you use commas as separators, the system treats the entire comma-separated string as a single value and truncates it to the 30-character maximum for dimension values. This causes characters to be silently clipped from the right side of your entry.
+Commas are valid characters within a dimension value. If you use commas as separators, the system treats the entire comma-separated string as a single value and truncates it to the 30-character maximum for dimension values. This truncation causes characters to be silently clipped from the right side of your entry.
 
-For example, if you enter `40000,49999,50000,52999,55000,59999` in the **MainAccount** column using commas, the system interprets the entire string as a single "through" value: `40000` through `49999,50000,52999,55000,5999` (truncated at 30 characters). The **Allowed value details** section shows this as a single criterion — "is between and includes 40000 through 49999.50000..52999.55000..5999" — instead of the six separate values you intended.
+For example, if you enter `40000,49999,50000,52999,55000,59999` in the **MainAccount** column using commas, the system interprets the entire string as a single "through" value: `40000` through `49999,50000,52999,55000,5999` (truncated at 30 characters). The **Allowed value details** section shows this as a single criterion - "is between and includes 40000 through 49999.50000..52999.55000..5999" - instead of the six separate values you intended.
 
 The **Allowed value details** section at the bottom of the form always uses semicolons. If your criteria appear collapsed into a single entry, check whether commas were entered instead of semicolons.
 
@@ -148,13 +150,13 @@ The **Allowed value details** section at the bottom of the form always uses semi
 
 #### Wildcards can't be used in ranges
 
-Don't use wildcard characters (asterisks) inside a range. A range is intended to specify all values between two string values of the same length. For example, to allow all accounts between 100000 and 399999, enter `100000..399999` — not `100*..399*`.
+Don't use wildcard characters (asterisks) inside a range. A range is intended to specify all values between two string values of the same length. For example, to allow all accounts between 100000 and 399999, enter `100000..399999` - not `100*..399*`.
 
 When a wildcard appears inside a range, the system looks for values that literally contain an asterisk character, which typically matches nothing. Instead, use wildcards with the appropriate operators in the **Allowed value details** section:
 
-- `500*` with the **Begins with** operator — matches all values that start with `500` (for example, 500100, 500200).
-- `*500` with the **Ends with** operator — matches all values that end with `500` (for example, 100500, 200500).
-- `*500*` with the **Is like** operator — matches all values that contain `500` anywhere (for example, 150000, 250099).
+- `500*` with the **Begins with** operator - matches all values that start with `500` (for example, 500100, 500200).
+- `*500` with the **Ends with** operator - matches all values that end with `500` (for example, 100500, 200500).
+- `*500*` with the **Is like** operator - matches all values that contain `500` anywhere (for example, 150000, 250099).
 
 > [!TIP]
 > Don't rely solely on the collapsed criteria string in the grid to understand how the system interprets your criteria. Always check the **Allowed value details** section below it, which converts each criterion into a readable sentence.
@@ -174,10 +176,10 @@ If you need more than 11 segments, thoroughly evaluate your setup and requiremen
 
 ### Main account
 
-The main account is required in every account structure but doesn't need to be the first segment. The main account value identifies which account structure applies during account number entry. Because of this, a main account value can only exist in one structure assigned to the ledger — otherwise the system can't determine which structure to use and reports an overlap.
+Every account structure requires a main account, but it doesn't need to be the first segment. The main account value identifies which account structure applies during account number entry. Because of this main account value, it can only exist in one structure assigned to the ledger. Otherwise, the system can't determine which structure to use and reports an overlap.
 
 > [!TIP]
-> Make the main account the first segment or as close to the front of the account structure as possible. This gives users the best guided experience during account entry, because the system identifies the correct structure earlier in the process. Verify that any third-party solutions you use support the main account in the first position.
+> Make the main account the first segment or as close to the front of the account structure as possible. This choice gives users the best guided experience during account entry, because the system identifies the correct structure earlier in the process. Verify that any third-party solutions you use support the main account in the first position.
 
 ## Example
 

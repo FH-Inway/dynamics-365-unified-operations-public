@@ -17,7 +17,7 @@ Collection automation evaluates the customer account as a whole rather than asse
 The automation process helps organizations reduce manual collection effort, standardize follow-up processes, send timely reminders, and progress customers through collection stages consistently.
 
 > [!IMPORTANT]
-> This article explains the concepts and expected behavior of collection letter automation. For configuration steps, see the related setup article, Set up collection letter automation.
+> This article explains the concepts and expected behavior of collection letter automation. For configuration steps, see the related setup article, [Set up collection letter automation](coll-process-auto-faq.md#collections-process-automation-setup).
 
 ## How collection automation evaluates customers
 
@@ -123,6 +123,4 @@ This situation can occur when you disable the **Track step** because the system 
 
 The system skips pre-dunning reminders when the customer already has an older overdue invoice. Overdue processing takes precedence over future due date reminders.
 
-## Next step
 
-After you understand how collection letter automation works, see Set up collection letter automation. That setup article covers collection sequences, collection process hierarchy, customer pools, process details, and automation rules.

@@ -6,7 +6,7 @@ ms.author: lisascholz
 ms.reviewer: kamaybac
 ms.search.form:
 ms.topic: how-to
-ms.date: 04/24/2026
+ms.date: 07/20/2026
 ms.custom:
   - bap-template
 ---
@@ -23,8 +23,10 @@ This article describes how to set up impact analysis together with supplier comm
 
 If you're already using the supplier communications capabilities of the Procurement Agent (previously known as the Supplier Communications Agent), you don't need to follow all of the steps in this article to add the impact analysis features because you've already completed most of the required steps. Just do the following steps:
 
-- Make sure you're running Microsoft Dynamics 365 Supply Chain Management version 10.0.48 or later.
-- Install *Copilot in Microsoft Dynamics 365 Supply Chain Management* version 1.1.03413.1 or later.
+- Make sure you're running Microsoft Dynamics 365 Supply Chain Management version 10.0.48 build 10.39.2117 or later (make sure you're running the newest available build).
+- Make sure you have the following installed:
+    - *Copilot in Microsoft Dynamics 365 Supply Chain Management* version 1.1.03413.1 or later
+    - *Copilot for finance and operations apps* version 10.0.03473.2 or later
 - Make sure that the following Microsoft Copilot Studio agent is published in that environment: *Procurement Agent - Impact Analysis*.
 - Turn on the *(Production-ready preview) Procurement Agent - Impact analysis* feature in [feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). Select **Check for updates** if the feature isn't shown on your system.
 - Add the following security user role: *Procurement User Role (Preview)*.
@@ -36,7 +38,7 @@ If you're already using the supplier communications capabilities of the Procurem
 
 To use impact analysis, your system must meet the following requirements:
 
-- You must be running Microsoft Dynamics 365 Supply Chain Management version 10.0.48 or later, with all available quality updates.  
+- You must be running Microsoft Dynamics 365 Supply Chain Management version 10.0.48 build 10.39.2117 or later (make sure you're running the newest available build).
 - The following features must be turned on in [feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). Select **Check for updates** if the features aren't shown on your system.
 
     - [*Immersive Home*](../../fin-ops-core/fin-ops/copilot/immersive-home.md)
@@ -47,7 +49,7 @@ To use impact analysis, your system must meet the following requirements:
     > If you can't enable the *Agent management* feature, make sure that all of its [prerequisites](../../fin-ops-core/fin-ops/copilot/agent-mgmt.md) are fulfilled, such as version requirements and Copilot Studio billing enablement.
 
 - In the [Power Platform admin center](https://admin.powerplatform.microsoft.com/), make sure you're running the following versions of the following Dynamics 365 Apps in your Supply Chain Management environment. It's important that you install or update them in the following order:
-    - First, install *Copilot for finance and operations apps* version 1.0.03048.2 or later. If it's already installed, update it to the latest version.
+    - First, install *Copilot for finance and operations apps* version 10.0.03473.2 or later. If it's already installed, update it to the latest version.
     - Then, install *Copilot in Microsoft Dynamics 365 Supply Chain Management* version 1.1.03413.1 or later. If it's already installed, update it to the latest version.
 
 - Normally, the Microsoft Copilot Studio agent needed for impact analysis to run is published automatically. But there might be data loss prevention (DLP) policies on your environment that prevent the publishing of this agent. To check if the agents are successfully published, go to [Copilot Studio](https://copilotstudio.microsoft.com/) and find your environment. Make sure that the following Microsoft Copilot Studio agent is published in that environment: *Procurement Agent - Impact Analysis*. If the agent isn't published, you can find help in [Troubleshoot data policy enforcement for Copilot Studio](/microsoft-copilot-studio/admin-dlp-troubleshooting).

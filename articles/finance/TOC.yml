@@ -734,6 +734,8 @@
               href: cash-bank-management/Net-customer-and-vendor-balances.md
             - name: Settlement overview
               href: cash-bank-management/settlement-overview.md
+            - name: Delay settlement
+              href: cash-bank-management/delayed-settlements.md
             - name: Settlement overview for centralized payments
               href: cash-bank-management/settlement-overview-centralized-payments.md
             - name: Prepayment invoices vs. prepayments

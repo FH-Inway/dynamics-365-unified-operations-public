@@ -4,7 +4,7 @@ description: Learn how to build a complete custom archive scenario using only cu
 author: git-kiran 
 ms.author: Weijiesa 
 ms.topic: how-to
-ms.date: 05/12/2026
+ms.date: 07/20/2026
 ms.custom:
   - bap-template
 ms.reviewer: twheeloc
@@ -15,26 +15,24 @@ ms.reviewer: twheeloc
 
 [!include [banner](../includes/banner.md)]
 
-This article describes how to build a complete custom archive scenario from scratch using only custom tables. By using this approach, you can archive custom business transactions independently of Microsoft-managed archive scenarios.
+This article describes how to build a complete custom archive scenario from scratch by using only custom tables. By using this approach, you can archive custom business transactions independently of Microsoft-managed archive scenarios.
 
 ## Overview
 
 Use this scenario to archive custom transaction data that isn't related to Microsoft-managed tables. You create a complete new archive scenario with its own job type, UI, and archive scope.
 
 > [!IMPORTANT]
-> Custom scenarios must include **only custom tables**. Custom scenarios must not reference Microsoft-managed tables at all, even as join or lookup dependencies. If your custom tables are related to Microsoft tables, use [Scenario 2: Add custom tables to standard scenarios](archive-custom-add-tables.md) instead.
+> Custom scenarios must include only custom tables. Custom scenarios must not reference Microsoft-managed tables at all, even as join or lookup dependencies. If your custom tables are related to Microsoft tables, use [Add custom tables to standard scenarios](archive-custom-add-tables.md) instead.
 
-Components involved:
+The components involved in this scenario are:
 
-- Custom source link table (transaction header)
-- Custom table hierarchy (headers, lines, details)
+- Custom root table and related child tables
 - Custom history tables (one per live table)
 - Custom finance and operations data entities (one per live table)
-- Job contract creator class (two separate classes required)
+- Job contract creator class
 - Archive service type registration
-- Optional UI components
 
-Extensive X++ development for table structure, job contracts, and type registration.
+Don't create archive classes in the BusinessIntelligence model. Put all custom archive code in a customer-owned model.
 
 ### Prerequisites
 
@@ -49,7 +47,7 @@ Extensive X++ development for table structure, job contracts, and type registrat
 
 Before starting development, plan your archive scenario structure.
 
-- Identify source link table - The **source link table** is the root table that defines what gets archived. Think of it as the "header" table for your archive scope.
+- Identify the root table - This table defines what gets archived. Think of it as the header table for your archive scope.
 - Design table hierarchy - Map out your table relationships:
 
 ```
@@ -83,12 +81,12 @@ CompletedDate < (today() - 730)
 && DataAreaId == _selectedLegalEntity
 ```
 
-### Create source link table
+### Create root table
 
 To create the root table that defines your archive scope, follow these steps:
 
 1. Right-click the project, and then select **Add** > **New Item** > **Table**.
-1. Name your source link table:
+1. Name your root table:
    - Example: `CustomWorkflowHeader`
    - Example: `IntegrationBatchHeader`
    - Example: `TelemetrySessionHeader`
@@ -124,7 +122,7 @@ CustomWorkflowHeader
 > [!IMPORTANT]
 > On the **source (live) table**, set the property **`ChangeTrackingEnabled`** to **`Yes`**. This setting enables change tracking required for archive operations.
 
-1. In Visual Studio, select your source link table.
+1. In Visual Studio, select your root table.
 1. In the Properties window, find **ChangeTrackingEnabled**.
 1. Set the value to **Yes**.
 
@@ -157,11 +155,11 @@ This index is **critical** for archive job query performance.
 </AxTableIndex>
 ```
 
-Index design rules:
+Follow these index design rules:
 
-- First field: Primary segregation (`DataAreaId` or `Partition`)
-- Next fields: Criteria fields used in WHERE conditions, such as status or dates
-- Included columns: `RecId` (if not clustered), `SysRowVersion`, `SysDataStateCode` for performance
+- Use primary segregation (`DataAreaId` or `Partition`) as the first field.
+- Use criteria fields in WHERE conditions, such as status or dates, for the next fields.
+- Include `RecId` (if not clustered), `SysRowVersion`, and `SysDataStateCode` for performance.
 
 ### Add reconciliation index for long-term retention
 
@@ -180,7 +178,7 @@ Index design rules:
 ```
 
 > [!IMPORTANT]
-> Both indexes are mandatory on the source link table and all related child tables. Missing indexes cause job failures or poor LTR performance.
+> Both indexes are mandatory on the root table and all related child tables. Missing indexes cause job failures or poor LTR performance.
 
 #### Create related child tables
 
@@ -390,16 +388,9 @@ For more information, see:
 This approach involves building Dataverse solutions that package your entity configurations for automated deployment across multiple environments.
 For complete instructions on building and deploying Dataverse solutions, see [Configure Dataverse for long-term retention](archive-custom.md#automated-solution-deployment).
 
-#### Create job contract creator (Base class)
+#### Create job contract creator
 
-To create the base job contract creator that defines your archive scope, follow these steps:
-
-1. Create a new class in your model.
-1. Name: `Custom[ScenarioName]ArchiveAutomationJobRequestCreator`
-   - Example: `CustomWorkflowArchiveAutomationJobRequestCreator`
-1. Extend: `ArchiveAutomationJobRequestCreator`
-
-Implement class structure
+Create a new class in your customer-owned model.
 
 ```xpp
 using Microsoft.Dynamics.Archive.Contracts;
@@ -407,7 +398,7 @@ using Microsoft.Dynamics.Archive.Contracts;
 /// <summary>
 /// Creates archive job contracts for custom workflow scenario.
 /// </summary>
-public class CustomWorkflowArchiveAutomationJobRequestCreator extends ArchiveAutomationJobRequestCreator
+public class CustomWorkflowArchiveAutomationJobRequestCreator
 {
     // Class implementation
 }
@@ -426,40 +417,27 @@ public ArchiveJobPostRequest createPostJobRequest(var _criteria)
         throw error(Error::wrongUseOfFunction(funcName()));
     }
     
-    // Initialize builder
     ArchiveServiceArchiveJobPostRequestBuilder builder = 
-        ArchiveServiceArchiveJobPostRequestBuilder::construct();
-    
-    // Set job metadata
-    builder.setArchiveType(ArchiveType::[YourArchiveType]);  // Enum value for your scenario
-    builder.setJobName(strFmt("Custom Workflow Archive - %1", _criteria.DataAreaId));
-    
-    // Add source link table (root of hierarchy)
-    builder.addSourceLinkTable(
-        ArchiveServiceSourceLinkTableConfiguration::newForSourceTable(
-            tableStr(CustomWorkflowHeader),              // Live table
-            tableStr(CustomWorkflowHeaderHistory)))      // History table
-        
-        // Add WHERE conditions (archive criteria)
-        .addWhereCondition(
-            fieldStr(CustomWorkflowHeader, DataAreaId),
-            ArchiveServiceOperator::Equals,
-            _criteria.DataAreaId)
-        
-        .addWhereCondition(
+        ArchiveServiceArchiveJobPostRequestBuilder::construct(
+            "@YourModel:CustomWorkflowArchiveDescription",
+            CustomWorkflowArchiveConstants::RegisteredTypeName);
+
+    var rootCfg = ArchiveServiceSourceTableConfiguration::newForSourceTable(
+        tableStr(CustomWorkflowHeader),
+        tableStr(CustomWorkflowHeaderHistory),
+        tableStr(CustomWorkflowHeaderBiEntity));
+
+    builder.addSourceTableForLongTermRetention(rootCfg)
+        .addDateTimeWhereConditionToDataSource(
+            tableStr(CustomWorkflowHeader),
             fieldStr(CustomWorkflowHeader, CompletedDate),
-            ArchiveServiceOperator::LessThan,
-            _criteria.ArchiveBeforeDate)
-        
-        .addWhereCondition(
-            fieldStr(CustomWorkflowHeader, WorkflowStatus),
-            ArchiveServiceOperator::Equals,
-            WorkflowStatus::Completed);
-    
-    // Add child tables
-    this.addChildTables(builder);
-    
-    // Finalize and return
+            _criteria.ArchiveBeforeDateTime,
+            Microsoft.Dynamics.Archive.Contracts.Operator::LessThanOrEquals)
+        .addDataAreaIdWhereCondition(tableStr(CustomWorkflowHeader), _criteria.DataAreaId)
+        .addPartitionWhereCondition(tableStr(CustomWorkflowHeader));
+
+    this.addChildTables(builder, _criteria);
+
     return builder.finalizeArchiveJobPostRequest();
 }
 ```
@@ -473,242 +451,88 @@ private void addChildTables(ArchiveServiceArchiveJobPostRequestBuilder _builder)
 {
     // Add workflow lines
     _builder.addSourceTableForLongTermRetention(
-        ArchiveServiceSourceTableConfiguration::newForSourceTable(
+        ArchiveServiceSourceTableConfiguration::newForChildSourceTable(
             tableStr(CustomWorkflowLine),
             tableStr(CustomWorkflowLineHistory),
-            tableStr(mserp_customworkflowlinebientity),  // Dataverse entity name
-            tableStr(CustomWorkflowHeader)))             // Parent table
-        
+            tableStr(CustomWorkflowLineBiEntity),
+            tableStr(CustomWorkflowHeader)))
         .addJoinCondition(
+            tableStr(CustomWorkflowLine),
             fieldStr(CustomWorkflowLine, WorkflowHeaderRecId),
-            ArchiveServiceOperator::Equals,
             fieldStr(CustomWorkflowHeader, RecId))
-        
-        .addWhereCondition(
-            fieldStr(CustomWorkflowLine, DataAreaId),
-            ArchiveServiceOperator::Equals,
-            fieldStr(CustomWorkflowHeader, DataAreaId));
+        .addDataAreaIdWhereCondition(tableStr(CustomWorkflowLine), _criteria.DataAreaId)
+        .addPartitionWhereCondition(tableStr(CustomWorkflowLine));
     
     // Add workflow line details
     _builder.addSourceTableForLongTermRetention(
-        ArchiveServiceSourceTableConfiguration::newForSourceTable(
+        ArchiveServiceSourceTableConfiguration::newForChildSourceTable(
             tableStr(CustomWorkflowLineDetail),
             tableStr(CustomWorkflowLineDetailHistory),
-            tableStr(mserp_customworkflowlinedetailbientity),
-            tableStr(CustomWorkflowLine)))               // Parent is CustomWorkflowLine
-        
+            tableStr(CustomWorkflowLineDetailBiEntity),
+            tableStr(CustomWorkflowLine)))
         .addJoinCondition(
+            tableStr(CustomWorkflowLineDetail),
             fieldStr(CustomWorkflowLineDetail, WorkflowLineRecId),
-            ArchiveServiceOperator::Equals,
             fieldStr(CustomWorkflowLine, RecId))
-        
-        .addWhereCondition(
-            fieldStr(CustomWorkflowLineDetail, DataAreaId),
-            ArchiveServiceOperator::Equals,
-            fieldStr(CustomWorkflowLine, DataAreaId));
+        .addDataAreaIdWhereCondition(tableStr(CustomWorkflowLineDetail), _criteria.DataAreaId)
+        .addPartitionWhereCondition(tableStr(CustomWorkflowLineDetail));
     
     // Add workflow attachments
     _builder.addSourceTableForLongTermRetention(
-        ArchiveServiceSourceTableConfiguration::newForSourceTable(
+        ArchiveServiceSourceTableConfiguration::newForChildSourceTable(
             tableStr(CustomWorkflowAttachment),
             tableStr(CustomWorkflowAttachmentHistory),
-            tableStr(mserp_customworkflowattachmentbientity),
+            tableStr(CustomWorkflowAttachmentBiEntity),
             tableStr(CustomWorkflowHeader)))
-        
         .addJoinCondition(
+            tableStr(CustomWorkflowAttachment),
             fieldStr(CustomWorkflowAttachment, WorkflowHeaderRecId),
-            ArchiveServiceOperator::Equals,
             fieldStr(CustomWorkflowHeader, RecId))
-        
-        .addWhereCondition(
-            fieldStr(CustomWorkflowAttachment, DataAreaId),
-            ArchiveServiceOperator::Equals,
-            fieldStr(CustomWorkflowHeader, DataAreaId));
+        .addDataAreaIdWhereCondition(tableStr(CustomWorkflowAttachment), _criteria.DataAreaId)
+        .addPartitionWhereCondition(tableStr(CustomWorkflowAttachment));
 }
 ```
 
 #### Key implementation rules
 
-Parent table specification:
+Root table specification:
 
-- For source link table: Use `.newForSourceTable(liveTable, historyTable)` (no parent)
-- For child tables: Use `.newForSourceTable(liveTable, historyTable, entityName, parentTable)`
+- For root table: Use `ArchiveServiceSourceTableConfiguration::newForSourceTable(liveTable, historyTable, entityName)`.
+- For child tables: Use `ArchiveServiceSourceTableConfiguration::newForChildSourceTable(liveTable, historyTable, entityName, parentTable)`.
 
 JOIN conditions:
 
-- Must match foreign key relationships exactly
-- Only `Equals` operator supported for JOINs
-- Field names must be exact (case-sensitive)
+- Must match foreign key relationships exactly.
+- Use the table name, child field, and parent field.
 
 WHERE conditions:
 
-- Include segregation fields that match the parent
-- Use field references for dynamic values: `fieldStr(ParentTable, FieldName)`
-- Use literal values for static criteria: `WorkflowStatus::Completed`
+- Include segregation fields that match the root and child tables.
+- Use `addDataAreaIdWhereCondition()` and `addPartitionWhereCondition()` where applicable.
 
 Entity names:
 
-- Use Dataverse virtual entity name (starts with `mserp_`)
-- Use all lowercase
-- Example: `tableStr(mserp_customworkflowheaderbientity)`
+- Use the customer-owned or existing finance and operations entity name.
+- The entity must correspond to the live table being archived.
 
-#### Create job contract creator (BI Extension)
+#### Keep job contract logic in one class
 
-To create BI extension class to add LTR configuration, follow these steps:
-> [!IMPORTANT]
-> You must create this extension in the **BusinessIntelligence** model. Don't create it in your main model.
+For custom scenarios, keep archive scope and long-term retention table configuration in the same job creator class in your customer-owned model.
 
-1. Switch to the BusinessIntelligence model project.
-1. Create a new class.
-1. Set the name to `Custom[ScenarioName]ArchiveAutomationJobRequestCreator_BI_Extension`.
-1. Add the extension attribute.
-
-```xpp
-using Microsoft.Dynamics.Archive.Contracts;
-
-[ExtensionOf(classStr(CustomWorkflowArchiveAutomationJobRequestCreator))]
-public final class CustomWorkflowArchiveAutomationJobRequestCreator_BI_Extension
-{
-    // Extension logic
-}
-```
-
-#### Extend createPostJobRequest with LTR configuration
-
-```xpp
-public ArchiveJobPostRequest createPostJobRequest(var _criteria)
-{
-    // Call base implementation (gets job contract with tables)
-    ArchiveJobPostRequest postRequest = next createPostJobRequest(_criteria);
-    
-    // Add LTR configuration for source link table
-    postRequest = this.addSourceLinkTableForLongTermRetention(postRequest, _criteria);
-    
-    return postRequest;
-}
-```
-
-#### Implement LTR configuration method
-
-```xpp
-private ArchiveJobPostRequest addSourceLinkTableForLongTermRetention(
-    ArchiveJobPostRequest _postRequest,
-    var _criteria)
-{
-    // Construct builder from existing contract
-    ArchiveServiceArchiveJobPostRequestBuilder builder = 
-        ArchiveServiceArchiveJobPostRequestBuilder::constructFromArchiveJobPostRequest(_postRequest);
-    
-    // Add LTR configuration for source link table
-    builder.addSourceLinkTableForLongTermRetention(
-        ArchiveServiceSourceLinkTableConfiguration::newForSourceTable(
-            tableStr(CustomWorkflowHeader),
-            tableStr(CustomWorkflowHeaderHistory),
-            tableStr(mserp_customworkflowheaderbientity))  // Dataverse entity name
-        
-        // WHERE conditions must match base class criteria
-        .addWhereCondition(
-            fieldStr(CustomWorkflowHeader, DataAreaId),
-            ArchiveServiceOperator::Equals,
-            _criteria.DataAreaId)
-        
-        .addWhereCondition(
-            fieldStr(CustomWorkflowHeader, CompletedDate),
-            ArchiveServiceOperator::LessThan,
-            _criteria.ArchiveBeforeDate)
-        
-        .addWhereCondition(
-            fieldStr(CustomWorkflowHeader, WorkflowStatus),
-            ArchiveServiceOperator::Equals,
-            WorkflowStatus::Completed));
-    
-    // Finalize and return updated contract
-    return builder.finalizeArchiveJobPostRequest();
-}
-```
-
-#### Why two separate classes?
-
-Base class (in your model):
-
-- Defines archive scope (what tables)
-- Specifies relationships (JOINs)
-- No finance and operations data entity references
-
-Finance and operations data entity extension class (in BusinessIntelligence model):
-
-- Adds LTR configuration
-- Links finance and operations data entities to tables
-- Enables managed data lake access
-
-This separation enables:
-
-- Clear dependency management
-- Model layering best practices
-- Independent testing of archive vs. LTR
+Use `addSourceTableForLongTermRetention()` for the root table and each child table. Don't add a BusinessIntelligence extension layer for this scenario.
 
 #### Register archive service type
 
-To register your custom archive type so it appears in the archive framework, follow these steps:
+Register the custom archive type in your customer-owned model by implementing `ArchiveServiceIManagedArchiveType` and exporting it through MEF.
 
-1. Create a new class in your model.
-1. Name: `Custom[ScenarioName]ArchiveServiceTypeRegistration`
-1. Implement `ArchiveServiceTypeRegistration` interface
-
-#### Implement registration logic
-
-```xpp
-using Microsoft.Dynamics.Archive.Contracts;
-
-/// <summary>
-/// Registers custom workflow archive type with archive framework.
-/// </summary>
-public class CustomWorkflowArchiveServiceTypeRegistration implements ArchiveServiceTypeRegistration
-{
-    public void registerTypes()
-    {
-        ArchiveServiceTypeRegistry registry = ArchiveServiceTypeRegistry::singleton();
-        
-        // Register archive type
-        registry.registerArchiveType(
-            ArchiveType::[YourCustomArchiveType],        // Enum value (add to ArchiveType enum)
-            classStr(CustomWorkflowArchiveAutomationJobRequestCreator),
-            "@YourLabel:CustomWorkflowArchiveTypeLabel", // Label for UI
-            "@YourLabel:CustomWorkflowArchiveTypeHelp"); // Help text for UI
-    }
-}
-```
-
-#### Add archive type to enum
-
-1. Extend `ArchiveType` enum
-1. Add new enum value for your scenario:
-   - Name: `CustomWorkflow`
-   - Label: "Custom workflow archive"
-
-#### Ensure registration runs on startup
-
-The type registration must run during application startup. Register it in your module startup:
-
-```xpp
-public class CustomWorkflowModule
-{
-    public static void initialize()
-    {
-        // Register archive type
-        CustomWorkflowArchiveServiceTypeRegistration registration = new CustomWorkflowArchiveServiceTypeRegistration();
-        registration.registerTypes();
-    }
-}
-```
+Use `ArchiveServiceManagedTypeRegistration` in `getManagedTypeRegistration()` to set type name, label, enabled state, and job name support.
 
 #### Build and deploy
 
 To build your solution, follow these steps:
 
-1. Build your main model (tables, base job creator, type registration)
-1. Build BusinessIntelligence model (finance and operations data entities, extension class)
-1. Resolve any compilation errors
+1. Build your customer-owned model (tables, entities, job creator, and type registration).
+1. Resolve any compilation errors.
 
 #### Synchronize database
 
@@ -719,9 +543,9 @@ To build your solution, follow these steps:
 
 #### Deploy to environment
 
-1. Create deployable package
-1. Deploy to target environment
-1. Verify deployment success
+1. Create deployable package.
+1. Deploy to target environment.
+1. Verify deployment success.
 
 #### Synchronize entities
 
@@ -734,7 +558,7 @@ After deployment:
 
 #### Verify virtual entities in Dataverse
 
-1. Wait 24-48 hours for automatic publishing (or manually publish).
+1. Wait for automatic publishing or publish manually.
 1. Verify entities appear in Power Apps Maker.
 1. Configure change tracking and LTR for each entity.
 
@@ -742,7 +566,7 @@ After deployment:
 
 To create test data, follow these steps:
 
-1. Create test header record in source link table.
+1. Create test header record in the root table.
 1. Create related child records (lines, details, attachments).
 1. Ensure segregation fields match (`DataAreaId`, etc.).
 1. Set status and date fields to meet archive criteria.
@@ -811,7 +635,7 @@ Before deploying to production:
 
 Tables:
 
-- Source link table created with all fields.
+- Root table created with all fields.
 - All child tables created with foreign keys.
 - Parent-child relationships defined on all child tables.
 - `ArchiveCriteriaIdx` added to all tables.
@@ -831,14 +655,10 @@ Finance and operations data entities:
 
 Code:
 
-- Created base job contract creator class.
+- Created job contract creator class in customer-owned model.
 - Implemented archive criteria in `createPostJobRequest`.
-- Added all child tables with correct JOINs.
-- Created BI extension class in BusinessIntelligence model.
-- Added LTR configuration for source link table.
-- Created type registration class.
-- Added archive type to `ArchiveType` enum.
-- Type registration runs on startup.
+- Added root and child tables with correct JOINs and segregation filters.
+- Created managed type registration class using `ArchiveServiceIManagedArchiveType`.
 - No compilation errors.
 
 Testing:

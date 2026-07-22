@@ -4,7 +4,7 @@ description: Learn about how the archive feature in Microsoft Dynamics 365 finan
 author: git-kiran 
 ms.author: Weijiesa 
 ms.topic: how-to
-ms.date: 06/19/2026
+ms.date: 07/20/2026
 ms.custom:
   - bap-template
 ms.reviewer: twheeloc 
@@ -23,12 +23,12 @@ The archive framework supports three customization scenarios:
 
 1. Add custom fields to Microsoft-managed tables in standard archive scenarios. For example, General ledger or Sales order.
 1. Add custom tables to standard archive scenarios.
-1. Build your own custom archive scenario by using custom tables.
+1. Build your own custom archive scenario by using custom tables and custom finance and operations entities.
 
 > [!NOTE]  
 > When you build your own custom archive scenario, use only custom tables. Custom scenarios can't reference Microsoft-managed tables, even as join or lookup dependencies. The framework validates this requirement, and archive job creation fails if any Microsoft-managed table dependency is detected.
 >
-> The framework also validates that Microsoft-owned archival scenarios haven't been improperly modified through extensions. For example, by adding unauthorized Microsoft tables or removing required ones. If such customizations are detected, the archive job creation fails.
+> The framework also validates that Microsoft-owned archival scenarios aren't improperly modified through extensions. For example, by adding unauthorized Microsoft tables or removing required ones. If such customizations are detected, the archive job creation fails.
 
 ## Create archive objects
 
@@ -46,7 +46,7 @@ If there are no indexes on criteria fields in history tables, this condition pre
 
 ### Indexes on live tables
 
-All source (live) tables that participate in archive jobs need two types of indexes for optimal performance and proper framework operation.
+For optimal performance and proper framework operation, all source (live) tables that participate in archive jobs need two types of indexes.
 
 - Archive criteria index - Optimizes archive job filtering and data retrieval. It enables efficient identification and processing of records that meet archive criteria.
 
@@ -108,30 +108,24 @@ Entity naming convention - `[TableName]BiEntity`. For example, `SalesTableBiEnti
 
 ### Job contract creator classes
 
-Archive job request creator - X++ classes that build the archive job contract specifying what to archive. This contract tells the Archive service which tables to process, how they're related, what criteria to use for filtering, and which entities to use for Dataverse.
+Archive job request creator classes build the archive job contract that specifies which tables to archive, how they're related, what criteria to use, and which finance and operations entities to use for long-term retention.
 
-Use a two-class pattern for proper layering:
+For custom archive scenarios:
 
-1. Base class in your module
-     - Contains business logic for archive scenario
-     - Defines table relationships
-     - Handles criteria validation
-     - Doesn't reference entity names to avoid circular dependencies
-1. Extension class in BusinessIntelligence model
-    - Extends the base class by using chain of command
-    - Adds finance and operations data entity references
-    - Configures Dataverse integration
-    - Uses `ArchiveServiceArchiveJobPostRequestBuilder` API
+1. Create the job creator in a customer-owned model.
+1. Use `ArchiveServiceArchiveJobPostRequestBuilder` together with `ArchiveServiceSourceTableConfiguration`.
+1. Use `addSourceTableForLongTermRetention()` for the root table and each child table.
+1. Provide the live table, history table, and finance and operations entity name for each archived table.
 
-The BusinessIntelligence model references data entities, and your base module shouldn't have dependencies on BusinessIntelligence. This layering approach prevents circular dependencies and maintains clean architecture.
+Don't create archive classes in the BusinessIntelligence model. That model is locked for customers.
 
 ### Key builder methods
 
-- `addSourceTableForLongTermRetention()` - Adds a table to archive scope with its history table and finance and operations data entity.
-- `addWhereCondition()` - Adds filtering criteria, such as date ranges or status.
+- `addSourceTableForLongTermRetention()` - Adds a table to archive scope with its history table and finance and operations entity.
 - `addJoinCondition()` - Defines parent-child table relationships.
-- `setJobCriteriaKey()` - Sets partition key for parallel execution.
-- `finalizeArchiveJobPostRequest()` - Builds final contract.
+- `addDataAreaIdWhereCondition()` - Adds legal entity filtering.
+- `addPartitionWhereCondition()` - Adds partition filtering.
+- `finalizeArchiveJobPostRequest()` - Builds the final contract.
 
 ### Parent-child relationships
 
@@ -139,6 +133,7 @@ The BusinessIntelligence model references data entities, and your base module sh
 - Child tables must specify their parent table name.
 - The framework validates that relationships exist.
 - JOIN conditions must match actual foreign key relationships.
+- Each table must also reference a matching finance and operations entity.
 
 ### Dataverse configuration
 
@@ -246,16 +241,16 @@ To create a new Dataverse solution, follow these steps:
 > When you complete step 5, Power Apps automatically updates your solution's `Customizations.xml` file with the change tracking and LTR metadata. You don't need to manually edit XML files unless you're building advanced automation pipelines or want to bypass the UI configuration.
 
 <details>
-<summary><b>Understanding Customizations.xml (Reference)</b></summary>
+<summary>#### Understanding Customizations.xml (Reference)</summary>
 
 When you enable change tracking and LTR through the Power Apps UI (step 5), the system stores these settings in your solution's `Customizations.xml` file. This section shows what that file contains for reference and troubleshooting purposes.
 
-**The Customizations.xml file contains two critical sections:**
+#### The Customizations.xml file contains two critical sections
 
 1. **Entity change tracking configuration** - Enables change tracking for each entity
 1. **LTR metadata configuration** - Enables long-term retention for each entity
 
-**Example Customizations.xml structure:**
+#### Example Customizations.xml structure
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -321,7 +316,7 @@ When you enable change tracking and LTR through the Power Apps UI (step 5), the 
 </ImportExportXml>
 ```
 
-**Key XML elements:**
+#### Key XML elements
 
 | Element | Value | Purpose |
 |---------|-------|---------|
@@ -364,7 +359,7 @@ When you need to update your archive solution:
 
 ### Integration with archive framework
 
-Your custom solution integrates with the Archive framework through the following methods:
+Integrate your custom solution with the Archive framework through the following methods:
 
 - Virtual entities - The Archive framework automatically discovers and uses your virtual entities when you reference them in your job contract.
 - Type registration - Your X++ type registration references your entities.

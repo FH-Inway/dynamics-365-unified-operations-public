@@ -22,7 +22,7 @@ This article describes how to build a complete custom archive scenario from scra
 Use this scenario to archive custom transaction data that isn't related to Microsoft-managed tables. You create a complete new archive scenario with its own job type, UI, and archive scope.
 
 > [!IMPORTANT]
-> Custom scenarios must include only custom tables. Custom scenarios must not reference Microsoft-managed tables at all, even as join or lookup dependencies. If your custom tables are related to Microsoft tables, use [Add custom tables to standard scenarios](archive-custom-add-tables.md) instead.
+> Custom scenarios must include only custom tables. Custom scenarios must not reference Microsoft-managed tables at all, even as join or lookup dependencies. If your custom tables are related to Microsoft tables, see [Add custom tables to standard scenarios](archive-custom-add-tables.md) instead.
 
 The components involved in this scenario are:
 
@@ -32,7 +32,7 @@ The components involved in this scenario are:
 - Job contract creator class
 - Archive service type registration
 
-Don't create archive classes in the BusinessIntelligence model. Put all custom archive code in a customer-owned model.
+You need extensive X++ development for table structure, job contracts, and type registration.
 
 ### Prerequisites
 
@@ -512,8 +512,114 @@ WHERE conditions:
 
 Entity names:
 
-- Use the customer-owned or existing finance and operations entity name.
-- The entity must correspond to the live table being archived.
+- Use Dataverse virtual entity name (starts with `mserp_`)
+- Use all lowercase
+- Example: `tableStr(mserp_customworkflowheaderbientity)`
+
+#### Enable parallel processing with a job criteria key
+
+[Parallel processing for archive jobs](archive-parallel-process.md) lets multiple archive jobs run at the same time. A custom scenario participates in parallel execution only when it assigns a **job criteria key** to each job it creates. If you don't set a job criteria key, your custom scenario's jobs still run correctly, but they run **sequentially**, one at a time, and don't benefit from parallel execution.
+
+The scheduler uses the job criteria key to decide whether two jobs can run at the same time. The key is a partitioning identifier that describes the scope of a job&mdash;most commonly the legal entity (`DataAreaId`). Two jobs that have different keys are treated as non-overlapping and can run in parallel. Jobs that share the same key, or that have no key at all, run sequentially.
+
+To set the job criteria key, call `setJobCriteriaKey()` on the builder in your `createPostJobRequest` method. Set it early in the builder chain, before you add source tables:
+
+```xpp
+// Initialize builder
+ArchiveServiceArchiveJobPostRequestBuilder builder = 
+    ArchiveServiceArchiveJobPostRequestBuilder::construct();
+
+// Set the job criteria key - typically the legal entity (DataAreaId)
+if (strLen(_criteria.DataAreaId) > 0)
+{
+    builder.setJobCriteriaKey(_criteria.DataAreaId);
+}
+```
+
+A value is suitable as a job criteria key when it meets all of the following conditions:
+
+- **Represents a logical partition** of your data, such as legal entity, ledger, customer, or project.
+- **Matches the scope of the job's query.** The key is a label, not a filter;it doesn't change which records are archived. Your `WHERE` conditions must filter by the same field or fields named in the key, so that two jobs with different keys never touch the same records (zero overlap).
+- **Consistent within a job.** A single job must archive records for only one value of the key. For example, if the key is the legal entity, each job should process just one legal entity. A job that spans multiple legal entities at once can't use the legal entity as its key, because the key would no longer describe the job's true scope.
+- **Non-null and string-compatible.** Validate that the value exists before you set it, and convert numeric values to a string (for example, use `int642Str()` for a `RecId`).
+
+> [!TIP]
+> Use `DataAreaId` (legal entity) unless your scenario genuinely needs finer-grained partitioning. It's usually the safest choice, but it guarantees zero overlap only when each job's `WHERE` conditions filter by `DataAreaId` and a single job processes just one legal entity at a time. You can use a composite key (for example, `_criteria.DataAreaId + '|' + region`) to gain more parallelism, but only if your `WHERE` conditions filter by every field in that key. Otherwise, jobs with different keys could process overlapping records.
+
+#### Create job contract creator (BI Extension)
+
+To create BI extension class to add LTR configuration, follow these steps:
+> [!IMPORTANT]
+> You must create this extension in the **BusinessIntelligence** model. Don't create it in your main model.
+
+1. Switch to the BusinessIntelligence model project.
+1. Create a new class.
+1. Set the name to `Custom[ScenarioName]ArchiveAutomationJobRequestCreator_BI_Extension`.
+1. Add the extension attribute.
+
+```xpp
+using Microsoft.Dynamics.Archive.Contracts;
+
+[ExtensionOf(classStr(CustomWorkflowArchiveAutomationJobRequestCreator))]
+public final class CustomWorkflowArchiveAutomationJobRequestCreator_BI_Extension
+{
+    // Extension logic
+}
+```
+
+#### Extend createPostJobRequest with LTR configuration
+
+```xpp
+public ArchiveJobPostRequest createPostJobRequest(var _criteria)
+{
+    // Call base implementation (gets job contract with tables)
+    ArchiveJobPostRequest postRequest = next createPostJobRequest(_criteria);
+    
+    // Add LTR configuration for source link table
+    postRequest = this.addSourceLinkTableForLongTermRetention(postRequest, _criteria);
+    
+    return postRequest;
+}
+```
+
+#### Implement LTR configuration method
+
+```xpp
+private ArchiveJobPostRequest addSourceLinkTableForLongTermRetention(
+    ArchiveJobPostRequest _postRequest,
+    var _criteria)
+{
+    // Construct builder from existing contract
+    ArchiveServiceArchiveJobPostRequestBuilder builder = 
+        ArchiveServiceArchiveJobPostRequestBuilder::constructFromArchiveJobPostRequest(_postRequest);
+    
+    // Add LTR configuration for source link table
+    builder.addSourceLinkTableForLongTermRetention(
+        ArchiveServiceSourceLinkTableConfiguration::newForSourceTable(
+            tableStr(CustomWorkflowHeader),
+            tableStr(CustomWorkflowHeaderHistory),
+            tableStr(mserp_customworkflowheaderbientity))  // Dataverse entity name
+        
+        // WHERE conditions must match base class criteria
+        .addWhereCondition(
+            fieldStr(CustomWorkflowHeader, DataAreaId),
+            ArchiveServiceOperator::Equals,
+            _criteria.DataAreaId)
+        
+        .addWhereCondition(
+            fieldStr(CustomWorkflowHeader, CompletedDate),
+            ArchiveServiceOperator::LessThan,
+            _criteria.ArchiveBeforeDate)
+        
+        .addWhereCondition(
+            fieldStr(CustomWorkflowHeader, WorkflowStatus),
+            ArchiveServiceOperator::Equals,
+            WorkflowStatus::Completed));
+    
+    // Finalize and return updated contract
+    return builder.finalizeArchiveJobPostRequest();
+}
+```
 
 #### Keep job contract logic in one class
 
@@ -531,7 +637,8 @@ Use `ArchiveServiceManagedTypeRegistration` in `getManagedTypeRegistration()` to
 
 To build your solution, follow these steps:
 
-1. Build your customer-owned model (tables, entities, job creator, and type registration).
+1. Build your main model (tables, base job creator, type registration).
+1. Build BusinessIntelligence model (finance and operations data entities, extension class).
 1. Resolve any compilation errors.
 
 #### Synchronize database
@@ -657,8 +764,13 @@ Code:
 
 - Created job contract creator class in customer-owned model.
 - Implemented archive criteria in `createPostJobRequest`.
-- Added root and child tables with correct JOINs and segregation filters.
-- Created managed type registration class using `ArchiveServiceIManagedArchiveType`.
+- Set a job criteria key to enable parallel processing (optional).
+- Added all child tables with correct JOINs.
+- Created BI extension class in BusinessIntelligence model.
+- Added LTR configuration for source link table.
+- Created type registration class.
+- Added archive type to `ArchiveType` enum.
+- Type registration runs on startup.
 - No compilation errors.
 
 Testing:
@@ -678,5 +790,6 @@ Testing:
 - [Add custom fields to Microsoft-managed tables](archive-custom-add-fields.md)
 - [Add custom tables to standard scenarios](archive-custom-add-tables.md)
 - [Configure Dataverse for long-term retention](archive-custom.md#configure-dataverse-for-long-term-retention)
+- [Parallel processing for archive jobs](archive-parallel-process.md)
 
 [!INCLUDE[footer-include](../../../includes/footer-banner.md)]

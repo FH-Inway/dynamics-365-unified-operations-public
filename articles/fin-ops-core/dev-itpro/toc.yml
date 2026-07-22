@@ -345,6 +345,8 @@ items:
             href: ../../commerce/archive-transactions.md
           - name: Purge from history archive (preview)
             href: sysadmin/archive-purge.md
+          - name: Parallel Processing
+            href: sysadmin/archive-parallel-process.md
         - name: Finance and operations apps archive with Dataverse long term retention FAQ
           href: sysadmin/archive-faq.md
     - name: Azure Data Lake

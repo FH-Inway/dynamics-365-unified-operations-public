@@ -4,7 +4,7 @@ description: Learn how to extend existing Microsoft archive scenarios by adding 
 author: git-kiran 
 ms.author: Weijiesa 
 ms.topic: how-to
-ms.date: 05/12/2026 
+ms.date: 07/20/2026 
 ms.custom:
   - bap-template
 ms.reviewer: twheeloc
@@ -61,6 +61,7 @@ To add your custom field, follow these steps:
    - In the **Label** field, enter a descriptive name.
    - In the **Help text** field, explain the custom field's purpose.
    - Configure **Extended Data Type** or base type.
+   - Set **Access modifier** to **Public** so the field is accessible by the archive framework.
    - Set the **Mandatory** property if necessary.
 
 Example fields:
@@ -146,20 +147,8 @@ To add the data source field, follow these steps:
 1. Configure field visibility:
    - Set **Visible** = **Yes** for the field to appear in the entity.
 
-### Verify entity properties on the base entity
-
-Microsoft-managed entities already have the following properties set correctly. Verify they're configured:
-
-- `IsPublic` = Yes
-- `PublicEntityName` = Entity name
-- `Is Read Only` = Yes
-- `Allow Retention` = Yes
-- `Allow Row Version Change Tracking` = Yes
-- `Auto Create` = Yes (enables automatic Dataverse sync)
-- `Auto Refresh` = Yes (keeps metadata in sync)
-
 > [!NOTE]
-> These properties are on the base entity, not your extension. Microsoft-managed entities already have these properties configured. You only need to add your field to the entity extension.
+> Microsoft-managed entities already have the required archive properties configured, such as `Allow Retention`, `Auto Create`, and `Auto Refresh`. You only need to add your custom field to the entity extension. The framework automatically includes the field in archive operations.
 
 ### Build and test
 
@@ -172,7 +161,7 @@ Microsoft-managed entities already have the following properties set correctly. 
 
 Update the Dataverse virtual entity metadata to include your custom field.
 
-### Automatic refresh (Recommended)
+### Automatic refresh (recommended)
 
 If the base entity has `Auto Create = Yes` and `Auto Refresh = Yes` set:
 

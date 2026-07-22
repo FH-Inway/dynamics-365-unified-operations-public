@@ -4,7 +4,7 @@ description: Learn about the data sources that are supported in the Electronic r
 author: kfend
 ms.author: johnmichalak
 ms.topic: article
-ms.date: 12/02/2025
+ms.date: 07/17/2026
 ms.reviewer: johnmichalak
 audience: Developer, IT Pro
 ms.search.region: Global
@@ -177,7 +177,7 @@ The optional **Version** property specifies the revision of the data model compo
 > Leave this property blank to use a data model component from the configuration [version](er-overview-components.md#component-versioning) that's in the **Draft** status. In this way, you can simultaneously edit your ER model mapping or ER format and its base data model.
 
 > [!IMPORTANT]
-> You must specify this property when you change the status of the editable configuration from **Draft** to **Completed**. If you change the structure of the draft data model and use your changes in the edited ER model mapping or ER format, change the status of the edited base data model configuration version from **Draft** to **Completed** before you make the same change for the edited configuration version of the ER model mapping or ER format. Otherwise, a [Path not found](er-components-inspections.md#i3) exception is thrown when you try to complete the draft version of the edited ER model mapping or ER format configuration.
+> You must specify this property when you change the status of the editable configuration from **Draft** to **Completed**. If you change the structure of the draft data model and use your changes in the edited ER model mapping or ER format, change the status of the edited base data model configuration version from **Draft** to **Completed** before you make the same change for the edited configuration version of the ER model mapping or ER format. Otherwise, a [Path not found](er-list-of-validations.md#i3) exception is thrown when you try to complete the draft version of the edited ER model mapping or ER format configuration.
 
 ### <a name="data-model"></a>Data model
 
@@ -641,8 +641,8 @@ The following aggregate functions are currently supported.
 Depending on the nature of the base data source, the grouping and aggregation can be done either at the database level or in memory. To specify the execution location, select the desired option for the **Execution location** property of the configured data source:
 
 - Select the **In memory** option to do grouping and aggregation in application memory.
-- Select the **Query** option to do grouping and aggregation in the application database [when applicable](er-components-inspections.md#i5).
-- Leave the default **Autodetect** option to let ER identify the most appropriate execution location. If the base data source is [queryable](er-components-inspections.md#i5), the **Query** option is applied when you save changes to the configured data source. Otherwise, the **In memory** option is applied.
+- Select the **Query** option to do grouping and aggregation in the application database [when applicable](er-list-of-validations.md#i5).
+- Leave the default **Autodetect** option to let ER identify the most appropriate execution location. If the base data source is [queryable](er-list-of-validations.md#i5), the **Query** option is applied when you save changes to the configured data source. Otherwise, the **In memory** option is applied.
 
 The configured **Group by** data source exposes a single record for every group of records of the base data source. This **Group by** data source is structured to expose the results of data grouping and aggregation for each group of records at runtime.
 
@@ -682,7 +682,7 @@ The following illustration shows the configuration of a data source of the *Join
 Depending on the nature of the base data sources, the join can be done either at the database level or in memory. To specify the execution location, select the desired option for the **Execute** property of the configured **Join** data source:
 
 - Select the **In memory** option to do the join in application memory.
-- Select the **Query** option to do the join in the application database [when applicable](er-components-inspections.md#i6).
+- Select the **Query** option to do the join in the application database [when applicable](er-list-of-validations.md#i6).
 
 This **Join** data source includes several base data sources that you configure under each other as nested fields of the *Calculated field* type. The expression of every configured calculated field includes the condition that's used to associate records of the base data source with records of the nested data source.
 

@@ -4,7 +4,7 @@ description: Learn about how to create and run test cases, including prerequisit
 author: josaw1
 ms.author: josaw
 ms.topic: how-to
-ms.date: 03/16/2026
+ms.date: 04/29/2026
 ms.reviewer: johnmichalak
 audience: Developer
 ms.search.region: Global
@@ -33,9 +33,9 @@ You need to deploy Developer Topology with Developer and Build VM.
 
 :::image type="content" source="./media/54.png" alt-text="Screenshot of integrating a test module.":::  
 
-## Use SysTest Framework to author unit/component test code
+## Use SysTest Framework to author unit and component test code
 
-You can create new test cases to test the functionality in an application.
+Create new test cases to test the functionality in an application.
 
 1. Open Visual Studio as an administrator.
 1. On the **File** menu, select **Open** > **Project/Solution**, and then select the **FleetManagement** solution from the desktop folder. If the solution file isn't on your computer, see [End-to-end scenario for the Fleet Management sample application](../dev-tools/fleet-management-sample.md).
@@ -53,7 +53,7 @@ You can create new test cases to test the functionality in an application.
    :::image type="content" source="./media/57.png" alt-text="Screenshot of the Add New Item window.":::
 
 1. In the first line of the code for the new class, indicate that the class extends the SysTestCase class.
-1. Add the following code to define the methods for the class. These methods define two additional tests.
+1. Add the following code to define the methods for the class. These methods define two other tests.
 
     ```xpp
     class FMUnitTestSample extends SysTestCase
@@ -108,16 +108,20 @@ You can create new test cases to test the functionality in an application.
     }
     ```
 
-1. Save the new class. After the save is complete, the two additional test cases appear in **Test Explorer**. Right-click the FleetManagementUnitTestSample project in **Solution Explorer**, and then select **Build**.
+1. Save the new class. After the save is complete, the two other test cases appear in **Test Explorer**. Right-click the FleetManagementUnitTestSample project in **Solution Explorer**, and then select **Build**.
 1. On the **View** menu, open **Test Explorer**.
 1. Select **Run selected test** to execute a specific test case.
 1. **Test Explorer** shows the results of the test after it completes.
 
    :::image type="content" source="./media/59-300x290.png" alt-text="Screenshot of a completed test in Test Explorer.":::
 
+## Test methods aren't hookable by default
+
+For efficiency, test methods aren't hookable by default. Test methods are the methods that have the `SysTestCheckinTest`, `SysTestInactiveTest`, `SysTestMethod`, or `SysTestNonCheckInTest` attributes. Test methods rarely need pre- and posthandlers. If you need this functionality, add the [Hookable(true)] attribute to the method.
+
 ## Test isolation
 
-For a test to be valuable, it must be reliable. A test passes or fails consistently, independent of other factors such as other tests. One typical cause of unreliable tests is leaking state, such as data left behind in the database that influences downstream tests. To prevent this type of issue, use the ```SysTestTransaction``` attribute.
+For a test to be valuable, it must be reliable. A test passes or fails consistently, independent of other factors such as other tests. One typical cause of unreliable tests is leaking state, such as data left behind in the database that influences downstream tests. To prevent this type of issue, use the `SysTestTransaction` attribute.
 
 |  TestTransactionMode | Description  |
 |---|---|
@@ -139,7 +143,7 @@ Create a test-specific module to keep test code together and manageable.
 
 1. Open **Visual Studio** and go to **Dynamics 365** > **Model Management** > **Create model**.
 
-1. Enter the model name, select the layer, and then enter any additional details. Include the word **Test** in the name of the test module. The default build definition is configured to discover all test modules that contain the word **Test**.
+1. Enter the model name, select the layer, and then enter any other details. Include the word **Test** in the name of the test module. The default build definition is configured to discover all test modules that contain the word **Test**.
 
 1. Because this model holds forms from the Application Platform/Foundation, add references to the following models.
 
@@ -153,25 +157,25 @@ You can generate test code from a Task Recorder recording to execute a headless 
 
 1. Record a scenario by using Task Recorder.
 
-2. To import a Task Recording, in Visual Studio, select **Dynamics 365** > **Addins** > **Import Task Recording**.
+1. To import a Task Recording, in Visual Studio, select **Dynamics 365** > **Addins** > **Import Task Recording**.
 
-3. In the **Import Task Recording** dialog, select the test module (ISVTestModule) under which you want to import the task recording, and browse to the recording XML file.
+1. In the **Import Task Recording** dialog, select the test module (ISVTestModule) under which you want to import the task recording, and browse to the recording XML file.
 
    :::image type="content" source="./media/64-249x300.png" alt-text="Screenshot of the Import Task Recording dialog with Test Module selected.":::
 
-4. The task recording import process generates test code that's based on the SysTestAdapter and FormAdaptor. You can view this test code in the Visual Studio IDE. You don't need to change any test source code that's generated as part of this step.
+1. The task recording import process generates test code that's based on the SysTestAdapter and FormAdaptor. You can view this test code in the Visual Studio IDE. You don't need to change any test source code that's generated as part of this step.
   
-5. After the test code is generated, set up Visual Studio options for test discovery and execution:
+1. After the test code is generated, set up Visual Studio options for test discovery and execution:
    - If you have a 64-bit machine, you can run unit tests and capture code coverage information as a 64-bit process.
    - To configure this option, select **Test** > **Test Settings** > **Default Processor Architecture**, and then select **X64**.
    - You might run into a situation where the test execution engine opens and locks an assembly in your test project. When this condition happens, you can't, for example, save changes to the assembly. To fix this problem, select **Test** > **Test Settings**, and then select **Keep Test Execution Engine Running**.
     - Now that you have test code generated in the Visual Studio IDE, it's time to discover the tests and try executing them locally.
 
-6. From the menu options, select **Test** > **Windows**, and then select **Test Explorer**. After the **Test Explorer** window opens, it attempts to discover tests from the test code and lists all the available tests as shown in the following image.
+1. From the menu options, select **Test** > **Windows**, and then select **Test Explorer**. After the **Test Explorer** window opens, it attempts to discover tests from the test code and lists all the available tests as shown in the following image.
 
     :::image type="content" source="./media/67-1024x658.png" alt-text="Screenshot of the Test Explorer window with available tests listed.":::
 
-7. Select the test and then select **Run** > **Execute selected**. This action executes the test against the locally deployed environment.
+1. Select the test and then select **Run** > **Execute selected**. This action executes the test against the locally deployed environment.
 
    :::image type="content" source="./media/68-1024x652.png" alt-text="Screenshot of executing selected tests in Test Explorer.":::
 

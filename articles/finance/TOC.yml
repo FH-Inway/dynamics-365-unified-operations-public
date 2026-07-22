@@ -5073,6 +5073,10 @@
                           href: ../fin-ops-core/dev-itpro/analytics/er-functions-category-mathematical.md?context=/dynamics365/context/finance
                         - name: Abs
                           href: ../fin-ops-core/dev-itpro/analytics/er-functions-mathematical-abs.md?context=/dynamics365/context/finance
+                        - name: DIV
+                          href: ../fin-ops-core/dev-itpro/analytics/er-functions-mathematical-div.md?context=/dynamics365/context/finance
+                        - name: MOD
+                          href: ../fin-ops-core/dev-itpro/analytics/er-functions-mathematical-mod.md?context=/dynamics365/context/finance
                         - name: Power
                           href: ../fin-ops-core/dev-itpro/analytics/er-functions-mathematical-power.md?context=/dynamics365/context/finance
                         - name: Round

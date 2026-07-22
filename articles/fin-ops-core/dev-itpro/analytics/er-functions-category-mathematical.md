@@ -25,6 +25,8 @@ Electronic reporting (ER) mathematical functions can be used to do many common m
 | Function | Description |
 |----------|-------------|
 | [Abs](er-functions-mathematical-abs.md)             | This function returns the absolute value (modulus) of the specified number as a *Real* value. In other words, it returns the number without its sign. |
+| [DIV](er-functions-mathematical-div.md) | This function returns the integer division of two integers. The result is the quotient of the division of `dividend` by `divisor`, rounded down to the nearest integer. |
+| [MOD](er-functions-mathematical-mod.md) | This function returns the remainder after a number is divided by another number. In other words, it returns the modulus of the specified numbers. |
 | [Power](er-functions-mathematical-power.md)         | This function returns a *Real* value that represents the result of raising the specified positive number to the specified power. |
 | [Round](er-functions-mathematical-round.md)         | This function returns the specified number as a *Real* value after it has been rounded to the specified number of decimal places. |
 | [RoundDown](er-functions-mathematical-rounddown.md) | This function returns the specified number as a *Real* value after it has been rounded down to the specified number of decimal places. |

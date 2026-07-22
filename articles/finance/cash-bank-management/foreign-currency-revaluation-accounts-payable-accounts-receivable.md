@@ -1,10 +1,10 @@
 ---
 title: Currency revaluation for Accounts payable and Accounts receivable
 description: Learn about the foreign currency revaluation process that you run to update the value of open transactions in Accounts payable and Accounts receivable.
-author: music727
-ms.author: mibeinar
+author: mukumarm
+ms.author: mukumarm
 ms.topic: article
-ms.date: 04/01/2026
+ms.date: 07/20/2026
 ms.reviewer: twheeloc
 audience: Application User
 ms.search.region: Global
@@ -22,12 +22,12 @@ Fluctuations in exchange rates cause the theoretical value (book value) of open 
 
 The theoretical value, or book value, of open transactions in foreign currencies varies over time because of fluctuations in exchange rates. To update the value of open transactions in Accounts payable and Accounts receivable, run the foreign currency revaluation process. Foreign currency revaluation can be run for both Accounts payable and Accounts receivable. The process uses a new exchange rate to revalue the open amounts, or not settled amounts, on a specified date. The differences between the original posted amounts and the revalued amounts cause an unrealized gain or loss for each open transaction. The Accounts payable and Accounts receivable subledgers are then updated to reflect the unrealized gain or loss, and an accounting entry is posted to General ledger.
 
->[!NOTE]
+> [!NOTE]
 > If the **Enable process automation for accounts receivable and accounts payable foreign currency revaluation** feature is enabled, process automations for Accounts payable and Accounts receivable foreign currency revaluations are available. For more information, see [Process automation](../../fin-ops-core/fin-ops/sysadmin/process-automation.md).
 
 ## Simulate a foreign currency revaluation
 
-Before you revalue foreign currency amounts on open transactions, you can run a simulation report of the foreign currency revaluation for the same date and method. To run the simulation report, on the **Foreign currency revaluation** page, select **Simulation**. The report provides a preview of the unrealized gain or loss amount, based on the parameters you define for the simulation.
+Before you revalue foreign currency amounts on open transactions, run a simulation report of the foreign currency revaluation for the same date and method. To run the simulation report, on the **Foreign currency revaluation** page, select **Simulation**. The report provides a preview of the unrealized gain or loss amount, based on the parameters you define for the simulation.
 
 ## Process a foreign currency revaluation
 
@@ -78,6 +78,9 @@ In version 10.0.39, the **Exchange rate type enhancement for accounts payable an
     - **Ledger** – Use the exchange rate type that's defined in the ledger setup.
     - **Specific** – Use the accounting currency exchange rate type and reporting currency exchange rate type that are defined in the current legal entity.
     - **Group** – Use the accounting currency exchange rate type and reporting currency exchange rate type that are defined in the customer group.
+
+> [!NOTE]
+> When the calculated foreign currency revaluation amount for a transaction rounds to zero, the system doesn't generate or post any unrealized gain or loss transactions. For example, if a foreign currency revaluation results in an **unrealized gain** of **0.004** EUR and the amount rounds to **0.00** EUR, the system doesn't generate or post any unrealized gain or loss transactions.
 
 > [!NOTE]
 > Exchange gain or loss isn't aggregated. At the time of settlement, the unrealized gain or loss for each open transaction should be reversed to recalculate any realized gain or loss. If the total gain or loss is posted to the general ledger, it isn't possible to reverse per transaction.

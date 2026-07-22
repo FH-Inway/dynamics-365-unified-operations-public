@@ -5420,7 +5420,13 @@
                     - name: Compress large outbound documents
                       href: ../fin-ops-core/dev-itpro/analytics/er-compress-outbound-files.md?context=/dynamics365/context/finance
                 - name: Inspect configured ER components
-                  href: ../fin-ops-core/dev-itpro/analytics/er-components-inspections.md?context=/dynamics365/context/finance
+                  items:
+                    - name: Validate ER format and model mapping to prevent runtime issues 
+                      href: ../fin-ops-core/dev-itpro/analytics/er-components-inspections.md?context=/dynamics365/context/finance
+                    - name: List of validations 
+                      href: ../fin-ops-core/dev-itpro/analytics/er-list-of-validations.md?context=/dynamics365/context/finance
+                    - name: Review validation history 
+                      href: ../fin-ops-core/dev-itpro/analytics/er-review-validation-history.md?context=/dynamics365/context/finance               
                 - name: Relative path in data bindings
                   href: ../fin-ops-core/dev-itpro/analytics/relative-path-data-bindings-er-models-format.md?context=/dynamics365/context/finance
                 - name: Design expressions to call application class methods
@@ -5495,6 +5501,8 @@
                   items:
                     - name: Trace execution of ER formats to troubleshoot performance issues
                       href: ../fin-ops-core/dev-itpro/analytics/trace-execution-er-troubleshoot-perf.md?context=/dynamics365/context/finance
+                    - name: Performance and memory considerations for Electronic reporting (ER)
+                      href: ../fin-ops-core/dev-itpro/analytics/er-memory-considerations.md?context=/dynamics365/context/finance
                     - name: Troubleshoot performance issues in ER configurations
                       href: ../fin-ops-core/dev-itpro/analytics/er-troubleshoot-perf-issues-in-configurations.md?context=/dynamics365/context/finance
                     - name: Reduce the number of table fields that are fetched at runtime

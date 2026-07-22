@@ -4,7 +4,7 @@ description: Learn  how to configure an Electronic reporting (ER) format to gene
 author: kfend
 ms.author: filatovm
 ms.topic: how-to
-ms.date: 04/02/2026
+ms.date: 07/17/2026
 ms.reviewer: johnmichalak
 audience: Developer, IT Pro
 ms.search.region: Global
@@ -133,7 +133,7 @@ To suppress the summary section in a generated document, based on the request of
         > [!NOTE]
         > This formula is applied to a generated document **after all other format elements run**. To apply this formula, a Word content control that is tagged as a format element that the formula is configured for (**SummaryLines** in this case) is found in a generated document. The content control is then completely removed, together with the row in the Word table that holds it. The details row of the summary section is removed from the generated document.
         >
-        > At design time, you might configure the **Removed** formula for a format element, even though no content control in the Word template that you're using has a tag that matches the name of a format element that the **Removed** property is configured for. When you validate the format at design time, you receive a [warning](er-components-inspections.md#i14) about this inconsistency.
+        > At design time, you might configure the **Removed** formula for a format element, even though no content control in the Word template that you're using has a tag that matches the name of a format element that the **Removed** property is configured for. When you validate the format at design time, you receive a [warning](er-list-of-validations.md#i14) about this inconsistency.
         >
         > At runtime, an exception is thrown if no content control in the Word template that you're using has a tag that matches the name of a format element that the **Removed** property is configured for.
 
@@ -167,7 +167,7 @@ To suppress the summary section in a generated document, based on the request of
 - [Design a configuration for generating reports in OPENXML format](./tasks/er-design-reports-openxml-2016-11.md)
 - [Design a new ER configuration to generate reports in Word format](er-design-configuration-word.md)
 - [Re-use ER configurations with Excel templates to generate reports in Word format](./tasks/er-design-configuration-word-2016-11.md)
-- [Inspect the configured ER component to prevent runtime issues](er-components-inspections.md#i14)
+- [Inspect the configured ER component to prevent runtime issues](er-list-of-validations.md#i14)
 
 
 [!INCLUDE[footer-include](../../../includes/footer-banner.md)]

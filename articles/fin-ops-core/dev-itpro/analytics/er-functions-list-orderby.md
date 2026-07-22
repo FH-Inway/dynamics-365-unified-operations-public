@@ -4,7 +4,7 @@ description: Learn about how the ORDERBY Electronic reporting (ER) function is u
 author: kfend
 ms.author: filatovm
 ms.topic: article
-ms.date: 04/08/2026
+ms.date: 07/17/2026
 ms.reviewer: johnmichalak
 audience: IT Pro
 ms.search.region: Global
@@ -84,7 +84,7 @@ When the `location` argument is specified as **Query**, data sorting is done at 
 
 The `expression 1` and `expression N` arguments must point to fields of an ER data source that specifies the relevant fields of the application source that a direct database query can also be established for.
 
-If a direct database query can't be established, a validation [error](er-components-inspections.md#i18) occurs in the ER model mapping designer. The message that you receive states that the ER expression that includes the `ORDERBY` function can't be run at runtime.
+If a direct database query can't be established, a validation [error](er-list-of-validations.md#i18) occurs in the ER model mapping designer. The message that you receive states that the ER expression that includes the `ORDERBY` function can't be run at runtime.
 
 For better performance, we recommend that you use the **Query** option when the sorting is configured for application data sources that might contain the large number of records (for example, for transactional application tables).
 
@@ -105,7 +105,7 @@ If you enter data source **DS** of the *Calculated field* type, and it contains 
 
 If **Vendor** is configured as an ER data source of the *Table records* type that refers to the **VendTable** table, both the expression `ORDERBY (Vendor, Vendor.'name()')` and the expression `ORDERBY ("InMemory", Vendor, Vendor.'name()')` return a list of vendors that is sorted by name in ascending order.
 
-When you configure the expression `ORDERBY ("Query", Vendor, Vendor.'name()')` in the ER model mapping designer, a validation [error](er-components-inspections.md#i8) occurs at design time, because the `Vendor.'name()'` path refers to an application method that has logic that can't be translated to a direct database query.
+When you configure the expression `ORDERBY ("Query", Vendor, Vendor.'name()')` in the ER model mapping designer, a validation [error](er-list-of-validations.md#i8) occurs at design time, because the `Vendor.'name()'` path refers to an application method that has logic that can't be translated to a direct database query.
 
 ## <a name="example-3"></a>Example 3: Database query
 
@@ -115,7 +115,7 @@ If **TaxTransaction** is configured as an ER data source of the *Table records* 
 
 If **TaxTransaction** is configured as an ER data source of the *Table records* type that refers to the **TaxTrans** table, the **TaxTransactionFiltered** ER data source can be configured so that it contains the expression `FILTER(TaxTransaction, TaxCode="VAT19")` that will fetch transactions for a specified tax code. Because the configured **TaxTransactionFiltered** ER data source is queryable, the expression `ORDERBY ("Query", TaxTransactionFiltered, TaxTransactionFiltered.TransDate)` can be configured to return the list of filtered tax transactions that is sorted by transaction date in ascending order.
 
-If you configure **TaxTransactionOrdered** as an ER data source of the *Calculated field* type that contains the expression `ORDERBY ("Query", TaxTransaction, TaxTransaction.TransDate)` and an ER data source of the *Calculated field* type that contains the expression `FILTER(TaxTransactionOrdered, TaxCode="VAT19")`, a validation [error](er-components-inspections.md#i18) occurs at design time in the ER model mapping designer. This error occurs because the first argument of the [FILTER](er-functions-list-filter.md#usage-notes) function must refer a queryable ER data source, but the **TaxTransactionOrdered** data source that contains the `ORDERBY` function isn't queryable.
+If you configure **TaxTransactionOrdered** as an ER data source of the *Calculated field* type that contains the expression `ORDERBY ("Query", TaxTransaction, TaxTransaction.TransDate)` and an ER data source of the *Calculated field* type that contains the expression `FILTER(TaxTransactionOrdered, TaxCode="VAT19")`, a validation [error](er-list-of-validations.md#i18) occurs at design time in the ER model mapping designer. This error occurs because the first argument of the [FILTER](er-functions-list-filter.md#usage-notes) function must refer a queryable ER data source, but the **TaxTransactionOrdered** data source that contains the `ORDERBY` function isn't queryable.
 
 ## <a name="example-5"></a>Example 5: Comparability
 

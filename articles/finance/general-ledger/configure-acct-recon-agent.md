@@ -4,7 +4,7 @@ description: Learn how to set up and configure the Account reconciliation agent 
 author: twheeloc
 ms.author: bking
 ms.topic: overview
-ms.date: 05/07/2026
+ms.date: 06/23/2026
 ms.reviewer: twheeloc
 ms.collection: get-started
 audience: Application User
@@ -20,7 +20,7 @@ ms.assetid: 9d8f55cb-b2cf-4e01-89cf-0e21f5c8ae1f
 [!include [banner](../includes/banner.md)]
 [!INCLUDE [preview-banner](~/../shared-content/shared/preview-includes/preview-banner.md)]
 
->[!NOTE]
+> [!NOTE]
 > Microsoft is enhancing the Account Reconciliation Agent to give customers more configuration flexibility and predictable credit consumption. Until these improvements are released, the Microsoft team must activate this agent. To request activation and be guided through the process, complete this [form](https://forms.office.com/r/wCREkgRH6D).
 
 This article explains how system administrators can set up and configure the Account reconciliation agent in Microsoft Dynamics 365 Finance.
@@ -33,42 +33,31 @@ Customers can use Power Platform admin center to set up and configure the Accoun
 
 Before you use the Account reconciliation agent, make sure your system meets the following requirements:
 
-- You're running Dynamics 365 Finance version 10.0.44 or later. To use Dynamics 365 ERP Model Context Protocol capabilities, you're running Dynamics 365 Finance version 10.0.47 or later.
+- You're running Dynamics 365 Finance version 10.0.46 or later.
 - You turn on the following features in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). If the features don't appear in your system, select **Check for updates**.
-
   - Immersive Home
   - Agent management
   - (Production ready preview) Account reconciliation agent
-  - (Preview) Dynamics 365 ERP Model Context Protocol server (Optional)
 
 - You're running the following packages in the Power Platform admin center:
 
   - **Copilot for finance and operations apps**, version 1.0.3048.2 or later
   - **Copilot in Microsoft Dynamics 365 Finance**, version 1.0.3049.1 or later
   
-- Normally, the Microsoft Copilot Studio agents needed for the Account reconciliation agent to run are published automatically. But there might be data loss prevention (DLP) policies on your environment that prevent the publishing of these agents.
-- To check if the agents are successfully published, follow these steps:
+The Microsoft Copilot Studio agents needed for the Account reconciliation agent to run are published automatically. But there might be data loss prevention (DLP) policies on your environment that prevent the publishing of these agents. To check if the agents are successfully published, follow these steps:
 
 1. Go to Copilot Studio and find your environment.
 1. Confirm that the following Microsoft Copilot Studio agents are published in that environment:
 
 - Account reconciliation agent
-- Account reconciliation amounts
-- Account reconciliation API
+
 If the agents aren't published, see [Troubleshoot data policy enforcement for Copilot Studio](/microsoft-copilot-studio/admin-dlp-troubleshooting).
 Confirm that the agents are shared with the organization.
 
 Learn more in [Immersive Home overview](../../fin-ops-core/fin-ops/copilot/immersive-home.md).  
 
-## Set up agent identity users and assign security roles
-
-Use the user management features for your tenant to create an agent identity user. Then assign the licenses and security roles described in the following subsections to that user.
-
-### License requirements
-
-The Account reconciliation agent uses premium tier connectors, so the agent identity user must have a license that permits those connectors. To learn more, see [Power Platform licensing FAQs](/power-platform/admin/powerapps-flow-licensing-faq). Examples of sufficient licenses include Power Apps premium, Power Automate premium, or Dynamics 365 Finance.
-Use the Microsoft 365 admin center to assign the required licenses.
-
+### Set up agent identity
+>
 > [!TIP]
 > For security and ease of maintenance, use a dedicated identity for the agent.
 
@@ -89,13 +78,13 @@ Assign the following security roles to the user accounts:
   - Account reconciliation agent
   - System user
 
->[!NOTE]
+> [!NOTE]
 > The system agent security role is exempt from Dynamics 365 finance and operations user license requirements. For more information, see [Use Model Context Protocol for finance and operations apps](../../fin-ops-core/dev-itpro/copilot/copilot-mcp.md#agent-licenses).
 
 ### Deploy the agent
-
->[!NOTE]
-> You can deploy the agent in two ways. The first way is to use the new Agent Deployment Wizard experience. The second way is to manually create the required connections and activate the flows by using a PowerShell script. The following sections describe the two ways.  
+>
+> [!NOTE]
+> You can deploy the agent in two ways. The first way is to use the new Agent Deployment Wizard experience. The second way is to manually create the required connections and activate the flows by using a PowerShell script. The following sections describe the two ways.
 
 ### Deployment via the Agent deployment wizard
 
@@ -160,11 +149,6 @@ To set up the connectors, follow these steps:
 
     You're returned to the **Connections** page. The new connector appears at the bottom of the list and is named after the agent identity that you signed in as when you created it.
 
-1. At the top of the page, select **New connection**.
-1. Search for the **Fin & Ops Apps (Dynamics 365)** connection.
-1. Select **Create**, and follow the on-screen instructions to create the connector. When you're prompted to sign in, sign in as the intended agent identity.
-You're returned to the **Connections** page. The new connector appears at the bottom of the list and is named after the agent identity that you signed in as when you created it.
-
 #### Update connection references and activate the triggering flows
 
 To finish setting up agent identity, update the agent's connection references so that they point to the connections that you created. You must also activate the triggering Power Automate flows. This section provides a sample PowerShell script that you can use to complete both tasks.
@@ -178,7 +162,6 @@ To use the sample PowerShell script, follow these steps:
     - `dataverseUrl` – Specify the URL of your Dataverse environment. You can find this URL in the Power Platform admin center.
     - `DVConnectionName` – Specify the name of the Dataverse connector to use. The connector is named after the agent identity that you signed in as when you [created it](#create-the-required-connections). You can find the name on the **Connections** page in Power Apps.
     - `MCSConnectionName` – Specify the name of the Copilot Studio connector to use. The connector is named after the agent identity that you signed in as when you [created it](#create-the-required-connections). You can find the name on the **Connections** page in Power Apps.
-    - `DynamicsAXConnectionName`  – Specify the name of the Fin & Ops Apps connector to use. The connector is named after the agent identity that you signed in as when you created it. You can find the name on the **Connections** page in Power Apps.
 
 1. Customize the script as you require.
 1. Run the script from any PowerShell console. When you're prompted to sign in, sign in as an environment administrator.
@@ -195,8 +178,6 @@ Param(
     [string]$DVConnectionName = "",
     [Parameter(Mandatory=$true, HelpMessage="Microsoft Copilot Studio connection name")]
     [string]$MCSConnectionName = ""
-    [Parameter(Mandatory=$false, HelpMessage="Dynamics 365 Finance and Operations connection name")]
-    [string]$DynamicsAXConnectionName = ""
 )
 # Check PS version
 if ($PSVersionTable.PSVersion.Major -lt 7) {
@@ -373,31 +354,27 @@ Set-ConnectionReferenceConnection `
     -providerName "/providers/Microsoft.PowerApps/apis/shared_microsoftcopilotstudio" `
     -connectionReferenceLogicalName "msdyn_sharedmicrosoftcopilotstudio_462f2" `
     -accessToken $accessToken
-if ($DynamicsAXConnectionName)
-{
-    Set-ConnectionReferenceConnection -userProvidedConnectionName $DynamicsAXConnectionName -providerName "/providers/Microsoft.PowerApps/apis/shared_dynamicsax" -connectionReferenceLogicalName "msdyn_accountReconciliationApi.shared_dynamicsax.d2dc587e63f84ef68793f11e1a7b9ba3" -accessToken $accessToken
-}
 
 Write-Host
 Write-Host 'Activating flows...'
 Write-Host
 
-Enable-TriggerFlow -flowId '3d0aef2d-ca97-ef11-a72d-000d3a36041c' -accessToken $accessToken # Account reconciliation - Acknowledge receipt of reconciliation event
-Enable-TriggerFlow -flowId '5cd7d9b8-37a1-ef11-a72d-000d3a5a293d' -accessToken $accessToken # Account reconciliation - Agent execution request added
-Enable-TriggerFlow -flowId '0274b722-b1a4-ef11-a72d-6045bd075f60' -accessToken $accessToken # Account reconciliation - Analyze exception data for amount mismatch rules
 Enable-TriggerFlow -flowId '570a7d17-ac0a-f011-bae1-6045bd0139fb' -accessToken $accessToken # Account reconciliation - Complete agent activity request
 Enable-TriggerFlow -flowId '75c311f8-1880-ef11-ac21-000d3a5aa6e6' -accessToken $accessToken # Account reconciliation - Determine work to be done
+Enable-TriggerFlow -flowId '13dd7af5-f73b-f111-bec6-0022480882fa' -accessToken $accessToken # Account reconciliation - Generate and log recommended action
+Enable-TriggerFlow -flowId 'd3314698-792b-f111-88b5-00224808ca0b' -accessToken $accessToken # Account reconciliation - Agent execution is triggered
 Enable-TriggerFlow -flowId '2b7f9cf7-0996-ef11-a72c-000d3a327b96' -accessToken $accessToken # Account reconciliation - Evaluate current exception against amount mismatch rules
 Enable-TriggerFlow -flowId '9726ee57-f604-f011-bae1-6045bd0139fb' -accessToken $accessToken # Account reconciliation - Evaluate ledger not in subledger exception record
 Enable-TriggerFlow -flowId 'e645e143-f804-f011-bae1-0022480b9145' -accessToken $accessToken # Account reconciliation - Evaluate subledger not in ledger exception record
 Enable-TriggerFlow -flowId '782ddc43-cd97-ef11-a72d-000d3a36041c' -accessToken $accessToken # Account reconciliation - Get Voucher Summary Record
 Enable-TriggerFlow -flowId '79284164-5a9c-ef11-a72d-000d3a5a293d' -accessToken $accessToken # Account reconciliation - Identify missing accounting
 Enable-TriggerFlow -flowId 'fe418c1d-5b9c-ef11-a72d-000d3a5a293d' -accessToken $accessToken # Account reconciliation - Identify pending transfers
-Enable-TriggerFlow -flowId '64fd40b7-d197-ef11-a72d-000d3a36041c' -accessToken $accessToken # Account reconciliation - Log recommended action"
+Enable-TriggerFlow -flowId '64fd40b7-d197-ef11-a72d-000d3a36041c' -accessToken $accessToken # Account reconciliation - Log recommended action
 Enable-TriggerFlow -flowId 'f8a02f0e-d097-ef11-a72d-000d3a36041c' -accessToken $accessToken # Account reconciliation - Mark reconciliation trigger complete
 Enable-TriggerFlow -flowId '96e55129-0798-ef11-a72c-000d3a36041c' -accessToken $accessToken # Account reconciliation - Trigger reconciliation for individual exceptions
 Enable-TriggerFlow -flowId 'e681a39e-1298-ef11-a72c-000d3a36041c' -accessToken $accessToken # Account reconciliation - Trigger subledger/ledger processing
 Enable-TriggerFlow -flowId 'c2ad4a0d-228f-ef11-96d2-002248047a14' -accessToken $accessToken # Account reconciliation - When an individual exception event is added
+
 
 Write-Host
 Write-Host 'Account reconciliation agents are ready for use' -ForegroundColor Green

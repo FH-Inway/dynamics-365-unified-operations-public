@@ -15,6 +15,8 @@ items:
         items:
         - name: What's new or changed in Platform updates home page
           href: ../fin-ops/get-started/whats-new-home-page.md
+        - name: Platform updates for version 10.0.49 (July 2026)
+          href: ../fin-ops/get-started/whats-new-platform-updates-10-0-49.md
         - name: Platform updates for version 10.0.48 (June 2026)
           href: ../fin-ops/get-started/whats-new-platform-updates-10-0-48.md
         - name: Platform updates for version 10.0.47 (January 2026)
@@ -343,6 +345,8 @@ items:
             href: ../../commerce/archive-transactions.md
           - name: Purge from history archive (preview)
             href: sysadmin/archive-purge.md
+          - name: Parallel Processing
+            href: sysadmin/archive-parallel-process.md
         - name: Finance and operations apps archive with Dataverse long term retention FAQ
           href: sysadmin/archive-faq.md
     - name: Azure Data Lake

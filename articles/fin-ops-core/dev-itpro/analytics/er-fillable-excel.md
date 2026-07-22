@@ -4,7 +4,7 @@ description: Learn about how to design an Electronic reporting (ER) format to fi
 author: kfend
 ms.author: filatovm
 ms.topic: how-to
-ms.date: 04/08/2026
+ms.date: 07/17/2026
 ms.reviewer: johnmichalak
 audience: Developer, IT Pro
 ms.search.region: Global
@@ -147,13 +147,13 @@ As of Dynamics 365 Finance version 10.0.23, when you're working in a generated d
 
 To start to use this functionality when you run any ER formats that were configured to use Excel templates to generate outbound documents, follow these steps:
 
-1. Go to **Organization administration** \> **Workspaces** \> **Electronic reporting**.
+1. Go to **Organization administration** > **Workspaces** > **Electronic reporting**.
 1. On the **Localization configurations** page, in the **Related links** section, select **Electronic reporting parameters**.
 1. On the **Electronic reporting parameters** page, on the **Runtime** tab, set the **Autofit row height** option to **Yes**.
 
 When you want to change this rule for a single ER format, update the draft version of that format by following these steps.
 
-1. Go to **Organization administration** \> **Workspaces** \> **Electronic reporting**.
+1. Go to **Organization administration** > **Workspaces** > **Electronic reporting**.
 1. On the **Localization configurations** page, in the **Configurations** section, select **Reporting configurations**.
 1. On the **Configurations** page, in the configurations tree in the left pane, select an ER configuration that is designed to use an Excel template to generate outbound documents.
 1. On the **Versions** FastTab, select the configuration version that has a status of **Draft**.
@@ -217,7 +217,7 @@ If the last component under the **Page** component is a **Range** component wher
 
 You can add multiple other **Range** components between the optional **Range** components to specify how a generated document is filled in.
 
-If the set of nested **Range** components under the **Page** component doesn't comply with the previously described structure, a validation [error](er-components-inspections.md#i17) occurs at design time in the ER format designer. The error message informs you that the issue can cause problems at runtime.
+If the set of nested **Range** components under the **Page** component doesn't comply with the previously described structure, a validation [error](er-list-of-validations.md#i17) occurs at design time in the ER format designer. The error message informs you that the issue can cause problems at runtime.
 
 > [!NOTE]
 > To generate correct output, don't specify a binding for any **Range** component under the **Page** component if you set the **Replication direction** property for that **Range** component to **No replication**, and the range is configured to generate page headers or page footers.
@@ -261,7 +261,7 @@ When you configure an individual **Footer** component, use the **Header/footer a
 For a single **Sheet** component, you can add several **Footer** components, each of which has a different value for the **Header/footer appearance** property. By using this approach, you can generate different footers for different types of pages in an Excel worksheet.
 
 > [!NOTE]
-> Make sure that each **Footer** component that you add to a single **Sheet** component has a different value for the **Header/footer appearance** property. Otherwise, a [validation error](er-components-inspections.md#i16) occurs. The error message that you receive notifies you about the inconsistency.
+> Make sure that each **Footer** component that you add to a single **Sheet** component has a different value for the **Header/footer appearance** property. Otherwise, a [validation error](er-list-of-validations.md#i16) occurs. The error message that you receive notifies you about the inconsistency.
 
 Under the added **Footer** component, add the required nested components of the **Text\\String**, **Text\\DateTime**, or other type. Configure the bindings for those components to specify how your page footer is filled in.
 
@@ -280,8 +280,8 @@ Use the **Header** component to add headers at the top of a generated worksheet 
 
 Select **Update from Excel** on the **Import** tab of the Action Pane to import an updated template into an editable ER format. During this process, the template for the selected **Excel\\File** component is replaced by a new template. The content of the editable ER format syncs with the content of the updated ER template.
 
-- If the ER format component isn't found in the editable format, the process automatically creates a new ER format component for every Excel name.
-- If the appropriate Excel name isn't found for an ER format component, the process deletes that component from the editable ER format.
+- If the process doesn't find the ER format component in the editable format, it automatically creates a new ER format component for every Excel name.
+- If the process doesn't find the appropriate Excel name for an ER format component, it deletes that component from the editable ER format.
 
 > [!NOTE]
 > Set the **Create Excel Sheet format element** option to **Yes** if you want to create the optional **Sheet** element in the editable ER format.
@@ -302,9 +302,9 @@ In version 10.0.28 and later, you can use the **Update Excel Header and Excel Fo
 
 To learn more about this feature, see [Modify Electronic reporting formats by reapplying Excel templates](modify-electronic-reporting-format-reapply-excel-template.md).
 
-## Validate an ER format
+## Excel-specific validation of ER format
 
-When you validate an ER format that you can edit, the system checks for consistency to make sure that the Excel name exists in the Excel template that you're currently using. The system notifies you about any inconsistencies. For some inconsistencies, the option to automatically fix problems is available.
+When you [validate](er-components-inspections.md) an ER format that you can edit, the system checks for consistency to make sure that the Excel name exists in the Excel template that you're currently using. The system notifies you about any inconsistencies. For some inconsistencies, the option to automatically fix problems is available.
 
 :::image type="content" source="./media/er-excel-format-validate.png" alt-text="Screenshot of a validation error message.":::
 

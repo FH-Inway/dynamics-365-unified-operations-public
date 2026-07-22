@@ -4,7 +4,7 @@ description: Learn how you can use GROUPBY type data sources in Electronic repor
 author: liza-golub
 ms.author: egolub
 ms.topic: how-to
-ms.date: 06/25/2026
+ms.date: 07/17/2026
 ms.custom: 
   - bap-template 
 ms.reviewer: johnmichalak
@@ -44,7 +44,7 @@ At runtime, the system performs every aggregate calculation for each group of re
 When you edit a **GroupBy** data source and specify the base data source that contains the records to group, the system automatically detects the most efficient [location](#ExecutionLocation) for executing that **GroupBy** data source. If the base data source is
 [queryable](er-functions-list-filter.md#usage-notes) (that is, if it can run at the database level), the application database is also the execution location of the editable **GroupBy** data source. Otherwise, the application server memory is the execution location.
 
-You can manually change the automatically detected execution location by selecting the location that applies to the configured data source. If you select an execution location that isn't applicable, a [validation error](er-components-inspections.md#i5) is thrown at design time.
+You can manually change the automatically detected execution location by selecting the location that is applicable to the configured data source. If the execution location that is selected isn't applicable, a [validation error](er-list-of-validations.md#i5) is thrown at design time.
 
 > [!TIP]
 > Use the database location to group data sources that expose a large number of records.

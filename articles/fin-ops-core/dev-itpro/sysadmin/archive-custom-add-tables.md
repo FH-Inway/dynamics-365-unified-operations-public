@@ -4,7 +4,7 @@ description: Learn how to add related custom tables to existing Microsoft archiv
 author: git-kiran 
 ms.author: Weijiesa 
 ms.topic: how-to
-ms.date: 03/26/2026
+ms.date: 07/20/2026
 ms.custom:
   - bap-template
 ms.reviewer: twheeloc
@@ -334,12 +334,11 @@ Find the contract creator class for the scenario you're extending:
 - Sales order: `SalesOrderArchiveAutomationJobRequestCreator`
 - Inventory journal: `InventJournalArchiveAutomationJobRequestCreator`
 
-### Create extension in BusinessIntelligence model
+### Create extension in your customer-owned model
 
-> [!IMPORTANT]
-> Create this extension in the **BusinessIntelligence** model, not your base model. This approach ensures proper layering and dependency management.
+Create this extension in your customer-owned model. Don't create it in the BusinessIntelligence model.
 
-1. In the BusinessIntelligence model project, create a new class.
+1. In your model project, create a new class.
 1. Name: `[ExistingCreator]_[YourModel]_Extension`.
 1. Add the extension attribute.
 
@@ -377,34 +376,22 @@ private ArchiveJobPostRequest addCustomTableForLongTermRetention(
     ArchiveJobPostRequest _postRequest,
     var _criteria)
 {
-    // Construct builder from existing request
     ArchiveServiceArchiveJobPostRequestBuilder builder = 
         ArchiveServiceArchiveJobPostRequestBuilder::constructFromArchiveJobPostRequest(_postRequest);
-    
-    // Add custom table with parent, history, and entity
+
     builder.addSourceTableForLongTermRetention(
-        ArchiveServiceSourceTableConfiguration::newForSourceTable(
-            tableStr(CustomLedgerTransSettlement),              // Live table
-            tableStr(CustomLedgerTransSettlementHistory),       // History table
-            tableStr(mserp_customledgertranssettlementbientity), // Finance and operations data entity (Dataverse name)
-            tableStr(GeneralJournalAccountEntry)))              // Parent table
-        
-        // Define JOIN condition to parent
+        ArchiveServiceSourceTableConfiguration::newForChildSourceTable(
+            tableStr(CustomLedgerTransSettlement),
+            tableStr(CustomLedgerTransSettlementHistory),
+            tableStr(CustomLedgerTransSettlementBiEntity),
+            tableStr(GeneralJournalAccountEntry)))
         .addJoinCondition(
+            tableStr(CustomLedgerTransSettlement),
             fieldStr(CustomLedgerTransSettlement, TransRecId),
-            ArchiveServiceOperator::Equals,
             fieldStr(GeneralJournalAccountEntry, RecId))
-        
-        // Add WHERE conditions (match parent table criteria)
-        .addWhereCondition(
-            fieldStr(CustomLedgerTransSettlement, DataAreaId),
-            ArchiveServiceOperator::Equals,
-            _criteria.DataAreaId)
-        
-        // Add Partition condition if parent uses it
-        .addPartitionWhereCondition();
-    
-    // Finalize and return updated contract
+        .addDataAreaIdWhereCondition(tableStr(CustomLedgerTransSettlement), _criteria.DataAreaId)
+        .addPartitionWhereCondition(tableStr(CustomLedgerTransSettlement));
+
     return builder.finalizeArchiveJobPostRequest();
 }
 ```
@@ -412,20 +399,16 @@ private ArchiveJobPostRequest addCustomTableForLongTermRetention(
 #### Implementation points
 
 - Parent table specification:
-  - Must match exactly the parent table name in the scenario
-  - Typos in parent table name cause validation failures
+  - Must match exactly the parent table name in the scenario.
+  - Typos in parent table name cause validation failures.
 - JOIN conditions:
-  - Must match actual foreign key relationships
-  - Use exact field names from both tables
-  - Only `Equals` operator supported for JOINs
+  - Must match actual foreign key relationships.
+  - Use the table name, child field, and parent field.
 - WHERE conditions:
-  - Must include same segregation fields as parent (for example, `DataAreaId`)
-  - Other filters are optional
-  - Use appropriate operators (`Equals`, `GreaterThan`, `LessThan`, and so on)
-- Entity name in Dataverse:
-  - Use the Dataverse virtual entity name (starts with `mserp_`)
-  - Use all lowercase in code
-  - Example: `tableStr(mserp_customledgertranssettlementbientity)`
+  - Must include the same segregation fields as parent, for example, `DataAreaId`.
+  - Use `addDataAreaIdWhereCondition()` and `addPartitionWhereCondition()` where applicable.
+- Entity name:
+  - Use the finance and operations entity that corresponds to the live table.
 
 #### Test archive with custom table
 

@@ -4,7 +4,7 @@ description: Learn about the composite data types that are supported in Electron
 author: kfend
 ms.author: filatovm
 ms.topic: article
-ms.date: 04/08/2026
+ms.date: 07/17/2026
 ms.reviewer: johnmichalak
 audience: IT Pro
 ms.search.region: Global
@@ -80,7 +80,7 @@ By default, you access records in a *record list* sequentially. To access a spec
 The default value of a *record list* is **empty**. Use the [ISEMPTY](er-functions-list-isempty.md) function to check whether a *record list* is empty.
 
 > [!NOTE]
-> If a *record list* is empty, any attempt to get a field value for a *record* in it causes an exception to be thrown at runtime. To learn how you can help prevent runtime exceptions of this type, see [Consideration of empty list cases](er-components-inspections.md#i9).
+> If a *record list* is empty, any attempt to get a field value for a *record* in it causes an exception to be thrown at runtime. To learn how you can help prevent runtime exceptions of this type, see [Consideration of empty list cases](er-list-of-validations.md#i9).
 
 Initiate a *record list* by using the following functions:
 

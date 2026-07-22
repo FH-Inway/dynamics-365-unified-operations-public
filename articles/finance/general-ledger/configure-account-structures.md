@@ -4,7 +4,7 @@ description: Learn about account structures and financial dimensions, including 
 author: aprilolson
 ms.author: aolson
 ms.topic: article
-ms.date: 07/10/2026
+ms.date: 07/20/2026
 ms.update-cycle: 1095-days
 ms.custom: evergreen
 ms.reviewer: twheeloc
@@ -22,8 +22,6 @@ ms.assetid: 08fd46ef-2eb8-4942-985d-40fd757b74a8
 
 Account structures use the main account and financial dimensions to create a set of rules that determine the order and values when entering the account number. You can set up as many account structures as you need for your business. Assign the account structures to a company's ledger setup so you can share them. For a detailed definition, see the [glossary entry for account structure](/dynamics365/guidance/business-processes/glossary#a).
 
-Account structures and advanced rules only apply to journal lines and accounting distributions that use the **Ledger** account type. They don't validate financial dimensions for **non-ledger** account types like Vendor, Customer, or Bank accounts. To guide data entry for these non-ledger account types, set default financial dimensions on the non-ledger record.
-
 ## Account structures are trees presented as tables
 
 An account structure is stored internally as a tree, but the configuration page displays it as a flat table (grid) for maximum compatibility with export to Excel. Understanding this tree structure helps explain some behaviors you might encounter when working with account structures.
@@ -36,7 +34,7 @@ When you change a value on a segment that is shared across multiple rows - typic
 
 For example, if four rows all share the same **Business Unit** value of \* (all values), and you change **Business Unit** to `001` on any single row, all four rows update to `001`.
 
-![Diagram showing how account structure rows share tree branches, causing changes to propagate.](media/account-structure-tree-propagation.png)
+:::image type="content" source="media/account-structure-tree-propagation.png" alt-text="Diagram showing how account structure rows share tree branches, causing changes to propagate.":::
 
 In this example, all four rows share the same **MainAccount** (400000..999999) and **BusinessUnit** (001) values - highlighted in the green box. These two columns form a shared branch of the tree. Because all four rows share this branch, changing the **BusinessUnit** value on any single row updates all four rows at once.
 
@@ -66,7 +64,7 @@ Overlapping criteria within a structure commonly occur when:
 
 For example, if two rows both allow **Business Unit** `001` but lead to different **Cost Center** criteria, the system can't determine which branch to follow.
 
-![Example of overlapping criteria within a single account structure.](media/account-structure-overlap-within.png)
+:::image type="content" source="media/account-structure-overlap-within.png" alt-text="Screenshot of overlapping criteria within a single account structure.":::
 
 To fix this error, consolidate the criteria so that each combination of segment values follows a single path. For instance, merge the overlapping cost center values into a single row using a range like `040;050`.
 
@@ -98,7 +96,7 @@ The **Segments** and **Allowed values details** section provides a grid for ente
 
 The **Allowed value details** section guides you through creating criteria by using **Operators** such as begins with, is between, includes, and many others.
 
-![Screenshot of allowed values.](media/account.png)
+:::image type="content" source="media/account.png" alt-text="Screenshot of allowed values.":::
 
 Allowed values default on to a journal or accounting distribution entry page when the account structure setup doesn't provide any other possible values to select.
 
@@ -117,7 +115,7 @@ When you enter a journal and select an account in the profit and loss range, if 
 
 Each line in the grid can hold up to seven criteria for a given segment. This limit is based on factors such as column width, how the data is stored, and performance of the **Allowed value details** control.
 
-![Seven constraints on a segment.](media/save-seven-constraints-segment.png)
+:::image type="content" source="media/save-seven-constraints-segment.png" alt-text="Screenshot of seven constraints on a segment.":::
 
 If you need more than seven criteria, select **Duplicate in the Segment** and **Allowed values section**. This action copies the criteria to a new line, where you can type over or modify the **Allowed value details** section to add the extra criteria.
 
@@ -126,7 +124,7 @@ If you need more than seven criteria, select **Duplicate in the Segment** and **
 
 ### Valid and invalid characters in criteria
 
-The system compares all criteria in account structures as strings, not numbers. This distinction affects how ranges work.
+The system compares all criteria in account structures as **strings**, not numbers. This distinction affects how ranges work.
 
 #### Numeric value ranges are string-based
 
@@ -146,7 +144,7 @@ For example, if you enter `40000,49999,50000,52999,55000,59999` in the **MainAcc
 
 The **Allowed value details** section at the bottom of the form always uses semicolons. If your criteria appear collapsed into a single entry, check whether commas were entered instead of semicolons.
 
-![Screenshot showing correct use of semicolons in the criteria field.](media/account-structure-deb-semicolons.png)
+:::image type="content" source="media/account-structure-deb-semicolons.png" alt-text="Screenshot showing correct use of semicolons in the criteria field.":::
 
 #### Wildcards can't be used in ranges
 
@@ -165,7 +163,7 @@ When a wildcard appears inside a range, the system looks for values that literal
 
 You can use up to 11 segments in an account structure: one main account and up to 10 additional financial dimensions.
 
-![Maximum dimensions per account rule.](media/max-dimensions-per-account-rule.png)
+:::image type="content" source="media/max-dimensions-per-account-rule.png" alt-text="Screenshot of maximum dimensions per account rule.":::
 
 If you already have 11 segments in a structure, the **Add Segment** button is disabled. To add more dimensions beyond this limit, use advanced rules, which allow up to 16 total segments.
 
@@ -197,7 +195,7 @@ To illustrate a best practice for setting up an account structure, assume that a
 |----------------------|------------------|--------------------|-----------|---|
 |400000..999999 | \*;"&nbsp;"| \*;"&nbsp;"| \*;"&nbsp;"| \*;"&nbsp;"|
 
-**Advanced rule for adding a Customer**
+### Advanced rule for adding a Customer
 
 Criteria: Where Main account is between 400000 and 499999, then add customer. It can't be left blank.
 

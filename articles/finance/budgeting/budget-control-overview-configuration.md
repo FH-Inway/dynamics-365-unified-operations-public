@@ -4,7 +4,7 @@ description: Learn about the budget control feature and how to configure budget 
 author: music727  
 ms.author: mibeinar
 ms.topic: overview
-ms.date: 06/30/2026
+ms.date: 07/20/2026
 ms.update-cycle: 1095-days
 ms.reviewer: twheeloc
 ms.collection: get-started
@@ -63,7 +63,40 @@ An organization's culture, as it relates to budgeting and budgetary control, als
 
 ### Over budget permissions
 
-On the **Over budget permissions** tab, specify user groups. Specify whether users who are members of a group have permission to exceed the budget. You can prevent users from exceeding the budget past the budget threshold that you set on the **Budget parameters** page, or you can prevent them from exceeding the budget by any amount, regardless of the threshold. Depending on how proactively an organization manages its spending, these permissions can help it manage its financial resources.
+**Over budget permissions** determine how the system behaves when a transaction exceeds the available budget during budget control checking. These settings directly affect whether the system blocks or allows transactions, and what message it shows to users at runtime.
+
+The following options are available:
+
+1. **Allow over budget processing**
+When you select this option, users added to the specified user group can continue processing transactions that exceed the available budget, depending on their assigned permissions.
+If the user belongs to the configured over-budget permission group, the system displays a warning message and the transaction is allowed to continue.
+If the user doesn't belong to the configured over-budget permission group, the system displays an error message and the transaction is blocked and can't be completed.
+If you use **Allow over budget processing**, ensure that you assign appropriate users to the over-budget permission group and that internal audit processes are in place to track overrides.
+
+1. **Prevent processing at over budget threshold**
+This option allows transactions to exceed the budget up to a defined tolerance level, after which the system blocks processing.
+The system uses the **Budget threshold percentage** configured in **Budget control parameters**. Transactions are allowed to process until the defined threshold is exceeded.
+Example:
+| **Budget amount** | **Threshold** | **Spending amount** | **Result** |
+| -------------- | -------------- | -------------- | -------------- |
+| 100,000 USD | 110 % | 105,000 USD | Allowed |
+| 100,000 USD | 110 % | 109,000 USD | Allowed |
+| 100,000 USD | 110 % | 111,000 USD | Blocked |
+
+Transactions within the threshold show no blocking errors. Once the threshold is exceeded, the system blocks the transaction and displays an error message.
+
+1. **Prevent over budget processing**
+This option enforces strict budget control. The system doesn't allow any transactions once the available budget is exceeded.
+Transactions are allowed only while budget funds are available. As soon as the budget is exceeded, the system blocks the transaction and displays an error message.
+If you select this option, no threshold or tolerance is applied.
+
+Refer to the following table when choosing the right configuration for your business:
+
+| **Scenario** | **Recommended option** |
+| -------------------- | -------------------- |
+| Strict budget enforcement required | Prevent over budget processing |
+| Controlled exceptions for specific roles | Allow over budget processing |
+| Limited tolerance allowed (for example, 5–10%) | Prevent processing at over budget threshold |
 
 ### Budget funds available
 
@@ -107,19 +140,13 @@ If you don't select **Main account** as a budget control dimension on the **Defi
 Example:
 On the **Define parameters** page, you select **Budget control dimensions**. The budget is controlled only at the *Business Unit* and *Department* levels.
 
-![Define parameters](./media/budgetcontrolconfiguration.png)
-
 :::image type="content" source="./media/budgetcontrolconfiguration.png" alt-text="Screenshot of Define parameters.":::
 
 In this example, budget control is required on all accounts, except 600120, which shouldn't have budget control enabled. This scenario could be achieved by marking all main accounts, except 600120, in **Select main accounts** tab.
 
-![Select main accounts](./media/budgetcontrolconfigurationmainaccounts.png)
-
 :::image type="content" source="./media/budgetcontrolconfigurationmainaccounts.png" alt-text="Screenshot of Select main accounts.":::
 
 If you create a purchase order for expenses associated to main account 600120, the budget check isn't performed for these lines. Every other main account that you select in the **Select main accounts** tab is controlled. In this example, the *FREIGHT* procurement category is associated to the main account 600120.
-
-![Purchase order](./media/budgetcheckpurchaseorder.png)
 
 :::image type="content" source="./media/budgetcheckpurchaseorder.png" alt-text="Screenshot of Purchase order.":::
 
@@ -162,11 +189,14 @@ The following table shows the guidelines to follow.
 
 ## Using budget control
 
-After you turn on budget control, you receive budget control warning and error messages in documents and journals that you configure for budget control. You can configure budget control so that users are warned when they exceed the budget funds, but they can still continue to confirm or post transactions. You can view the details of failed budget checks on the **Budget control errors and warnings** page.
+When you turn on budget control, you receive budget control warning and error messages in documents and journals that you configure for budget control. You can configure budget control so that users are warned when they exceed the budget funds, but they can still continue to confirm or post transactions. You can view the details of failed budget checks on the **Budget control errors and warnings** page.
 
 From this page, users can drill into the **Budget control statistics by period** page to view budget availability details and reservations for a selected budget control dimension combination. Users can drill into the **Budget control statistic** page to view the budget availability for all financial dimension combinations that are used in budget control.
 
 If you turn on budget control for purchase orders, the budget manager can use the **Ledger budgets and forecasts** workspace to review the queue of all unconfirmed purchase orders that have budget check warnings and errors. If the budget manager has permissions over budgets configured, the purchase orders can be confirmed directly in the workspace.
+
+> [!IMPORTANT]
+> Budget control in Dynamics 365 Finance is tightly coupled to the ledger fiscal period status. Starting application version 10.0.49, if the feature **Automatic accounting date advancement for budget-controlled PRs and POs** is enabled, when procurement workflows (PR or PO approvals) span multiple accounting periods, the system automatically adjusts the accounting date for purchase requisitions (PRs) and purchase orders (POs) if the original accounting date falls into a closed or on hold fiscal period. It ensures that budget control validation can still be performed and procurement workflows can continue without manual intervention. The system, however, doesn't move the accounting date to a different fiscal year automatically. If the next open period is in a new fiscal year, the PR must be canceled and recreated or purchase order year end closing process must be completed.
 
 > [!NOTE]
 > **Allocation terms** aren't supported when budget control is enabled. Budget control requires understanding of all accounting distributions that affect the ledger before the document is posted. Allocations, which affect this scenario, aren't supported with budget control.

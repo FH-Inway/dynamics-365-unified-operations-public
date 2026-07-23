@@ -6,7 +6,7 @@ ms.author: henrikan
 ms.reviewer: kamaybac
 ms.search.form: SalesAvailableDlvDates, SalesTable, CustParameters, InventItemOrderSetup
 ms.topic: how-to
-ms.date: 03/25/2026
+ms.date: 07/27/2026
 ms.custom:
   - bap-template
 ---
@@ -205,5 +205,5 @@ To change an order so that it uses CTP at the line level, follow these steps:
 
 ### Additional resources
 
-- [Keep supply for confirmed demand in Planning Optimization (Preview)](keep-supply-for-confirmed-demand.md)
-- [Optimize confirmed dates for CTP line changes (preview)](optimize-confirmed-dates-for-ctp-line-changes.md)
+- [Keep supply for confirmed demand in Planning Optimization](keep-supply-for-confirmed-demand.md)
+- [Optimize confirmed dates for CTP line changes](optimize-confirmed-dates-for-ctp-line-changes.md)

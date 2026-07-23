@@ -6,7 +6,7 @@ ms.author: yufeihuang
 ms.reviewer: kamaybac
 ms.search.form:
 ms.topic: how-to
-ms.date: 05/29/2026
+ms.date: 07/27/2026
 ms.custom: 
   - bap-template
 ---
@@ -46,7 +46,7 @@ Before you can use the features described in this article, ensure your system me
 
     - *Inventory Visibility integration with inventory adjustment offset* (This feature is a prerequisite. As of Supply Chain Management version 10.0.45, this feature is mandatory and can't be turned off.)
     - *Inventory Visibility integration* (This feature is a prerequisite. As of Supply Chain Management version 10.0.45, this feature is turned on by default.)
-    - *Inventory Visibility transaction integration* (This feature adds the features that are described in this article. As of Supply Chain Management version 10.0.45, this feature is turned on by default.)
+    - *Inventory Visibility transaction integration* (This feature adds the features that are described in this article. As of Supply Chain Management version 10.0.45, this feature is turned on by default. As of version 10.0.49, it's mandatory and can't be turned off.)
 
 ## Configure inventory transaction synchronization
 

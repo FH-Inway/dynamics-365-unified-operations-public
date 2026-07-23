@@ -6,7 +6,7 @@ ms.author: henrikan
 ms.reviewer: kamaybac
 ms.search.form: ReqCreatePlanWorkspace
 ms.topic: how-to
-ms.date: 05/04/2026
+ms.date: 07/27/2026
 ms.custom:
   - bap-template
 ---
@@ -162,14 +162,9 @@ This situation usually occurs when you sell an item that has an issue margin fro
 
 <a name="soft-issue-margin"></a>
 
-## Soft issue margin (preview)
-
-[!INCLUDE [preview-banner-section](~/../shared-content/shared/preview-includes/preview-banner-section.md)]
-<!-- KFM: preview until 10.0.49 -->
+## Soft issue margin
 
 *Soft issue margin* causes the system to treat the issue margin as a preferred buffer rather than a hard requirement. Instead of always applying the full issue margin, a soft margin lets the system reduce it as needed to avoid pushing the requirement date into the future. Without soft issue margin, the system always applies the full margin, even when doing so delays a demand order.
-
-[!INCLUDE [preview-note](~/../shared-content/shared/preview-includes/preview-note-d365.md)]
 
 The soft issue margin works as follows:
 

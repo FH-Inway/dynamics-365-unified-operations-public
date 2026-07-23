@@ -6,7 +6,7 @@ ms.author: johanho
 ms.reviewer: kamaybac
 ms.search.form: InventTestAssociationTable, WHSConsigner, WHSConsignerGroup
 ms.topic: how-to
-ms.date: 07/28/2025
+ms.date: 07/27/2026
 ms.custom: 
   - bap-template
 ---
@@ -34,7 +34,7 @@ You must define a quality association for each variation in a business process t
 Most of the features that are described in this article are available as a standard part of all current versions of Supply Chain Management. However, if you want to set up quality associations for sales returns and transfer orders, your system must meet the following requirements:
 
 - You must be running Supply Chain Management version 10.0.44 or later.
-- The feature named *Advanced quality management* must be turned on in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.47, this feature is turned on by default.
+- The feature named *Advanced quality management* must be turned on in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.47, this feature is turned on by default. As of version 10.0.49, it's mandatory and can't be turned off.
 
 [!INCLUDE [preview-note](~/../shared-content/shared/preview-includes/preview-note-d365.md)]
 

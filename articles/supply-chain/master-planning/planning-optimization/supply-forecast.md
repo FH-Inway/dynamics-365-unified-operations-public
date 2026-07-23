@@ -6,7 +6,7 @@ ms.author: henrikan
 ms.reviewer: kamaybac
 ms.search.form:
 ms.topic: how-to
-ms.date: 11/18/2025
+ms.date: 07/27/2026
 ms.custom:
   - bap-template
 ---
@@ -21,8 +21,8 @@ Supply forecasts let you specify the supply that you expect to need during a fut
 
 You can specify whether each master plan should consider forecasts when it runs. Use the following procedure to set forecasting options for each plan.
 
-1. Go to **Master planning \> Setup \> Plans \> Master plans**.
-1. Either select an existing master plan in the list pane, or select **New** on the Action Pane to create a new one.
+1. Go to **Master planning** \> **Setup** \> **Plans** \> **Master plans**.
+1. Select an existing master plan in the list pane, or select **New** on the Action Pane to create a new one.
 1. On the **General** FastTab, set the following fields:
 
     - **Forecast model** – Select the model that contains the supply and demand forecasts that the master plan should consider.
@@ -31,9 +31,9 @@ You can specify whether each master plan should consider forecasts when it runs.
     - **Method used to reduce forecast requirements** – Select the method to use to reduce forecast requirements during master planning:
 
         - *None* – Forecast requirements aren't reduced during master planning.
-        - *Percent - reduction key* – Forecast requirements are reduced according to the percentages and time periods that are defined in the reduction key.
-        - *Transactions – reduction key* – Forecast requirements are reduced by the transactions that occur during the time periods that are defined in the reduction key.
-        - *Transactions – dynamic period* – Forecast requirements are reduced by the order transactions that occur during the dynamic period. The dynamic period covers the current forecast dates, and it ends when the next forecast begins. The *Transactions – dynamic period* method doesn't use or require a reduction key, and when you use it, the following conditions apply:
+        - *Percent - reduction key* – Forecast requirements are reduced according to the percentages and time periods that you define in the reduction key.
+        - *Transactions – reduction key* – Forecast requirements are reduced by the transactions that occur during the time periods that you define in the reduction key.
+        - *Transactions – dynamic period* – Forecast requirements are reduced by the order transactions that occur during the dynamic period. The dynamic period covers the current forecast dates, and it ends when the next forecast begins. The *Transactions – dynamic period* method doesn't use or require a reduction key. When you use it, the following conditions apply:
 
             - If the forecast is completely reduced, the forecast requirements for the current forecast become 0 (zero).
             - If there's no future forecast, forecast requirements from the last forecast that you entered are reduced.
@@ -48,7 +48,7 @@ You can specify whether each master plan should consider forecasts when it runs.
 
 To set options that control how a coverage group reduces its forecast requirements for master plans that use transaction-based reduction, follow these steps:
 
-1. Go to **Master planning \> Setup \> Plans \> Coverage groups**.
+1. Go to **Master planning** \> **Setup** \> **Plans** \> **Coverage groups**.
 1. Select an existing coverage group in the list pane, or select **New** on the Action Pane to create a new one.
 1. On the **Other** FastTab, in the **Reduce forecast by** field, specify how supply forecast requirements should be reduced for items in the coverage group, for master plans where the **Method used to reduce forecast requirements** field is set to *Transactions - reduction key* or *Transactions - dynamic period*. Select one of the following values:
 
@@ -63,7 +63,7 @@ To set options that control how a coverage group reduces its forecast requiremen
 
 To enter a supply forecast for a product, follow these steps:
 
-1. Go to **Product information management \> Products \> Released products**.
+1. Go to **Product information management** \> **Products** \> **Released products**.
 1. Select the product that you want to enter a forecast for.
 1. On the Action Pane, on the **Plan** tab, select **Supply forecast**.
 1. On the **Supply forecast** page, on the Action Pane, select **New** to add a forecast to the grid.
@@ -73,11 +73,100 @@ To enter a supply forecast for a product, follow these steps:
 
 When you run a master plan that includes an item that has a supply forecast, the system creates a purchase order for the supply lines that you entered. The system respects the default order settings for the item. If those default order settings specify a **Default order type** value of *Purchase order*, and you don't specify a vendor account on the supply forecast line, the system uses the default vendor for the item.
 
+## Consider sub-BOM and sub-route in supply forecast reduction
+
+Each supply forecast line can specify a *sub-BOM* and a *sub-route*. When you turn on the *Consider BOM and route in supply- and demand forecast reduction with Planning Optimization* feature in [Feature management](../../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md), Planning Optimization respects these values when it decides whether an existing transaction (such as a released purchase order, a released production order, or a released transfer order) reduces a forecast line.
+
+### Prerequisites
+
+Before you can use the BOM and route forecast reduction behavior described in this section, your system must meet the following requirements:
+
+- You must be running Microsoft Dynamics 365 Supply Chain Management version 10.0.49 or later.
+- The feature named *Consider BOM and route in supply- and demand forecast reduction with Planning Optimization* must be turned on in [Feature management](../../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md).
+
+### Matching principle
+
+The behavior follows a single principle:
+
+> A transaction reduces a forecast line only when, for every dimension the forecast line specifies, the transaction either matches that value or doesn't specify a value for that dimension. A transaction that specifies a value that's different from the forecast line value for any dimension can't reduce that forecast line.
+
+In other words, a transaction can be at the same specificity as the forecast line or less specific, but it can't be specific in a *different* way.
+
+### Specificity rules for sub-BOM and sub-route
+
+The principle leads to the following rules. In each rule, *transaction* refers to a released purchase order, production order, or transfer order that would otherwise qualify to reduce the forecast.
+
+- A forecast line that specifies both a sub-BOM and a sub-route is reduced only by transactions that specify the same BOM and the same route, or that leave one or both of those values blank.
+- A forecast line that specifies a sub-BOM but no sub-route is reduced by transactions that specify the same BOM (regardless of route) and by transactions that specify no BOM.
+- A forecast line that specifies a sub-route but no sub-BOM is reduced by transactions that specify the same route (regardless of BOM) and by transactions that specify no route.
+- A forecast line that specifies neither a sub-BOM nor a sub-route is reduced by any otherwise-qualifying transaction.
+- A transaction that specifies neither a BOM nor a route can reduce any forecast line, regardless of how specific that forecast line is.
+
+The following table summarizes the matching behavior. A *Yes* indicates that the transaction reduces the forecast line. A *No* indicates that the transaction doesn't reduce the forecast line because it specifies a conflicting value.
+
+| Forecast line specifies        | Tx (B1, R1) | Tx (B1, R2) | Tx (B2, R1) | Tx (B1, –) | Tx (–, R1) | Tx (–, –) |
+|--------------------------------|:-----------:|:-----------:|:-----------:|:----------:|:----------:|:---------:|
+| sub-BOM = B1, sub-route = R1   | Yes         | No          | No          | Yes        | Yes        | Yes       |
+| sub-BOM = B1 only              | Yes         | Yes         | No          | Yes        | Yes        | Yes       |
+| sub-route = R1 only            | Yes         | No          | Yes         | Yes        | Yes        | Yes       |
+| Neither specified              | Yes         | Yes         | Yes         | Yes        | Yes        | Yes       |
+
+This specificity logic is layered on top of the dimension matching that already applies. For purchase orders, the vendor on the transaction must still match the vendor on the forecast line, as described in [Reduction of forecasts by matching vendors only](#reduction-of-forecasts-by-matching-vendors-only). For production orders and transfer orders, the vendor is ignored.
+
+### Example: Two supply forecast lines with different sub-BOMs
+
+You have an item where the default order type is *Production*. It has the following supply forecast lines.
+
+| Model    | Date     | Quantity | Unit | sub-BOM | sub-route | Site | Warehouse |
+|----------|----------|----------|------|---------|-----------|------|-----------|
+| CurrentF | 10/10/22 | 10       | ea   | B1      |           | 1    | 11        |
+| CurrentF | 10/10/22 | 10       | ea   | B2      |           | 1    | 11        |
+
+A released production order exists for a quantity of *15 ea* with BOM *B2*.
+
+The system behaves differently based on whether the *Consider BOM and route in supply- and demand forecast reduction with Planning Optimization* feature is turned on:
+
+- **When the feature is turned *off*** – The production order reduces the supply forecast in the order that the lines are encountered, without checking the BOM. The first line is reduced to *0*, the second line is reduced to *5*, and Planning Optimization creates a planned production order for a quantity of *5* with BOM *B2*.
+- **When the feature is turned *on*** – Only the second line matches the production order's BOM. The production order reduces the second line to *0* and leaves the first line at *10*. Planning Optimization then creates a planned production order for a quantity of *10* with BOM *B1*, which is the supply that is still needed to cover the unmatched forecast.
+
+### Example: Combined sub-BOM and sub-route on the forecast line
+
+You have an item where the default order type is *Production*. It has the following supply forecast line.
+
+| Model    | Date     | Quantity | Unit | sub-BOM | sub-route | Site | Warehouse |
+|----------|----------|----------|------|---------|-----------|------|-----------|
+| CurrentF | 10/10/22 | 20       | ea   | B1      | R1        | 1    | 11        |
+
+The following released production orders also exist for the same item, site, and warehouse, all dated within the same forecast period.
+
+| Production order | Quantity | BOM | Route |
+|------------------|----------|-----|-------|
+| PO-A             | 5        | B1  | R1    |
+| PO-B             | 5        | B1  | R2    |
+| PO-C             | 5        | B2  | R1    |
+| PO-D             | 5        |     |       |
+
+With the feature turned on, Planning Optimization evaluates each production order against the forecast line.
+
+- *PO-A* (B1, R1) matches both dimensions and reduces the forecast by *5*.
+- *PO-B* (B1, R2) specifies a different route than the forecast line, so it doesn't reduce the forecast line. Planning Optimization treats it as separate supply.
+- *PO-C* (B2, R1) specifies a different BOM than the forecast line, so it doesn't reduce the forecast line. Planning Optimization treats it as separate supply.
+- *PO-D* (no BOM, no route) is less specific than the forecast line, so it reduces the forecast by *5*.
+
+The forecast line is reduced from *20* to *10* (= 20 − 5 − 5), and Planning Optimization creates a planned production order for a quantity of *10 ea* with BOM *B1* and route *R1* to cover the remaining requirement.
+
+> [!NOTE]
+> When the feature is turned on, the same BOM and route matching also applies to transactions that were already processed for the forecast period–for example, received purchase orders and ended production orders. The BOM and route that were specified on the original order are honored when the order reduces a forecast line, just as they are for open (released) orders.
+>
+> Reduction by already-processed transactions is itself controlled by a separate feature management feature: *Include invoiced and delivered orders during supply and demand forecast reduction for planning optimization*. You must also turn on that feature for processed orders to participate in forecast reduction at all. The *Consider BOM and route in supply- and demand forecast reduction with Planning Optimization* feature then governs how the BOM and route on those processed orders are matched.
+
+The same rules apply to demand forecasts, with the additional dimensions of customer and customer group. Learn more in [Consider customer, customer group, required BOM, and required Route in demand forecast reduction](demand-forecast.md#consider-customer-customer-group-required-bom-and-required-route-in-demand-forecast-reduction).
+
 ## Check whether a planned order is a supply forecast order
 
 Use the following procedure to check whether a planned order was created as a result of a supply forecast.
 
-1. Go to **Master planning \> Master planning \> Planned orders**.
+1. Go to **Master planning** \> **Master planning** \> **Planned orders**.
 1. Open the planned order that you want to inspect.
 1. On the **General** FastTab, check the value of the **Supply forecast** field. If the order was created to cover a supply forecast, this field is set to *Yes*.
 
@@ -155,7 +244,7 @@ For example, you have an item where the default order type is *Purchase order*. 
 |----------|----------|----------------|--------------|----------|------|------|-----------|
 | CurrentF | 10/10/22 | US-101         |              | 25       | ea   | 1    | 11        |
 
-There's an existing purchase order for vendor *US-101*, site *1*, warehouse *11*, a quantity of *25 ea*, and the date *10/10/22*. 
+There's an existing purchase order for vendor *US-101*, site *1*, warehouse *11*, a quantity of *25 ea*, and the date *10/10/22*.
 
 When you run a master plan that uses *None* as the reduction method, it creates a planned purchase order for vendor *US-101*, site *1*, warehouse *11*, a quantity of *25 ea*, and the date *10/10/22*. In other words, the existing purchase order isn't reduced, because the forecast reduction method is *None*.
 
@@ -211,7 +300,7 @@ The more specific forecasts (for 5.00 + 6.00 = 11.00 pieces) reduce the general 
 
 ### Respect for default order settings when planned orders are generated
 
-Each item can have default order settings, such as a minimum purchase order quantity. The deprecated master planning engine ignores these settings, and therefore translates forecasts into planned orders that have the same quantity. Planning Optimization respects these settings when planned orders are generated from supply forecasts. 
+Each item can have default order settings, such as a minimum purchase order quantity. The deprecated master planning engine ignores these settings, and therefore translates forecasts into planned orders that have the same quantity. Planning Optimization respects these settings when planned orders are generated from supply forecasts.
 
 ### Aggregation of planned orders as a result of reduction by approved orders
 

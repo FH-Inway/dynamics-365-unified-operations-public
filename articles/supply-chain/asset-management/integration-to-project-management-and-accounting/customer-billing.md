@@ -4,7 +4,7 @@ description: Learn how to create, process, and bill maintenance work that is don
 author: jodahlMSFT
 ms.author: jodahl
 ms.topic: how-to
-ms.date: 01/28/2021
+ms.date: 07/27/2026
 ms.custom:
 ms.reviewer: kamaybac 
 ms.search.form: ProjProjectContractsListPage, ProjInvoiceTable, ProjProjectsListPage, ProjTable, EntAssetWorkOrderType, EntAssetWorkOrderProjectSetup, EntAssetObjectTable, EntAssetWorkOrderTable
@@ -173,7 +173,7 @@ Each customer's total outstanding credit is calculated as the sum of outstanding
 To use the credit limit feature, your system must meet the following requirements:
 
 - You must be running Microsoft Dynamics 365 Supply Chain Management version 10.0.44 or later.
-- The feature named *Credit limit check on work order dispatch* must be turned on in [feature management](../../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md).
+- The feature named *Credit limit check on work order dispatch* must be turned on in [feature management](../../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.47, this feature is turned on by default. As of version 10.0.49, it's mandatory and can't be turned off.
 
 ### Configure the credit limit check
 

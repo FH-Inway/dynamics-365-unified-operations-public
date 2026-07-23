@@ -6,7 +6,7 @@ ms.author: johanho
 ms.reviewer: kamaybac
 ms.search.form: 
 ms.topic: how-to
-ms.date: 10/24/2025
+ms.date: 07/27/2026
 ms.custom: 
   - bap-template
 ---
@@ -24,8 +24,8 @@ To use sample management, your system must meet the following requirements:
 - To run the preview version of this feature, you must be running Microsoft Dynamics 365 Supply Chain Management version 10.0.46 or later.
 - To run the general availability version of this feature, you must be running Microsoft Dynamics 365 Supply Chain Management version 10.0.47 or later.
 - The following features must be turned on in [feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md):
-    - *Advanced quality management* (As of Supply Chain Management version 10.0.47, this feature is turned on by default.)
-    - *Sample management*
+    - *Advanced quality management* (As of Supply Chain Management version 10.0.47, this feature is turned on by default. As of version 10.0.49, it's mandatory and can't be turned off.)
+    - *Sample management* (As of Supply Chain Management version 10.0.49, this feature is turned on by default.)
 
 ## Set up the sample ID number sequence
 

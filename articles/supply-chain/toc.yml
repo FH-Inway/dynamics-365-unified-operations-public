@@ -14,6 +14,8 @@
         items:
         - name: What's new or changed in Supply Chain Management home page
           href: get-started/whats-new-home-page.md
+        - name: Supply Chain Management 10.0.49 (September 2026)
+          href: get-started/whats-new-scm-10-0-49.md
         - name: Supply Chain Management 10.0.48 (June 2026)
           href: get-started/whats-new-scm-10-0-48.md
         - name: Supply Chain Management 10.0.47 (March 2026)
@@ -1925,9 +1927,9 @@
           href: master-planning/planning-optimization/negative-on-hand.md
         - name: Calculate sales order delivery dates using CTP
           href: master-planning/planning-optimization/calculate-delivery-dates-using-ctp.md
-        - name: Keep supply for confirmed demand (Preview)
+        - name: Keep supply for confirmed demand in Planning Optimization
           href: master-planning/planning-optimization/keep-supply-for-confirmed-demand.md
-        - name: Optimize confirmed dates for CTP line changes (Preview)
+        - name: Optimize confirmed dates for CTP line changes
           href: master-planning/planning-optimization/optimize-confirmed-dates-for-ctp-line-changes.md
       - name: Set up master plans
         items:
@@ -2397,7 +2399,7 @@
           href: procurement/tasks/set-up-procurement-category-hierarchy.md
       - name: Purchase requisitions
         items:
-        - name: Purchase requisitions overview
+        - name: Purchase requisition overview
           href: procurement/purchase-requisitions-overview.md
         - name: Purchase requisition workflow
           href: procurement/purchase-requisitions-workflow.md
@@ -2685,6 +2687,8 @@
           href: production-control/formula-designer.md
         - name: Override the default reservation principle for materials in production
           href: production-control/override-default-reservation-principle.md
+        - name: Reserve the same batch for a production order (preview)
+          href: production-control/reserve-same-batch-production-order.md
         - name: Add variant products to purchase orders using variant weights
           href: pim/tasks/add-variant-products-purchase-order-variant-weights.md
         - name: Create a sales order for a configurable product
@@ -2823,6 +2827,8 @@
             href: production-control/bom-designer-functionality.md
           - name: Override the default reservation principle for materials in production
             href: production-control/override-default-reservation-principle.md
+          - name: Reserve the same batch for a production order (preview)
+            href: production-control/reserve-same-batch-production-order.md
           - name: Phantom items
             href: production-control/phantom-items.md
           - name: BOM calculations
@@ -3769,6 +3775,8 @@
           href: warehousing/tasks/register-items-basic-warehousing.md
         - name: Import inbound ASNs through data entities
           href: warehousing/import-asn-data-entity.md
+        - name: Import inbound ASNs as despatch advice messages
+          href: warehousing/despatch-advice-notice.md
         - name: Receive unannounced sales returns
           href: warehousing/sales-returns-unannounced.md
         - name: Manage inbound putaway based on container types
@@ -4099,7 +4107,7 @@
             href: warehousing/spatial-locations-setup.md
         - name: Control work by using work templates and location directives
           href: warehousing/control-warehouse-location-directives.md
-        - name: Dynamic work classification (production-ready preview)
+        - name: Dynamic work classification
           href: warehousing/dynamic-work-classification.md
         - name: Work with location directives
           href: warehousing/create-location-directive.md
@@ -4111,6 +4119,8 @@
           href: warehousing/configure-transfer-order-receiving-process.md
         - name: Location stocking limits
           href: warehousing/location-stocking-limits.md
+        - name: Prevent multiple owners in warehouse locations
+          href: warehousing/prevent-multiple-owners-locations.md
         - name: Wave generation and processing
           items:
           - name: Configure wave processing example

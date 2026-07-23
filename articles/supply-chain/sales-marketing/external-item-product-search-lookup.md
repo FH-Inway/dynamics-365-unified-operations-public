@@ -6,7 +6,7 @@ ms.author: adpattanaik
 ms.reviewer: kamaybac
 ms.search.form: SalesTableDetails, SalesLine
 ms.topic: how-to
-ms.date: 07/28/2025
+ms.date: 07/27/2026
 ms.custom: 
   - bap-template
 ---
@@ -22,7 +22,7 @@ When you're adding an item to a sales order, you can search for it using its ext
 To use the features described in this article, your system must meet the following requirements:
 
 - You must be running Microsoft Dynamics 365 Supply Chain Management version 10.0.45 or later.
-- You must ensure that the feature named *Enable lookup based search for Sales External Item Identifier field* is turned on in [feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md).
+- You must ensure that the feature named *Enable lookup based search for Sales External Item Identifier field* is turned on in [feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.49, this feature is mandatory and can't be turned off.
 
 ## Specify external item identifiers for a customer
 

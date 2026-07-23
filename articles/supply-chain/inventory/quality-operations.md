@@ -4,7 +4,7 @@ description: Learn how to create and use operations for nonconformances, includi
 author: johanhoffmann
 ms.author: johanho
 ms.topic: article
-ms.date: 03/23/2021
+ms.date: 07/27/2026
 ms.reviewer: kamaybac
 ms.search.form: InventTestOperations, InventTestRelatedOperations, QMSInventTestOperationGroup
 ms.assetid: a1d9417b-268f-4334-8ab6-8499d6c3acf0
@@ -56,7 +56,7 @@ Use *nonconformance operation groups* to collect related operations that you can
 Before you can use nonconformance operation groups, your system must meet the following requirements:
 
 - You must be running Microsoft Dynamics 365 Supply Chain Management version 10.0.44 or later.
-- The feature named *Advanced quality management* must be turned on in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.47, this feature is turned on by default.
+- The feature named *Advanced quality management* must be turned on in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.47, this feature is turned on by default. As of version 10.0.49, it's mandatory and can't be turned off.
 
 ### Manage nonconformance operation groups
 

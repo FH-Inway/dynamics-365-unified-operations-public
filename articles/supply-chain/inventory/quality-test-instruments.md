@@ -4,7 +4,7 @@ description: Learn how to create test instruments that can be used for tests on 
 author: johanhoffmann
 ms.author: johanho
 ms.topic: article
-ms.date: 10/24/2025
+ms.date: 07/27/2026
 ms.reviewer: kamaybac
 ms.search.form: InventTestInstrument
 ms.assetid: a1d9417b-268f-4334-8ab6-8499d6c3acf0
@@ -27,7 +27,7 @@ You're performing various tests on electrical components. Some tests are for the
 Most of the features that are described in this article are available as a standard part of all current versions of Supply Chain Management. However, the calibration-related settings (the **Tag number required**, **Used for calibration**, and **Calibration label layout** fields) add the following requirements:
 
 - You must be running Supply Chain Management version 10.0.44 or later.
-- The feature named *Advanced quality management* must be turned on in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.47, this feature is turned on by default.
+- The feature named *Advanced quality management* must be turned on in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.47, this feature is turned on by default. As of version 10.0.49, it's mandatory and can't be turned off.
 
 Learn more in [Test instrument calibration](quality-instrument-calibration.md).
 

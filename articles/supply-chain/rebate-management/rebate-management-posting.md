@@ -6,7 +6,7 @@ ms.author: chuzheng
 ms.reviewer: kamaybac
 ms.search.form: TAMRebatePosting
 ms.topic: how-to
-ms.date: 07/21/2025
+ms.date: 07/27/2026
 ms.custom:
   - bap-template
 ---
@@ -28,7 +28,7 @@ The remaining sections of this article describe how to use the available fields 
 You can configure rebate management posting profiles to send rebates as output to the original transaction account from the related sales order or purchase order. Before you can use this capability, your system must meet the following requirements:
 
 - You must be running Microsoft Dynamics 365 Supply Chain Management version 10.0.43 or later.
-- The feature named *Enable posting of vendor rebate outputs to purchase order vendors* must be turned on in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.45, this feature is turned on by default.
+- The feature named *Enable posting of vendor rebate outputs to purchase order vendors* must be turned on in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.45, this feature is turned on by default. As of version 10.0.49, it's mandatory and can't be turned off.
 
 To set up this functionality, select the appropriate value in the **Use account source** field of your posting profile, as described later in this article.
 

@@ -6,7 +6,7 @@ ms.author: johanho
 ms.reviewer: kamaybac
 ms.search.form:
 ms.topic: how-to
-ms.date: 10/24/2025
+ms.date: 07/27/2026
 ms.custom: 
   - bap-template
 ---
@@ -36,8 +36,8 @@ To use Asset Management to maintain calibration of test instruments, your system
 
 - You must be running Microsoft Dynamics 365 Supply Chain Management version 10.0.46 or later.
 - The following features must be turned on in [feature management](../../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md):
-    - *Advanced quality management*
-    - *(Preview) Optional linking of test instruments to maintainable assets*
+    - *Advanced quality management* (As of Supply Chain Management version 10.0.47, this feature is turned on by default. As of version 10.0.49, it's mandatory and can't be turned off.)
+    - *Optional linking of test instruments to maintainable assets*
 
 ## Set up calibration in Asset Management
 

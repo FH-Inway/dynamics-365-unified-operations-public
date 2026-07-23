@@ -6,7 +6,7 @@ ms.author: johanho
 ms.reviewer: kamaybac
 ms.search.form: QMSBatchProdRecord, QMSMasterMfgRecord
 ms.topic: how-to
-ms.date: 01/25/2025
+ms.date: 07/27/2026
 ms.custom: 
   - bap-template
 ---
@@ -26,7 +26,7 @@ Before you can use the features that are described in this article, your system 
 
 - You must be running Microsoft Dynamics 365 Supply Chain Management version 10.0.44 or later.
 - The following features must be turned on in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.47, both of these features are turned on by default.
-    - *Advanced quality management*
+    - *Advanced quality management* (As of Supply Chain Management version 10.0.49, this feature is mandatory and can't be turned off.)
     - *Electronic signature improvements*
 
 ## Turn electronic signature requirements for EBRs on or off

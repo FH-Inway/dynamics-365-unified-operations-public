@@ -6,7 +6,7 @@ ms.author: johanho
 ms.reviewer: kamaybac
 ms.search.form: QMSAQLDefectType, QMSAQLInspectionLevel, QMSAQLChart, InventTestTable, InventTestGroup, InventItemSampling, InventTestAssociationTable, QMSAQLIndex
 ms.topic: how-to
-ms.date: 07/28/2025
+ms.date: 07/27/2026
 ms.custom: 
   - bap-template
 ---
@@ -84,7 +84,7 @@ On the quality order for acceptance sampling, the various categories of tests (c
 To use the features described in this article, your system must meet the following requirements:
 
 - You must be running Microsoft Dynamics 365 Supply Chain Management version 10.0.45 or later.
-- The feature named *Acceptance sampling* must be turned on in [feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md).
+- The feature named *Acceptance sampling* must be turned on in [feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.49, this feature is turned on by default.
 
 ## Set up acceptance sampling charts
 

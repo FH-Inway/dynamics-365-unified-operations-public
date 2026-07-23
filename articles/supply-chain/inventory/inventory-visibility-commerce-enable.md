@@ -6,7 +6,7 @@ ms.author: yufeihuang
 ms.reviewer: kamaybac
 ms.search.form: InventInventoryDataService, KeyVaultParameters
 ms.topic: how-to
-ms.date: 08/14/2025
+ms.date: 07/27/2026
 ms.custom: 
   - bap-template
 ---
@@ -51,7 +51,7 @@ Before you can use the features that this article describes, your system must me
 
     - *Inventory Visibility integration with inventory adjustment posting* (As of Supply Chain Management version 10.0.45, this feature is mandatory and can't be turned off.)
     - *Inventory Visibility integration with inventory adjustment offset* (As of Supply Chain Management version 10.0.45, this feature is mandatory and can't be turned off.)
-    - *Enable warehouse items in Inventory Visibility* (As of Supply Chain Management version 10.0.45, this feature is turned on by default.)
+    - *Enable warehouse items in Inventory Visibility* (As of Supply Chain Management version 10.0.45, this feature is turned on by default. As of version 10.0.49, it's mandatory and can't be turned off.)
 
 - [Inventory Visibility support for WMS items](inventory-visibility-whs-support.md) must be enabled for your environment.
 

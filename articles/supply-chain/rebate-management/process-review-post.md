@@ -6,7 +6,7 @@ ms.author: chuzheng
 ms.reviewer: kamaybac
 ms.search.form: TAMRebateDeal
 ms.topic: how-to
-ms.date: 07/21/2025
+ms.date: 07/27/2026
 ms.custom:
   - bap-template
 ---
@@ -230,7 +230,7 @@ Sometimes, vendor rebate deals are listed over multiple lines (for example, beca
 Before you can set your system to consolidate vendor invoices, it must meet the following requirements:
 
 - You must be running Microsoft Dynamics 365 Supply Chain Management version 10.0.43 or later.
-- The feature named *Consolidate vendor invoices for the same vendor in vendor rebate deals* must be turned on in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.45, this feature is turned on by default.
+- The feature named *Consolidate vendor invoices for the same vendor in vendor rebate deals* must be turned on in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.45, this feature is turned on by default. As of version 10.0.49, it's mandatory and can't be turned off.
 
 #### How vendor invoice consolidation works
 

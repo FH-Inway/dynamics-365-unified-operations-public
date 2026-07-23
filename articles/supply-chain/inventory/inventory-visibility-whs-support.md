@@ -6,7 +6,7 @@ ms.author: yufeihuang
 ms.reviewer: kamaybac
 ms.search.form:
 ms.topic: how-to
-ms.date: 06/17/2025
+ms.date: 07/27/2026
 ms.custom: 
   - bap-template
 ---
@@ -54,8 +54,7 @@ To enable the WMS feature for Inventory Visibility, follow these steps:
 1. Open the [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md) workspace, and enable the following features in this order:
 
     1. *Inventory Visibility integration* (As of Supply Chain Management version 10.0.45, this feature is turned on by default.)
-    1. *Enable warehouse items in Inventory Visibility* (As of Supply Chain Management version 10.0.45, this feature is turned on by default.)
-
+    1. *Enable warehouse items in Inventory Visibility* (As of Supply Chain Management version 10.0.45, this feature is turned on by default. As of version 10.0.49, it's mandatory and can't be turned off.)
 
 1. Go to **Inventory Management** \> **Setup** \> **Inventory Visibility integration parameters**.
 1. On the **Enable WMS items** tab, set the **Enable WMS items sync** option to *Yes*. Then save the setup.

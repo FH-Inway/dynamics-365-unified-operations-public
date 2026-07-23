@@ -6,7 +6,7 @@ ms.author: johanho
 ms.reviewer: kamaybac
 ms.search.form: QMSApprovedCustomerList, QMSApprovedCustomerGroup, QMSApprovedItemGroup
 ms.topic: how-to
-ms.date: 06/22/2026
+ms.date: 07/27/2026
 ms.custom: 
   - bap-template
 ---
@@ -25,7 +25,7 @@ To use the features that this article describes, your system must meet the follo
 
 - Run Microsoft Dynamics 365 Supply Chain Management version 10.0.44 or later.
 - Turn on the following features in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.47, both features are turned on by default.
-    - *Advanced quality management*
+    - *Advanced quality management* (As of Supply Chain Management version 10.0.49, this feature is mandatory and can't be turned off.)
     - *Approved customer list*
 
 ## Set up approved customers

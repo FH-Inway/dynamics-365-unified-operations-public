@@ -4,7 +4,7 @@ description: Learn how supervisors can check whether all the required materials 
 author: jodahlMSFT
 ms.author: jodahl
 ms.topic: how-to
-ms.date: 04/16/2025
+ms.date: 07/27/2026
 ms.custom: bap-template
 ms.reviewer: kamaybac
 ms.search.form: EntAssetWorkOrderMaterialAvailability, EntAssetWorkOrderTable
@@ -131,7 +131,7 @@ Before you can use the aggregated material availability check feature, your syst
 
 - Your system must meet the prerequisites that are listed at the beginning of this article.
 - You must be running Supply Chain Management version 10.0.44 or later.
-- The feature named *Aggregated material availability check* must be turned on in [Feature management](../../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md).
+- The feature named *Aggregated material availability check* must be turned on in [Feature management](../../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.47, this feature is turned on by default. As of version 10.0.49, it's mandatory and can't be turned off.
 
 ### View information about aggregated material availability
 

@@ -1,27 +1,23 @@
 ---
-title: Dynamic work classification (production-ready preview)
+title: Dynamic work classification
 description: Learn how to use Power Fx formulas to dynamically assign work pools, priorities, location directive codes, and work classes to warehouse work.
 author: Mirzaab
 ms.author: mirzaab
 ms.reviewer: kamaybac
 ms.search.form: WHSWorkTemplateClassificationRule
 ms.topic: how-to
-ms.date: 05/08/2026
+ms.date: 07/27/2026
 ms.custom:
   - bap-template
 ms.collection:
   - ai-assisted
 ---
 
-# Dynamic work classification (production-ready preview)
+# Dynamic work classification
 
 [!include [banner](../includes/banner.md)]
 
-[!INCLUDE [preview-banner](~/../shared-content/shared/preview-includes/preview-banner.md)]
-
 Warehouse managers often need different work pools, priorities, or bay door assignments depending on the carrier, shipping deadline, or type of items being picked. Without dynamic classification, each combination requires its own work template, which can lead to a large and complex configuration.
-
-[!INCLUDE [production-ready-preview-dynamics365](~/../shared-content/shared/preview-includes/production-ready-preview-dynamics365.md)]
 
 Dynamic work classification lets you use Power Fx formulas to determine these work parameters at runtime instead of configuring them statically on each work template. A single work template combined with a classification rule can replace many static templates, making your configuration simpler to maintain and more adaptable to changing business requirements.
 
@@ -37,7 +33,7 @@ To start using dynamic work classification, you must configure how loads trigger
 To use the feature described in this article, your system must meet the following requirements:
 
 - You must be running Microsoft Dynamics 365 Supply Chain Management version 10.0.48 or later.
-- The feature named *(Production Ready Preview) Dynamic work classification* must be turned on in [feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md).
+- The feature named *(Production Ready Preview) Dynamic work classification* must be turned on in [feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.49, this feature is turned on by default.
 
 ## Configure work reclassification on load update
 

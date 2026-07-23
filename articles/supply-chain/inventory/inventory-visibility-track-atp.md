@@ -6,7 +6,7 @@ ms.author: yufeihuang
 ms.reviewer: kamaybac
 ms.search.form:
 ms.topic: how-to
-ms.date: 08/14/2025
+ms.date: 07/27/2026
 ms.custom: 
   - bap-template
 ---
@@ -26,7 +26,7 @@ The *Inventory Visibility integration with ATP* feature that is described in thi
 Before you can use the feature that is described in this article, your system must meet the following requirements:
 
 - You must be running Supply Chain Management version 10.0.41 or later.
-- The feature named *Inventory Visibility integration with ATP* must be turned on in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.45, this feature is turned on by default.
+- The feature named *Inventory Visibility integration with ATP* must be turned on in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.45, this feature is turned on by default. As of version 10.0.49, it's mandatory and can't be turned off.
 - You must be running the latest version of Inventory Visibility. Learn how to install Inventory Visibility, view version information, and check for updates in [Install and set up Inventory Visibility](inventory-visibility-setup.md).
 
 ## Enable Inventory Visibility integration with ATP in Supply Chain Management

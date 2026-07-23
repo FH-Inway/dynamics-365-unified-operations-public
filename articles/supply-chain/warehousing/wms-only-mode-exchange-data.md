@@ -4,10 +4,10 @@ description: Learn how to exchange data and business events between systems in W
 author: Mirzaab
 ms.author: mirzaab
 ms.topic: how-to
-ms.date: 01/13/2026
+ms.date: 07/27/2026
 ms.custom: bap-template
 ms.reviewer: kamaybac
-ms.search.form: WHSSourceSystem, WHSShipmentOrderIntegrationMonitoringWorkspace, SysMessageProcessorMessage, BusinessEventsWorkspace, WHSInboundShipmentOrder, WHSOutboundShipmentOrder, WHSInboundLoadPlanningWorkbench, WHSShipmentPackingSlipJournal, WHSShipmentReceiptJournal, WHSParameters, ExtCodeTable, WHSOutboundShipmentOrderMessage, WHSInboundShipmentOrderMessage, WHSConsigner, WHSConsignerGroup, WHSConsignee, WHSConsignerGroup, WHSSourceSystemItem, EcoResStorageDimensionGroup, InventItemGroup, InventModelGroup, EcoResStorageDimensionGroup, EcoResTrackingDimensionGroup, WHSReservationHierarchy, UnitOfMeasure, WHSUOMSeqGroupTable, WHSSourceSystemProductMessage, WHSSourceSystemProductVariantMessage, WHSSourceSystemProductDocumentAttachmentMessage, WHSSourceSystemProductSpecificUnitOfMeasureConversionMessage, WHSSourceSystemProductBarcodeMessage, WHSSourceSystemProductGlobalTradeItemNumberMessage
+ms.search.form: WHSSourceSystem, WHSShipmentOrderIntegrationMonitoringWorkspace, SysMessageProcessorMessage, BusinessEventsWorkspace, WHSInboundShipmentOrder, WHSOutboundShipmentOrder, WHSInboundLoadPlanningWorkbench, WHSShipmentPackingSlipJournal, WHSShipmentReceiptJournal, WHSParameters, ExtCodeTable, WHSOutboundShipmentOrderMessage, WHSInboundShipmentOrderMessage, WHSConsigner, WHSConsignerGroup, WHSConsignee, WHSConsignerGroup, WHSSourceSystemItem, WHSSourceSystemInventoryStatus, EcoResStorageDimensionGroup, InventItemGroup, InventModelGroup, EcoResStorageDimensionGroup, EcoResTrackingDimensionGroup, WHSReservationHierarchy, UnitOfMeasure, WHSUOMSeqGroupTable, WHSSourceSystemProductMessage, WHSSourceSystemProductVariantMessage, WHSSourceSystemProductDocumentAttachmentMessage, WHSSourceSystemProductSpecificUnitOfMeasureConversionMessage, WHSSourceSystemProductBarcodeMessage, WHSSourceSystemProductGlobalTradeItemNumberMessage
 ---
 
 # Exchange data between systems
@@ -68,7 +68,7 @@ You can import the required master data into Supply Chain Management by using [d
 
 ### View and maintain source system product messages
 
-In Warehouse management only mode, you can view, update, and create product messages. Therefore, you can quickly test integrations during the implementation process. When an externally created message is in a *Failed* message state, you can update field values and assign the updated message back into the message queue. The original message is versioned and non-editable. Go to one of the following pages to view and maintain the messages:
+In Warehouse management only mode, you can view, update, and create product messages. This capability lets you quickly test integrations during the implementation process. When an externally created message is in a *Failed* message state, you can update field values and assign the updated message back into the message queue. The original message is versioned and non-editable. To view and maintain the messages, go to one of the following pages:
 
 - **Warehouse management** \> **Source system products** \> **Source system product messages**
 - **Warehouse management** \> **Source system products** \> **Source system product variant messages**
@@ -80,17 +80,86 @@ In Warehouse management only mode, you can view, update, and create product mess
 The **Warehouse integration monitoring** workspace lets you track the number of source system product messages that are *Queued* and *Failed*.
 
 > [!NOTE]
-> You can set each source system to either allow or prevent users from manually creating messages on the listed pages. Open the relevant [source system](wms-only-mode-setup.md#source-systems) record, and set the **Enable manual source system product message creation** option to *Yes* to allow manual messages or *No* to prevent them. Be aware that, unlike messages that are imported via integration, manually created messages aren't versioned.
+> You can set each source system to either allow or prevent users from manually creating messages on the listed pages. Open the relevant [source system](wms-only-mode-setup.md#source-systems) record, and set the **Enable manual source system product message creation** option to *Yes* to allow manual messages or *No* to prevent them. Unlike messages that are imported via integration, manually created messages aren't versioned.
+
+### <a name="inventory-status-mapping"></a>Source system inventory status mapping
+
+When you use [Warehouse management only mode with external shared warehouses](wms-only-mode-external-shared-warehouse.md), inventory statuses in your external source system might have different identifiers than the [inventory statuses](../inventory/inventory-statuses.md) that you set up in Supply Chain Management. The *source system inventory status mapping* feature lets you create a mapping between your internal inventory status values and the values that your source systems use. The system then automatically translates inventory status values during inbound and outbound shipment order processing, including when inventory status is applied during order registration.
+
+This mapping works in a similar way to [source system items](wms-only-mode-setup.md#source-systems). While source system items map item numbers between systems, inventory status mapping maps inventory status identifiers between systems.
+
+#### Prerequisites
+
+To use source system inventory status mapping, you must be running Supply Chain Management version 10.0.49 or later.
+
+#### Set up inventory status mapping
+
+To set up the mapping between source system inventory statuses and Supply Chain Management inventory statuses, follow these steps:
+
+1. Do one of the following:
+    - Go to **Warehouse management** > **Setup** > **Warehouse management integration** > **Source system inventory statuses**.
+    - Go to **Warehouse management** > **Setup** > **Warehouse management integration** > **Source systems**. Select the source system that you want to set up inventory status mapping for, and then select **Source system inventory statuses** on the Action Pane.
+
+1. On the Action Pane, select **New** to create a new mapping record.
+1. Set the following fields:
+    - **Source system** – Select the source system that the mapping applies to.
+    - **Inventory status** – Select the Supply Chain Management inventory status that this record maps to.
+    - **Source system inventory status** – Enter the inventory status identifier that the external source system uses.
+
+1. Repeat the previous steps for each inventory status that you need to map for each source system.
+
+> [!NOTE]
+> Each combination of source system and inventory status must be unique. Likewise, each combination of source system and source system inventory status must be unique. This uniqueness ensures that the mapping can reliably convert values in both directions.
+
+#### Import inventory status mapping by using data entities
+
+You can import the inventory status mapping data by using the `WHSSourceSystemInventoryStatusEntity` data entity. Use the [Data management framework](../../fin-ops-core/dev-itpro/data-entities/data-entities-data-packages.md) to import records in bulk. The entity exposes the following fields:
+
+| Field | Description |
+|---|---|
+| `SourceSystemId` | The source system identifier. |
+| `InventStatusId` | The Supply Chain Management inventory status ID. |
+| `SourceSystemInventoryStatusId` | The inventory status identifier used by the external source system. |
+
+#### How the mapping is applied
+
+The system applies inventory status mapping in the following scenarios:
+
+- **Inbound shipment order updates** – When an external warehouse sends an update that includes an inventory status (for example, as part of a receiving completed operation), the system uses the mapping to convert the source system inventory status to the corresponding Supply Chain Management inventory status. The mapped value is then used to register the purchase order or transfer order line transaction. Learn more in [Inventory status in inbound shipment order update registration](#inventory-status-in-inbound-update-registration).
+- **Outbound shipment order updates** – When an external warehouse ships inventory and generates a packing slip, the transaction data that's sent to the source system includes inventory status information. The system converts the Supply Chain Management inventory status to the corresponding source system value in the update message.
+- **Inbound and outbound shipment order requests** – When shipment order request data includes inventory status dimensions, the system converts between source system and Supply Chain Management values, depending on the direction of the message.
+
+If the system doesn't find a mapping for a given inventory status value, it processes the message without applying an inventory status conversion.
+
+#### <a name="inventory-status-in-inbound-update-registration"></a>Inventory status in inbound shipment order update registration
+
+In Supply Chain Management version 10.0.49 and later, when an external warehouse sends an inbound shipment order update that includes inventory status information, the system applies that status during registration processing in the source system legal entity. This process means that the registered purchase order or transfer order line transaction uses the inventory status from the external warehouse update, rather than the inventory status that was originally specified on the order line.
+
+This behavior is important in scenarios where the external warehouse assigns a different inventory status during receiving. For example, if a purchase order line has an inventory status of *Available*, but the external warehouse determines during inspection that the goods should be marked as *QualityInspection*, the inbound shipment order update from the external warehouse includes the *QualityInspection* status. When the update is processed, the system registers the purchase order line with the *QualityInspection* status (after applying source system inventory status mapping, if configured).
+
+> [!IMPORTANT]
+> When using this feature with source system inventory status mapping, ensure that you configure all inventory statuses that the external warehouse might send back in updates in the mapping table. If the external warehouse sends an inventory status that isn't mapped, the system uses the value as-is without conversion.
+
+The following example shows the end-to-end flow:
+
+1. A purchase order line in the *USMF* legal entity has inventory status *Available*.
+1. The order is released to the external warehouse (*USSW*) via an inbound shipment order request.
+1. In *USSW*, warehouse workers receive the goods and assign inventory status *QualityInspection* during the receiving process.
+1. Receiving is completed and an inbound shipment order update is sent back to *USMF*. The update includes inventory status *QualityInspection* (or its source system equivalent, if mapping is configured).
+1. *USMF* processes the update. If source system inventory status mapping is configured, the system maps the source system status to the Supply Chain Management status. The purchase order line transaction is registered with the mapped inventory status.
+
+> [!NOTE]
+> The inventory status field is visible on the **External warehouse inbound shipment order request** and **External warehouse outbound shipment order request** pages when the source system inventory status mapping feature is enabled. The `WHSShipmentReceiptTransactionInventoryDimensionV2Entity` and `WHSShipmentPackingSlipTransactionInventoryDimensionV2Entity` entities also expose the **SourceSystemInventoryStatus** field, which shows the mapped source system inventory status value.
 
 ### Consigner and consignee information
 
-To make it easier to set up your warehouse operation, you can create and use data for *consigners* and *consignees* and their related group definitions. For example, you can use this approach for a process that's related to setting up a [quality order creation process](../inventory/quality-associations.md) for a specific consigner or consigner group.
+To make it easier to set up your warehouse operation, create and use data for *consigners* and *consignees* and their related group definitions. For example, use this approach for a process that's related to setting up a [quality order creation process](../inventory/quality-associations.md) for a specific consigner or consigner group.
 
 Neither the *Inbound shipment order policies* (which are part of the **Source systems** setup) nor inbound shipment order message processing requires that the fields for the **Consigner's account number** value exist in the entity for the **Consigners** page (**Warehouse management** \> **Setup** \> **Warehouse management integration** \> **Consigners**). The same "free text" concept exists for the outbound shipment order process that's related to the **Consigner's account number** value.
 
 ### Country/region
 
-To [create a new legal entity](../../fin-ops-core/fin-ops/organization-administration/tasks/create-legal-entity.md) for your warehouses and import outbound shipment orders, you must have [**country/region**](../../fin-ops-core/dev-itpro/organization-administration/global-address-book-address-setup.md#set-up-countryregion-information) values defined in Supply Chain Management. These records are used in outbound shipment orders to create addresses. Depending on your [address setup](../../fin-ops-core/dev-itpro/organization-administration/global-address-book-address-setup.md) and the way that you use address fields in order messages, you might have to create additional data before you can import order messages (for example, to support state/province and county combinations).
+To [create a new legal entity](../../fin-ops-core/fin-ops/organization-administration/tasks/create-legal-entity.md) for your warehouses and import outbound shipment orders, you must define [**country/region**](../../fin-ops-core/dev-itpro/organization-administration/global-address-book-address-setup.md#set-up-countryregion-information) values in Supply Chain Management. Use these records in outbound shipment orders to create addresses. Depending on your [address setup](../../fin-ops-core/dev-itpro/organization-administration/global-address-book-address-setup.md) and the way that you use address fields in order messages, you might have to create additional data before you can import order messages (for example, to support state/province and county combinations).
 
 ## <a name="inbound-outbound-shipment-order-messages"></a>Inbound and outbound shipment order messages
 
@@ -155,7 +224,7 @@ At a minimum, use the following business events for integration with an external
 
 ## On-hand adjustments
 
-When you integrate an ERP system and a warehouse management system, it's essential that you keep on-hand inventory data aligned. Several processes can help maintain this alignment as part of the Warehouse management only mode implementation approach. For more information about how the inventory on-hand update process works, see [On-hand inventory updates between systems](wms-only-mode-external-erp.md#on-hand-updates-between-systems).
+When you integrate an ERP system and a warehouse management system, keep on-hand inventory data aligned. Several processes can help maintain this alignment as part of the Warehouse management only mode implementation approach. For more information about how the inventory on-hand update process works, see [On-hand inventory updates between systems](wms-only-mode-external-erp.md#on-hand-updates-between-systems).
 
 ## Warehouse management only mode with external shared warehouses
 
@@ -163,7 +232,7 @@ You can set up an integration between Supply Chain Management and an external wa
 
 ### Inbound and outbound shipment order requests
 
-Use external warehouse inbound and outbound shipment order requests to import orders from Supply Chain Management into your warehouse management system. When you release an order to the warehouse, the system creates a business event with a request ID. You can use this ID to retrieve full details through related data entities.
+Use external warehouse inbound and outbound shipment order requests to import orders from Supply Chain Management into your warehouse management system. When you release an order to the warehouse, the system creates a business event with a request ID. Use this ID to retrieve full details through related data entities.
 
 | Business event ID | Description | Data entities |
 | --- | --- | --- |
@@ -172,7 +241,7 @@ Use external warehouse inbound and outbound shipment order requests to import or
 
 ### Inbound and outbound shipment order updates
 
-Use external warehouse inbound and outbound shipment order updates to send shipment updates from your warehouse management system to Supply Chain Management. The message processor processes these updates in the same way as [inbound and outbound shipment order messages](#inbound-outbound-shipment-order-messages).
+Use external warehouse inbound and outbound shipment order updates to send shipment updates from your warehouse management system to Supply Chain Management. The message processor handles these updates in the same way as [inbound and outbound shipment order messages](#inbound-outbound-shipment-order-messages).
 
 - `WHSEWInboundShipmentOrderUpdateEntity`
 - `WHSEWInboundShipmentOrderLineUpdateEntity`

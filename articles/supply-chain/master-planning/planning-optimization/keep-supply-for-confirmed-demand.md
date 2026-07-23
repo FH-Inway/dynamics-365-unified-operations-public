@@ -1,25 +1,21 @@
 ---
-title: Keep supply for confirmed demand in Planning Optimization (Preview)
+title: Keep supply for confirmed demand in Planning Optimization
 description: Keep supply for confirmed demand feature ensures that customer commitments provided by capable-to-promise (CTP) functionality are strictly preserved between planning runs.
 author: Henrikan
 ms.author: henrikan
 ms.reviewer: kamaybac
 ms.search.form: SalesAvailableDlvDates, SalesTable, CustParameters, InventItemOrderSetup
 ms.topic: how-to
-ms.date: 05/05/2026
+ms.date: 07/27/2026
 ms.custom:
   - bap-template
 ---
 
-# Keep supply for confirmed demand in Planning Optimization (Preview)
+# Keep supply for confirmed demand in Planning Optimization
 
 [!include [banner](../../includes/banner.md)]
-[!INCLUDE [preview-banner](~/../shared-content/shared/preview-includes/preview-banner.md)]
-<!-- KFM: preview until 10.0.49 -->
 
 The *keep supply for confirmed demand* feature ensures that customer commitments provided by capable-to-promise (CTP) functionality are strictly preserved between planning runs. This functionality is applied across all BOM levels, meaning that all derived requirements originating from a confirmed sales line are preserved. Such requirements are referred to as *confirmed requirements*.
-
-[!INCLUDE [preview-note](~/../shared-content/shared/preview-includes/preview-note-d365.md)]
 
 ## What qualifies as confirmed demand
 
@@ -52,7 +48,7 @@ Before you can use the *keep supply for confirmed demand* feature, your system m
 
 - You must be running Microsoft Dynamics 365 Supply Chain Management version 10.0.48 build 10.0.2645.33 or later.
 - You must use Planning Optimization.
-- The *(Preview) Keep supply for confirmed demand in Planning Optimization* feature must be turned on in [Feature management](../../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md).
+- The *Keep supply for confirmed demand in Planning Optimization* feature must be turned on in [Feature management](../../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md).
 
 > [!NOTE]
 > This feature works together with CTP delivery date control. You can use either *Near real-time CTP* or *Batch CTP* delivery date control. The supply chain is retained if you later change the delivery date control to other values, as long as the confirmed ship date remains populated.
@@ -98,7 +94,7 @@ By default, the *keep supply for confirmed demand* feature preserves planned ord
 To override this behavior, use the **Keep received supply outside positive days** parameter on the coverage group.
 
 > [!NOTE]
-> This parameter is visible only when both Planning Optimization and the *(Preview) Keep supply for confirmed demand in Planning Optimization* feature are enabled. The parameter is used by Planning Optimization and takes effect only for confirmed demand (sales orders with a confirmed ship date) when you run master planning with the **Keep supply for confirmed demand** parameter enabled.
+> This parameter is visible only when both Planning Optimization and the *Keep supply for confirmed demand in Planning Optimization* feature are enabled. The parameter is used by Planning Optimization and takes effect only for confirmed demand (sales orders with a confirmed ship date) when you run master planning with the **Keep supply for confirmed demand** parameter enabled.
 
 To set the **Keep received supply outside positive days** parameter on a coverage group:
 
@@ -206,4 +202,4 @@ To minimize performance impact, consider the following recommendations:
 ### Additional resources
 
 - [Calculate sales order delivery dates using CTP](calculate-delivery-dates-using-ctp.md)
-- [Optimize confirmed dates for CTP line changes (preview)](optimize-confirmed-dates-for-ctp-line-changes.md)
+- [Optimize confirmed dates for CTP line changes](optimize-confirmed-dates-for-ctp-line-changes.md)

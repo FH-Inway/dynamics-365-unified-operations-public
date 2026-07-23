@@ -6,7 +6,7 @@ ms.author: johanho
 ms.reviewer: kamaybac
 ms.search.form: InventParameters, QMSInventTestLocation, InventTestInstrument, QMSInventTestDepartment, QMSInventCalibrationProcedure, QMSInventCalibrationGroup, QMSInventTestInstrumentTag, QMSInventInstrumentCalibrationDetail, QMSInventTestCalibrationReopenHistory, InventTestGroup, InventQualityOrderTable, QMSInventCalibrationLabelLayout
 ms.topic: how-to
-ms.date: 04/25/2025
+ms.date: 07/27/2026
 ms.custom: 
   - bap-template
 ---
@@ -35,7 +35,7 @@ The feature also lets you generate and print calibration reports, such as calibr
 Before you can use test instrument calibration features in Supply Chain Management, your system must meet the following requirements:
 
 - You must be running Supply Chain Management version 10.0.44 or later.
-- The feature named *Advanced quality management* must be turned on in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.47, this feature is turned on by default.
+- The feature named *Advanced quality management* must be turned on in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.47, this feature is turned on by default. As of version 10.0.49, it's mandatory and can't be turned off.
 
 ## <a name="parameters"></a>Set up instrument calibration parameters
 

@@ -1,25 +1,21 @@
 ---
-title: Optimize confirmed dates for CTP line changes (preview)
+title: Optimize confirmed dates for CTP line changes
 description: Optimize confirmed dates for CTP line changes feature ensures that confirmed ship and receipt dates on sales order lines remain accurate when fields that affect transport days are modified.
 author: Henrikan
 ms.author: henrikan
 ms.reviewer: kamaybac
 ms.search.form: SalesAvailableDlvDates, SalesTable, CustParameters, InventItemOrderSetup
 ms.topic: how-to
-ms.date: 05/05/2026
+ms.date: 07/27/2026
 ms.custom:
   - bap-template
 ---
 
-# Optimize confirmed dates for CTP line changes (preview)
+# Optimize confirmed dates for CTP line changes
 
 [!include [banner](../../includes/banner.md)]
-[!INCLUDE [preview-banner](~/../shared-content/shared/preview-includes/preview-banner.md)]
-<!-- KFM: preview until 10.0.49 -->
 
 The *optimize confirmed dates for CTP line changes* feature ensures that confirmed ship and receipt dates on sales order lines stay accurate when you modify fields that affect transport days. When you use capable-to-promise (CTP) with Planning Optimization, this feature automatically adjusts the confirmed dates to optimize delivery without requiring user action.
-
-[!INCLUDE [preview-note](~/../shared-content/shared/preview-includes/preview-note-d365.md)]
 
 ## When the feature applies
 
@@ -48,7 +44,7 @@ Before you can use the *optimize confirmed dates for CTP line changes* feature, 
 - You must be running Microsoft Dynamics 365 Supply Chain Management version 10.0.48 build 10.0.2645.33 or later.
 - You must use Planning Optimization.
 - You must use capable-to-promise (CTP) delivery date control on the sales order line. You can use either *Near real-time CTP* or *Batch CTP*.
-- The *(Preview) Optimize confirmed dates for CTP line changes* feature must be turned on in [Feature management](../../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md).
+- The *Optimize confirmed dates for CTP line changes* feature must be turned on in [Feature management](../../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md).
 
 ## Example scenario 1: Changing to a faster mode of delivery
 
@@ -115,4 +111,4 @@ Without this feature, the requested and confirmed receipt dates would shift to *
 ### Additional resources
 
 - [Calculate sales order delivery dates using CTP](calculate-delivery-dates-using-ctp.md)
-- [Keep supply for confirmed demand in Planning Optimization (Preview)](keep-supply-for-confirmed-demand.md)
+- [Keep supply for confirmed demand in Planning Optimization](keep-supply-for-confirmed-demand.md)

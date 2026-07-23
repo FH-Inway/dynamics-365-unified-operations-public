@@ -4,7 +4,7 @@ description: Learn how to use and create diagnostic types that can be used with 
 author: johanhoffmann
 ms.author: johanho
 ms.topic: article
-ms.date: 04/25/2025
+ms.date: 07/27/2026
 ms.reviewer: kamaybac
 ms.search.form: InventTestDiagnosticType, InventTestCorrection, QMSInventTestDiagnosticGroup
 ms.assetid: a1d9417b-268f-4334-8ab6-8499d6c3acf0
@@ -45,7 +45,7 @@ Use *diagnostic groups* to collect related diagnostic types so that you can quic
 Before you can use diagnostic groups, your system must meet the following requirements:
 
 - You must be running Supply Chain Management version 10.0.44 or later.
-- The feature named *Advanced quality management* must be turned on in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.47, this feature is turned on by default.
+- The feature named *Advanced quality management* must be turned on in [Feature management](../../fin-ops-core/fin-ops/get-started/feature-management/feature-management-overview.md). As of Supply Chain Management version 10.0.47, this feature is turned on by default. As of version 10.0.49, it's mandatory and can't be turned off.
 
 ### Manage diagnostic groups
 

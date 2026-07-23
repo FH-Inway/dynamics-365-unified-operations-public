@@ -4,7 +4,7 @@ description: Learn about how to use Electronic reporting to set up the advanced 
 author: mukumarm
 ms.author: mukumarm
 ms.topic: how-to
-ms.date: 07/08/2026
+ms.date: 07/22/2026
 ms.reviewer: twheeloc
 audience: Application User
 ms.search.region: Global
@@ -86,7 +86,7 @@ Import a bank statement file to create a bank statement record that you can matc
 
 ## Examples of bank statement formats and technical layouts
 
-The following table shows examples of the advanced bank reconciliation import file technical layout definitions and three related bank statement example files: [Import file examples](//download.microsoft.com/download/8/e/c/8ec8d2d0-eb8c-41fb-ad8c-f01a4d670a44/Dynamics365FinanceAdvancedBankStatementLayouts.xlsx)  
+The following table shows examples of the advanced bank reconciliation import file technical layout definitions and three related bank statement example files: [Import file examples](https://download.microsoft.com/download/57aaa789-d0d1-43e0-9c4e-27497a299081/Dynamics365FinanceAdvancedBankStatementLayouts.xlsx)  
 
 | Technical layout definition                             | Bank statement example file          |
 |---------------------------------------------------------|--------------------------------------|

@@ -32,7 +32,7 @@ The components involved in this scenario are:
 - Job contract creator class
 - Archive service type registration
 
-You need extensive X++ development for table structure, job contracts, and type registration.
+Don't create archive classes in the BusinessIntelligence model. Put all custom archive code in a customer-owned model.
 
 ### Prerequisites
 
@@ -512,9 +512,8 @@ WHERE conditions:
 
 Entity names:
 
-- Use Dataverse virtual entity name (starts with `mserp_`)
-- Use all lowercase
-- Example: `tableStr(mserp_customworkflowheaderbientity)`
+- Use the customer-owned or existing finance and operations entity name.
+- The entity must correspond to the live table being archived.
 
 #### Enable parallel processing with a job criteria key
 
@@ -546,80 +545,6 @@ A value is suitable as a job criteria key when it meets all of the following con
 > [!TIP]
 > Use `DataAreaId` (legal entity) unless your scenario genuinely needs finer-grained partitioning. It's usually the safest choice, but it guarantees zero overlap only when each job's `WHERE` conditions filter by `DataAreaId` and a single job processes just one legal entity at a time. You can use a composite key (for example, `_criteria.DataAreaId + '|' + region`) to gain more parallelism, but only if your `WHERE` conditions filter by every field in that key. Otherwise, jobs with different keys could process overlapping records.
 
-#### Create job contract creator (BI Extension)
-
-To create BI extension class to add LTR configuration, follow these steps:
-> [!IMPORTANT]
-> You must create this extension in the **BusinessIntelligence** model. Don't create it in your main model.
-
-1. Switch to the BusinessIntelligence model project.
-1. Create a new class.
-1. Set the name to `Custom[ScenarioName]ArchiveAutomationJobRequestCreator_BI_Extension`.
-1. Add the extension attribute.
-
-```xpp
-using Microsoft.Dynamics.Archive.Contracts;
-
-[ExtensionOf(classStr(CustomWorkflowArchiveAutomationJobRequestCreator))]
-public final class CustomWorkflowArchiveAutomationJobRequestCreator_BI_Extension
-{
-    // Extension logic
-}
-```
-
-#### Extend createPostJobRequest with LTR configuration
-
-```xpp
-public ArchiveJobPostRequest createPostJobRequest(var _criteria)
-{
-    // Call base implementation (gets job contract with tables)
-    ArchiveJobPostRequest postRequest = next createPostJobRequest(_criteria);
-    
-    // Add LTR configuration for source link table
-    postRequest = this.addSourceLinkTableForLongTermRetention(postRequest, _criteria);
-    
-    return postRequest;
-}
-```
-
-#### Implement LTR configuration method
-
-```xpp
-private ArchiveJobPostRequest addSourceLinkTableForLongTermRetention(
-    ArchiveJobPostRequest _postRequest,
-    var _criteria)
-{
-    // Construct builder from existing contract
-    ArchiveServiceArchiveJobPostRequestBuilder builder = 
-        ArchiveServiceArchiveJobPostRequestBuilder::constructFromArchiveJobPostRequest(_postRequest);
-    
-    // Add LTR configuration for source link table
-    builder.addSourceLinkTableForLongTermRetention(
-        ArchiveServiceSourceLinkTableConfiguration::newForSourceTable(
-            tableStr(CustomWorkflowHeader),
-            tableStr(CustomWorkflowHeaderHistory),
-            tableStr(mserp_customworkflowheaderbientity))  // Dataverse entity name
-        
-        // WHERE conditions must match base class criteria
-        .addWhereCondition(
-            fieldStr(CustomWorkflowHeader, DataAreaId),
-            ArchiveServiceOperator::Equals,
-            _criteria.DataAreaId)
-        
-        .addWhereCondition(
-            fieldStr(CustomWorkflowHeader, CompletedDate),
-            ArchiveServiceOperator::LessThan,
-            _criteria.ArchiveBeforeDate)
-        
-        .addWhereCondition(
-            fieldStr(CustomWorkflowHeader, WorkflowStatus),
-            ArchiveServiceOperator::Equals,
-            WorkflowStatus::Completed));
-    
-    // Finalize and return updated contract
-    return builder.finalizeArchiveJobPostRequest();
-}
-```
 
 #### Keep job contract logic in one class
 
@@ -637,8 +562,7 @@ Use `ArchiveServiceManagedTypeRegistration` in `getManagedTypeRegistration()` to
 
 To build your solution, follow these steps:
 
-1. Build your main model (tables, base job creator, type registration).
-1. Build BusinessIntelligence model (finance and operations data entities, extension class).
+1. Build your customer-owned model (tables, entities, job creator, and type registration).
 1. Resolve any compilation errors.
 
 #### Synchronize database
@@ -764,13 +688,8 @@ Code:
 
 - Created job contract creator class in customer-owned model.
 - Implemented archive criteria in `createPostJobRequest`.
-- Set a job criteria key to enable parallel processing (optional).
-- Added all child tables with correct JOINs.
-- Created BI extension class in BusinessIntelligence model.
-- Added LTR configuration for source link table.
-- Created type registration class.
-- Added archive type to `ArchiveType` enum.
-- Type registration runs on startup.
+- Added root and child tables with correct JOINs and segregation filters.
+- Created managed type registration class using `ArchiveServiceIManagedArchiveType`.
 - No compilation errors.
 
 Testing:
